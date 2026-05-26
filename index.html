@@ -275,6 +275,166 @@
     margin:32px 0 8px 0;
     font-weight:700;
   }
+  p.lead.small{ font-size:14px; max-width:580px; margin-top:0; }
+
+  /* SUB-PART (3A / 3B / 3C inside Part 3) */
+  .subpart{
+    margin:36px 0 0 0;
+    padding:24px 0 0 0;
+    border-top:1px dashed var(--rule);
+  }
+  .subpart:first-of-type{ border-top:none; padding-top:8px; }
+  .subpart-tag{
+    display:inline-block;
+    background:var(--paper-2);
+    color:var(--accent);
+    font-size:11px;
+    letter-spacing:.25em;
+    text-transform:uppercase;
+    font-weight:700;
+    padding:5px 12px;
+    border-radius:3px;
+    margin-bottom:10px;
+  }
+
+  /* SCHOOL MANAGER (3B accumulator) */
+  .school-mgr{ margin-top:14px; }
+  .school-saved-list{
+    margin-bottom:18px;
+    padding:12px 14px;
+    background:#fff;
+    border:1px solid var(--rule);
+    border-radius:6px;
+    min-height:42px;
+  }
+  .school-list-label{
+    font-size:11px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--ink-mute);
+    font-weight:700;
+    margin-bottom:8px;
+  }
+  .school-empty{
+    font-size:13px;
+    color:var(--ink-mute);
+    font-style:italic;
+    padding:6px 2px;
+  }
+  .school-chips{ display:flex; flex-wrap:wrap; gap:8px; }
+  .school-chip{
+    display:inline-flex;
+    align-items:center;
+    background:var(--paper-2);
+    border:1px solid var(--rule);
+    border-radius:20px;
+    padding:0;
+    overflow:hidden;
+  }
+  .school-chip.active{
+    background:var(--accent);
+    border-color:var(--accent);
+  }
+  .school-chip.active .school-chip-name{ color:#fff; }
+  .school-chip.active .school-chip-x{ color:#fff; }
+  .school-chip-name{
+    border:none;
+    background:transparent;
+    color:var(--ink);
+    font-family:inherit;
+    font-size:13px;
+    padding:6px 10px 6px 14px;
+    cursor:pointer;
+    font-weight:500;
+  }
+  .school-chip-name:hover{ color:var(--accent); }
+  .school-chip.active .school-chip-name:hover{ color:#fff; opacity:.85; }
+  .school-chip-x{
+    border:none;
+    background:transparent;
+    color:var(--ink-mute);
+    cursor:pointer;
+    font-size:14px;
+    padding:6px 12px 6px 4px;
+    line-height:1;
+  }
+  .school-chip-x:hover{ color:var(--accent); }
+
+  .school-active-frame{
+    background:#fff;
+    border:1.5px solid var(--accent);
+    border-radius:8px;
+    padding:18px 22px 22px 22px;
+    box-shadow:0 2px 8px rgba(196,83,58,.06);
+  }
+  .school-active-header{
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+    margin-bottom:12px;
+    padding-bottom:10px;
+    border-bottom:1px solid var(--rule);
+  }
+  .school-active-label{
+    font-size:11px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--ink-mute);
+    font-weight:700;
+  }
+  .school-active-name{
+    font-family:"Iowan Old Style",Georgia,serif;
+    font-size:18px;
+    color:var(--accent);
+    font-weight:600;
+  }
+  .school-active .card-intro{
+    background:var(--paper-2);
+    padding:10px 14px;
+    border-radius:4px;
+    font-size:13.5px;
+    color:var(--ink-soft);
+    margin:0 0 18px 0;
+    line-height:1.5;
+  }
+  .school-active .card-sub{
+    font-size:11px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--teal);
+    margin:20px 0 6px 0;
+    font-weight:700;
+    border-bottom:1px solid var(--rule);
+    padding-bottom:4px;
+  }
+  .school-active .card-q-text .card-q-label{
+    font-size:12px;
+    color:var(--ink-mute);
+    font-weight:600;
+    margin-bottom:4px;
+    letter-spacing:.04em;
+  }
+  .school-active .card-q-text input{
+    width:100%;
+    background:var(--field);
+    border:1px solid var(--rule);
+    border-radius:4px;
+    padding:8px 12px;
+    font-family:inherit;
+    font-size:15px;
+    color:var(--ink);
+  }
+  .school-active .card-q-text input:focus{
+    outline:none;
+    border-color:var(--accent);
+    background:var(--field-focus);
+  }
+  .school-actions{
+    margin-top:24px;
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+  }
 
   /* QUESTIONS */
   .q{
@@ -603,7 +763,7 @@
     <a href="#open" class="active"><span class="pn">00</span>Letter</a>
     <a href="#part1"><span class="pn">01</span>XHS</a>
     <a href="#part2"><span class="pn">02</span>WeChat</a>
-    <a href="#part3"><span class="pn">03</span>Your school</a>
+    <a href="#part3"><span class="pn">03</span>Portfolio + schools</a>
     <a href="#part4"><span class="pn">04</span>Mix &amp; cadence</a>
     <a href="#part5"><span class="pn">05</span>How we work</a>
     <a href="#part6"><span class="pn">06</span>Visuals &amp; editing</a>
@@ -631,15 +791,21 @@
 
   <p>Hey 👋</p>
 
-  <p>I've been heads-down for a few months on the thing I keep telling you about over WeChat — the tool that takes your raw materials (brochures, campus photos, the random clips on your phone) and turns them into XHS + 公众号 posts, one school at a time.</p>
+  <p>I've been heads-down for a few months on the thing I keep telling you about over WeChat — the tool that takes your raw materials (brochures, campus photos, the random clips on your phone) and turns them into XHS + 公众号 posts, <b>across all the schools you run</b>, not just one.</p>
 
-  <p>It mostly works. The problem is it sounds like a tool — clean, generic, instantly forgettable. You can tell when a post was written by someone who's actually walked the campus, and right now mine can't.</p>
+  <p>That last bit matters. The whole product is built around the fact that you're not a one-school marketer — you're an agency-of-one managing 3–30 clients with the roster always shifting. So the questions split into three layers:</p>
 
-  <p>Below is basically my notebook from the last three months — every time I caught myself wondering <em>how do you actually decide this</em>, I wrote it down. Your answers turn into the rules the tool follows. Every prompt, every guardrail, every "no don't say that" lands here first.</p>
+  <ul style="font-size:16px;color:var(--ink-soft);max-width:620px;padding-left:20px;line-height:1.55;">
+    <li><b>Platform layer</b> (Parts 1 + 2) — what works on XHS and WeChat across your whole portfolio</li>
+    <li><b>Agency + per-school layer</b> (Part 3) — how big your portfolio is, how the schools differ, then a card you fill once per school</li>
+    <li><b>Operator layer</b> (Parts 4–8) — your cadence, workflow, business rules, and you</li>
+  </ul>
 
-  <p>A few practical notes: bullets are fine, better than essays. If it's faster to talk, just send me voice notes on WeChat and I'll transcribe on this end. <b>You can also paste or attach screenshots</b> directly on any question — every question has a little 📎 below it, and Cmd-V works anywhere in a question. A real example of a post you loved (or hated) teaches the tool more than a paragraph of explanation.</p>
+  <p>It mostly works as code today. The problem is it sounds like a tool — clean, generic, instantly forgettable. You can tell when a post was written by someone who's actually walked the campus, and right now mine can't. Your answers below turn into the rules each version follows — every prompt, every guardrail, every "no don't say that" lands here first.</p>
 
-  <p>If today you only have headspace for one thing: <b>Part 3, your most active school.</b> That alone unlocks the bulk of the work.</p>
+  <p>Practical notes: bullets are fine, better than essays. If it's faster to talk, send me voice notes on WeChat and I'll transcribe on this end. <b>You can paste or attach screenshots</b> directly on any question — every question has a little 📎 below it, and Cmd-V works anywhere in a question. A real example of a post you loved (or hated) teaches the tool more than a paragraph of explanation.</p>
+
+  <p>If today you only have headspace for one thing: <b>fill Part 3A (your portfolio at a glance) + one school in Part 3B (your most active).</b> That alone unlocks the bulk of the work; we loop back for the other schools whenever.</p>
 
   <p class="signoff">— William</p>
 </section>
@@ -923,21 +1089,48 @@
 <!-- ===================== PART 3 ===================== -->
 <section class="part" id="part3">
   <div class="ptag">PART 03</div>
-  <h2>One school, in detail</h2>
-  <p class="lead">Pick your most active school and answer for that one. (If you have headspace later, do another.) Every field here lands in that school's profile.</p>
+  <h2>Your portfolio &amp; your schools</h2>
+  <p class="lead">Three layers: the agency at scale, then one card per school (fill one at a time), then patterns that hold across all of them.</p>
 
-  <div class="school-card">
-    <label>School name (zh / en)</label>
-    <input type="text" data-key="school.name">
-    <label>Short name</label>
-    <input type="text" data-key="school.short">
-    <label>Founded</label>
-    <input type="text" data-key="school.founded">
-    <label>Student count · age range</label>
-    <input type="text" data-key="school.students">
+  <!-- 3A — Agency at scale -->
+  <div class="subpart">
+    <div class="subpart-tag">3A · The agency at scale</div>
+    <p class="lead small">Step back from any specific school. This is about the portfolio as a whole — how many you run, how they differ, how the roster moves.</p>
+    <div class="qg" data-section="part3a"></div>
   </div>
 
-  <div class="qg" data-section="part3"></div>
+  <!-- 3B — Per-school accumulator -->
+  <div class="subpart">
+    <div class="subpart-tag">3B · Each school (one card at a time)</div>
+    <p class="lead small">Fill one school first — your most active. When done, hit <b>Save &amp; add another</b> and the card resets. Or stop after one and we loop back later.</p>
+
+    <div class="school-mgr">
+      <div class="school-saved-list" id="school-saved-list">
+        <!-- saved school chips rendered here by JS -->
+      </div>
+
+      <div class="school-active-frame">
+        <div class="school-active-header">
+          <span class="school-active-label">Currently editing:</span>
+          <span class="school-active-name" id="school-active-name">(unnamed school)</span>
+        </div>
+        <div class="school-active" id="school-active">
+          <!-- the active school card rendered here by renderCard() -->
+        </div>
+        <div class="school-actions">
+          <button class="btn primary" id="btn-save-school">Save this school + add another ↻</button>
+          <button class="btn ghost" id="btn-school-done">I'm done with schools for now →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3C — Patterns across schools -->
+  <div class="subpart">
+    <div class="subpart-tag">3C · Patterns across schools</div>
+    <p class="lead small">Rules and habits that hold across your whole portfolio, regardless of which school. This becomes the agency-level layer that sits above every school's profile.</p>
+    <div class="qg" data-section="part3c"></div>
+  </div>
 </section>
 
 <!-- ===================== PART 4 ===================== -->
@@ -1002,459 +1195,1103 @@
 
 <script>
 // ===== QUESTIONS DATA =====
-const Q = {
-  part1: [
-    { sub: "Caption craft", items: [
-      { n:1,  q:"On XHS, how long should a good caption run for an info-style carousel, for a story-style post, and for a short video? Where's the point where it's just too long?",
-        why:"the text agent uses these as hard upper bounds per platform + content type — wrong cap = ad-style overlong copy.",
-        helps:"a range per type. e.g. <em>info 300–500字 · story 150–250字 · video &lt;100字</em>. don't agonize — your gut is right." },
-      { n:2,  q:"What are three opening lines you keep coming back to because they work — the kind you'd reuse without thinking?",
-        why:"becomes the few-shot bank the agent picks from when writing the opener of every post.",
-        helps:"3 short copy-pasteable templates. e.g. <em>'3个你可能不知道的…' · '我之前一直以为…' · '在浦东这家学校的早餐桌上…'</em>" },
-      { n:3,  q:"Pick 5 adjectives that describe how the XHS voice for your schools <b>should</b> feel. Then 5 it should never feel like.",
-        why:"becomes the explicit tone vector — the agent rejects drafts that drift outside.",
-        helps:"5+5 single adjectives. e.g. <em>should: 真诚 · 具体 · 温暖 · 不端着 · 略带幽默 // never: 浮夸 · 招生腔 · 油腻 · 居高临下 · 网红体</em>" },
-      { n:4,  q:"How do you use emojis on XHS — how many per post, where do they go, and are there any that immediately scream 'ad' to you?",
-        why:"the caption validator limits emoji density per platform.",
-        helps:"a count + rule. e.g. <em>0–2 per caption · never in title · 🎉🔥💯 feel like ads · 🌿☕📖 feel real</em>" },
-      { n:5,  q:"How do you handle hashtags on XHS — roughly how many per post, what's the broad-vs-niche mix, do you cluster them at the end or weave them in, and are there any tags you always keep on rotation?",
-        hint:"• how many total · • broad vs niche mix · • end-block or woven in · • any always-on tags", rows:4,
-        why:"builds the hashtag block + insertion logic for every XHS post.",
-        helps:"numbers + actual tags. e.g. <em>8–12 total · 70% niche / 30% broad · end-block · always-on: #国际学校 #上海择校</em>" },
-      { n:6,  q:"Give me three soft CTAs that actually work for you on XHS, and three hard CTAs you've watched flop.",
-        why:"the agent draws from 'works' for closing lines and learns to avoid the 'flops'.",
-        helps:"6 short example phrases. e.g. <em>works: '评论区聊聊' '收藏起来下次再看' // flops: '立即报名' '联系我们了解更多'</em>" },
-      { n:7,  q:"When you scroll past a post and immediately think 'this is an ad,' what tipped you off? Even when a post is technically organic, what makes it read like marketing?",
-        why:"feeds the ad-smell heuristic in the self-critique pass.",
-        helps:"2–4 visible tells. e.g. <em>100%笑容站立合照 · 排比句开头 · 过多感叹号 · 全大写英文标题</em>" },
-      { n:8,  q:"What words do you actively avoid on XHS — both for 营销 reasons (they feel salesy) and for XHS-review reasons (they get the post throttled)?",
-        why:"hard validator strips/flags these in generated copy before you ever see it.",
-        helps:"a comma-separated list. e.g. <em>顶级 · 最好 · 保证 · 包过 · 名校直通车 · 黑马 · 内部 · 限时</em>" },
-      { n:9,  q:"When does mixing Chinese and English in a caption feel natural to you, and when does it cross into tacky territory? Give me a real example each way if you can.",
-        why:"the agent's bilingual-mix rule for XHS captions.",
-        helps:"a rule of thumb + 1–2 examples each way. e.g. <em>natural: 课程名 (IB DP, IGCSE), school name // tacky: random 'amazing' mid-sentence</em>" },
-    ]},
-    { sub: "Visuals — image & carousel", items: [
-      { n:10, q:"What are your top 3 cover archetypes that consistently get the click on XHS? Describe each in one line.",
-        why:"image agent's cover composition presets.",
-        helps:"3 patterns described in one line each. e.g. <em>1) 学生侧脸 + 大字标题 2) 单一物品居中 + 反差色 3) 校园广角 + 小字角标</em>" },
-      { n:11, q:"When you put text on a cover image, what are your rules — character count, font weight, where on the image it sits, and what color treatment (block bg, drop shadow, no bg)?",
-        hint:"• character count · • font weight · • position on the image · • color block / treatment", rows:4,
-        why:"image generator places overlay text per these rules.",
-        helps:"a value per field. e.g. <em>8–12字 · 思源黑体 Bold · 顶部居中 · 黑色块底 with white text</em>" },
-      { n:12, q:"How many pages is the carousel sweet spot? Where does adding more pages start to hurt instead of help?",
-        why:"t2t agent caps carousel length when generating for XHS.",
-        helps:"a range + rule. e.g. <em>info 6–8 · story 3–5 · &gt;9 drops engagement noticeably</em>" },
-      { n:13, q:"When you build a carousel, is page 1 always a pure hook? And do you save the payoff for the last page, or sprinkle it through the deck?",
-        why:"carousel structure rule for the text agent.",
-        helps:"one sentence. e.g. <em>page 1 = pure hook · payoff sprinkled mid-deck · last page = soft CTA, no reveal</em>" },
-      { n:14, q:"What style do you prefer for text inside images — serif or sans, bold or regular? Do you usually pair Chinese with an English subtitle line?",
-        why:"image agent's font/style defaults.",
-        helps:"e.g. <em>sans-serif (黑体) · bold · CN big, EN small sub-line, lighter weight</em>" },
-      { n:15, q:"What aspect ratio do you default to on XHS — 3:4 or 1:1 for covers? What about for in-deck pages?",
-        why:"image generator's output dimensions per slot.",
-        helps:"a pair. e.g. <em>3:4 cover, 1:1 in-deck. never 16:9 on XHS.</em>" },
-      { n:16, q:"How do you handle brand integration in images — logo, watermark, school name? Is it always visible, sometimes, or never?",
-        why:"image agent's logo/watermark policy.",
-        helps:"a clear rule. e.g. <em>logo always: bottom-right · 8% width · 70% opacity. school name on cover only.</em>" },
-    ]},
-    { sub: "Short video on XHS", items: [
-      { n:17, q:"How long should a video be on XHS for each kind of content — a campus tour, a testimonial, a class snippet?",
-        why:"video pipeline caps clip length per intent.",
-        helps:"numbers per type. e.g. <em>tour 45–60s · testimonial 30s · class snippet 15s</em>" },
-      { n:18, q:"What kind of opening reliably works in the first 3 seconds of a video for you?",
-        why:"video agent's opening-shot heuristic.",
-        helps:"2–3 opener patterns. e.g. <em>face + question · big text card with number · time-lapse + music drop</em>" },
-      { n:19, q:"For short-video subtitles, what's your setup — burned-in or platform auto-caption? What font, position, color, stroke? And do you do bilingual or CN only?",
-        hint:"• burned-in or platform auto-caption · • font · • position · • color + stroke · • bilingual or CN only", rows:5,
-        why:"subtitle / burn-in style for the video_edit pipeline.",
-        helps:"value per field. e.g. <em>burned-in · 思源黑体 Bold · bottom-center · white + 3px black stroke · CN only</em>" },
-      { n:20, q:"What's your typical ratio of b-roll to talking-head in a school video? Does it shift by content type?",
-        why:"video editor's cut rhythm preset.",
-        helps:"a ratio per type. e.g. <em>70/30 b-roll-heavy for tours · 50/50 for testimonials</em>" },
-      { n:21, q:"For BGM, do you reach for trending sounds or stick with royalty-free brand-safe? Any genres or tempos that just work for school content?",
-        why:"video agent's BGM selection rules.",
-        helps:"a posture + 2–3 genres. e.g. <em>royalty-free brand-safe only · soft instrumental, no Mandopop · lo-fi · piano · ambient</em>" },
-      { n:22, q:"Do you use an end-frame CTA card on your videos? If yes, what's on it?",
-        why:"video pipeline's outro template.",
-        helps:"yes/no + contents. e.g. <em>yes — logo + handle + 'follow for more'. never QR code on XHS video.</em>" },
-      { n:23, q:"On XHS specifically, what aspect ratio do you prefer for video — 9:16, 4:5, or 1:1?",
-        why:"video output aspect ratio per platform.",
-        helps:"one pick + reason. e.g. <em>9:16 — full-screen feel on XHS short-video. never 16:9.</em>" },
-    ]},
-    { sub: "Algorithm feel", items: [
-      { n:24, q:"What is XHS throttling right now that you've personally been burned by — specific words, formats, link/QR practices, or posting cadences?",
-        why:"feeds the platform standards' current-don'ts list — kept fresh by you.",
-        helps:"2–4 specific tells. e.g. <em>QR in image = limited reach · 'WeChat' typed out = flagged · 3+ same-day posts = suppression</em>" },
-      { n:25, q:"What's been working in the last 4–8 weeks for education or parenting accounts — angles, formats, hooks you've noticed catching on?",
-        why:"trend signal for the research agent's recent-patterns file.",
-        helps:"2–3 patterns. e.g. <em>POV-with-text overlays · before/after carousels · day-in-the-life vlogs</em>" },
-      { n:26, q:"What's the best posting time and day of the week for each kind of content you put out?",
-        why:"scheduler defaults.",
-        helps:"day + time per type. e.g. <em>info: Sun–Thu 7–9pm · story: Sat morning · video: Fri evening</em>" },
-      { n:27, q:"Give me an example of a comment-bait that feels natural to you. And one that feels desperate.",
-        why:"tail-line generator's tone rules.",
-        helps:"one example each. e.g. <em>natural: '你们学校也这样吗' // desperate: '快来评论第一个'</em>" },
-      { n:28, q:"What kinds of posts get saved (not just liked) by your audience? Give me concrete examples if you can.",
-        why:"signals which content shapes the agent should prioritize — saves matter more than likes.",
-        helps:"3–4 archetypes. e.g. <em>lists of practical tips · before-and-after · 'mom hacks' · evergreen checklists</em>" },
-      { n:29, q:"Do you ever repost or refresh an evergreen post? If yes, how long between reposts?",
-        why:"scheduler's evergreen-republish window.",
-        helps:"yes/no + window. e.g. <em>yes — top performers every 3 months · never within 30 days</em>" },
-    ]},
-    { sub: "Edge cases", items: [
-      { n:30, q:"How do you tastefully handle the sensitive topics — admissions stress, gaokao, 卷, mental health? Any rule per topic that helps you not step in it?",
-        why:"editorial guidelines for these themes get baked into the agent's system prompt.",
-        helps:"one rule per topic. e.g. <em>gaokao: empathize, never minimize · mental health: never 'overcome', use 'support'</em>" },
-      { n:31, q:"What's your default rule for <b>photos of minors</b> — faces shown, blurred, or back-of-head only? Does the rule change per school, or do you apply one across the board?",
-        hint:"this is the highest-stakes question on the page — please answer it even if you skip everything else.", rows:4, sensitive:true,
-        why:"image pipeline's hard rule per school for face visibility — legal and reputational stakes.",
-        helps:"a clear default per school. e.g. <em>default: back-of-head + side-profile only · faces only with a signed release in /assets/consent/</em>" },
-      { n:32, q:"When you frame foreign teachers in content, are there sensitivities to watch for? Any framing rules you follow?",
-        why:"framing rule when generating teacher-spotlight content.",
-        helps:"2–3 rules. e.g. <em>always credential by years + degree · never 'foreign expert' · avoid lone photos with a single student</em>" },
-    ]},
+const Q = 
+{
+  "part1": [
+    {
+      "sub": "Caption craft",
+      "items": [
+        {
+          "n": 1,
+          "q": "On XHS, how long should a good caption run for an info-style carousel, for a story-style post, and for a short video? Where's the point where it's just too long for your audience?",
+          "why": "the text agent caps generated captions per platform + content type. wrong cap = ad-style overlong copy that no one finishes.",
+          "helps": "a range per type. e.g. <em>info 300–500字 · story 150–250字 · video &lt;100字 · hard cap ~700字 anywhere</em>. if it varies by school, give the most common pattern — we'll catch per-school overrides in Part 3."
+        },
+        {
+          "n": 2,
+          "q": "What are three opening lines you keep reusing on XHS because they reliably work? The ones you'd write without thinking.",
+          "why": "becomes the few-shot hook bank the text agent picks from when drafting the first line of an XHS post.",
+          "helps": "3 short copy-pasteable templates. e.g. <em>'3个你可能不知道的…' · '我之前一直以为…' · '在浦东这家学校的早餐桌上…'</em>"
+        },
+        {
+          "n": 3,
+          "q": "Pick 5 adjectives that describe how the XHS voice for your schools <b>should</b> feel across the board. Then 5 it should never feel like.",
+          "why": "becomes the agency-level tone vector for XHS. per-school adjustments live in Part 3B.",
+          "helps": "5+5 single adjectives. e.g. <em>should: 真诚 · 具体 · 温暖 · 不端着 · 略带幽默 // never: 浮夸 · 招生腔 · 油腻 · 居高临下 · 网红体</em>"
+        },
+        {
+          "n": 4,
+          "q": "How do you use emojis on XHS — how many per post, where do they go, and are there any that immediately scream 'ad' to you?",
+          "why": "the caption validator limits emoji density per platform.",
+          "helps": "a count + rule + a few examples. e.g. <em>0–2 per caption · never in the first line · 🎉🔥💯 scream ad · 🌿☕📖 feel real</em>"
+        },
+        {
+          "n": 5,
+          "q": "How do you handle hashtags on XHS — roughly how many per post, what's the broad-vs-niche mix, do you cluster them at the end or weave them in, and are there any tags you always keep on rotation?",
+          "hint": "• how many total · • broad vs niche mix · • end-block or woven in · • any always-on tags",
+          "rows": 4,
+          "why": "builds the hashtag block + insertion logic the text agent applies to every XHS post.",
+          "helps": "numbers + actual tags. e.g. <em>8–12 total · 70% niche / 30% broad · end-block · always-on: #国际学校 #上海择校 #幼升小</em>"
+        },
+        {
+          "n": 6,
+          "q": "Give me three soft CTAs that actually work for you on XHS, and three hard CTAs you've watched flop.",
+          "why": "the agent draws from the 'works' list for closing lines and learns to avoid the 'flops'.",
+          "helps": "6 short example phrases. e.g. <em>works: '评论区聊聊' '收藏起来下次见面问我' '姐妹们怎么看' // flops: '立即报名' '联系我们了解更多' '私信我'</em>"
+        },
+        {
+          "n": 7,
+          "q": "When you scroll past a post and immediately think 'this is an ad,' what tipped you off? Even when a post is technically organic, what makes it read like marketing?",
+          "why": "feeds the ad-smell heuristic in the self-critique pass — the agent rejects its own drafts that match these tells.",
+          "helps": "2–4 visible tells. e.g. <em>100%笑容站立合照 · 排比句开头 · 过多感叹号 · 全大写英文标题 · '为孩子的未来…'开头</em>"
+        },
+        {
+          "n": 8,
+          "q": "What words do you actively avoid on XHS — both for 营销 reasons (they feel salesy) and for XHS-review reasons (they get throttled)?",
+          "why": "hard validator strips/flags these in generated copy before you see the draft.",
+          "helps": "a comma-separated list, with a brief why for each if not obvious. e.g. <em>顶级 (招生腔) · 最好 (违规) · 保证 (违规) · 包过 (违规) · 985直通车 (违规) · 黑马 (违规) · 内部 (招生腔) · 限时 (营销腔)</em>"
+        },
+        {
+          "n": 9,
+          "q": "When does mixing Chinese and English in an XHS caption feel natural to you, and when does it cross into tacky territory? A real example each way if you can.",
+          "why": "the agent's bilingual-mix rule for XHS captions.",
+          "helps": "a rule of thumb + 1 example each way. e.g. <em>natural: 课程名 (IB DP, IGCSE) + school name // tacky: random 'amazing' mid-sentence, '我家娃这个summer holiday…'</em>"
+        }
+      ]
+    },
+    {
+      "sub": "Visuals — image & carousel",
+      "items": [
+        {
+          "n": 10,
+          "q": "What are your top 3 cover archetypes that consistently get the click on XHS for education content? Describe each in one line.",
+          "why": "image agent's cover composition presets — the three patterns it cycles through.",
+          "helps": "3 patterns described in one line each. e.g. <em>1) 学生侧脸 + 大字标题 · 2) 单一物品居中 + 反差色背景 · 3) 校园广角 + 小字角标</em>"
+        },
+        {
+          "n": 11,
+          "q": "When you put text on a cover image, what are your rules — character count, font weight, where on the image it sits, and what color treatment (block bg, drop shadow, no bg)?",
+          "hint": "• character count · • font weight · • position on the image · • color block / treatment",
+          "rows": 4,
+          "why": "image generator places overlay text following these defaults.",
+          "helps": "a value per field. e.g. <em>8–12字 · 思源黑体 Bold · 顶部居中 · 黑色块底 with white text · 主标题大, 副标题小一号</em>"
+        },
+        {
+          "n": 12,
+          "q": "How many pages is the carousel sweet spot on XHS? Where does adding more pages start to hurt instead of help?",
+          "why": "text agent caps carousel length when generating for XHS.",
+          "helps": "a range + the inflection point. e.g. <em>info 6–8 · story 3–5 · &gt;9 drops engagement noticeably (people swipe out)</em>"
+        },
+        {
+          "n": 13,
+          "q": "When you build a carousel, is page 1 always a pure hook? And do you save the payoff for the last page, or sprinkle it through the deck?",
+          "why": "carousel structure rule for the text agent.",
+          "helps": "one sentence on each. e.g. <em>page 1 = pure hook · payoff sprinkled across mid-deck · last page = soft CTA, no big reveal</em>"
+        },
+        {
+          "n": 14,
+          "q": "What style do you prefer for text inside images — serif or sans, bold or regular? Do you usually pair Chinese with an English subtitle line?",
+          "why": "image agent's font/style defaults.",
+          "helps": "e.g. <em>sans-serif 黑体 · bold · CN big, EN small sub-line beneath in lighter weight</em>"
+        },
+        {
+          "n": 15,
+          "q": "What aspect ratio do you default to on XHS — 3:4 or 1:1 for covers? What about for in-deck pages?",
+          "why": "image generator's output dimensions per slot.",
+          "helps": "a pair. e.g. <em>3:4 cover · 1:1 in-deck · never 16:9 on XHS</em>"
+        },
+        {
+          "n": 16,
+          "q": "How do you handle brand integration in images — logo, watermark, school name? Is it always visible, sometimes, or never? Does the rule vary across schools?",
+          "why": "image agent's logo/watermark policy. cross-school default; per-school override lives in Part 3B.",
+          "helps": "a clear default + variation note. e.g. <em>default: logo bottom-right · 8% width · 70% opacity. school name only on cover. some schools want no watermark on lifestyle shots.</em>"
+        }
+      ]
+    },
+    {
+      "sub": "Short video on XHS",
+      "items": [
+        {
+          "n": 17,
+          "q": "How long should a video be on XHS for each kind of content — a campus tour, a teacher/student testimonial, a class snippet, an event recap?",
+          "why": "video pipeline caps clip length per intent.",
+          "helps": "numbers per type. e.g. <em>tour 45–60s · testimonial 30s · class snippet 15s · event recap 60–90s</em>"
+        },
+        {
+          "n": 18,
+          "q": "What kind of opening reliably works in the first 3 seconds of a video for you? Name your top 2–3 hook patterns.",
+          "why": "video agent's opening-shot heuristic.",
+          "helps": "2–3 opener patterns. e.g. <em>face + a specific question · big text card with a number · time-lapse + music drop · POV walking into the classroom</em>"
+        },
+        {
+          "n": 19,
+          "q": "For short-video subtitles, what's your setup — burned-in or platform auto-caption? What font, position, color, stroke? And do you do bilingual or CN only?",
+          "hint": "• burned-in or platform auto-caption · • font · • position · • color + stroke · • bilingual or CN only",
+          "rows": 5,
+          "why": "subtitle / burn-in style for the video_edit pipeline.",
+          "helps": "value per field. e.g. <em>burned-in · 思源黑体 Bold · bottom-center · white + 3px black stroke · CN only (EN only for international school videos)</em>"
+        },
+        {
+          "n": 20,
+          "q": "What's your typical ratio of b-roll to talking-head in a school video? Does it shift by content type?",
+          "why": "video editor's cut-rhythm preset.",
+          "helps": "a ratio per type. e.g. <em>70/30 b-roll-heavy for tours · 50/50 for testimonials · 90/10 for event recaps</em>"
+        },
+        {
+          "n": 21,
+          "q": "For BGM, do you reach for trending sounds or stick with royalty-free brand-safe? Any genres or tempos that just work for school content?",
+          "why": "video agent's BGM selection rules.",
+          "helps": "a posture + 2–3 genres. e.g. <em>royalty-free brand-safe only · soft instrumental, no Mandopop · genres: lo-fi piano · ambient · indie acoustic</em>"
+        },
+        {
+          "n": 22,
+          "q": "Do you use an end-frame CTA card on your XHS videos? If yes, what's on it?",
+          "why": "video pipeline's outro template.",
+          "helps": "yes/no + contents. e.g. <em>yes — logo + handle + 'follow for more'. never QR code on XHS video (gets throttled).</em>"
+        },
+        {
+          "n": 23,
+          "q": "On XHS specifically, what aspect ratio do you prefer for video — 9:16, 4:5, or 1:1? And why that one?",
+          "why": "video output aspect ratio per platform.",
+          "helps": "one pick + reason. e.g. <em>9:16 — full-screen feel on XHS short-video tab. never 16:9.</em>"
+        }
+      ]
+    },
+    {
+      "sub": "Algorithm feel",
+      "items": [
+        {
+          "n": 24,
+          "q": "What is XHS throttling right now that you've personally been burned by — specific words, formats, link/QR practices, or posting cadences?",
+          "why": "the platform standards' current-don'ts list — kept fresh by you (the tool can't see this from the outside).",
+          "helps": "2–4 specific tells. e.g. <em>QR in image = limited reach · 'WeChat' typed out = flagged · 3+ same-day posts on one account = suppression · external links anywhere</em>"
+        },
+        {
+          "n": 25,
+          "q": "What's been working in the last 4–8 weeks for education / parenting accounts on XHS — angles, formats, hooks you've noticed catching on?",
+          "why": "trend signal for the research agent's recent-patterns file. refreshed by you periodically.",
+          "helps": "2–3 patterns. e.g. <em>POV-with-text overlays · before/after carousels · day-in-the-life vlogs · 'I tested 5 schools' comparison posts</em>"
+        },
+        {
+          "n": 26,
+          "q": "What's the best posting time and day of the week for each kind of content you put out? Different for different schools, or the same rhythm everywhere?",
+          "why": "scheduler defaults. per-school overrides in Part 3B.",
+          "helps": "day + time per type. e.g. <em>info: Sun–Thu 7–9pm · story: Sat morning · video: Fri evening · rhythm is the same across most schools</em>"
+        },
+        {
+          "n": 27,
+          "q": "Give me an example of a comment-bait that feels natural to you. And one that feels desperate.",
+          "why": "the tail-line generator's tone rules.",
+          "helps": "one example each. e.g. <em>natural: '你们学校也这样吗' // desperate: '快来评论第一个'</em>"
+        },
+        {
+          "n": 28,
+          "q": "What kinds of posts get SAVED (not just liked) by your audience? Saves matter more than likes — give me concrete examples.",
+          "why": "signals which content shapes the agent should prioritize.",
+          "helps": "3–4 archetypes. e.g. <em>lists of practical tips · before-and-after · 'mom hacks' · evergreen checklists like 'what to ask on a school tour'</em>"
+        },
+        {
+          "n": 29,
+          "q": "Do you ever repost or refresh an evergreen post? If yes, how long do you wait between reposts?",
+          "why": "scheduler's evergreen-republish window.",
+          "helps": "yes/no + window. e.g. <em>yes — top performers every 3 months · never within 30 days · I usually swap the cover image</em>"
+        }
+      ]
+    },
+    {
+      "sub": "Edge cases",
+      "items": [
+        {
+          "n": 30,
+          "q": "How do you tastefully handle the sensitive topics — admissions stress, gaokao, 卷, mental health? Any rule per topic that helps you not step in it?",
+          "why": "editorial guidelines for these themes get baked into the agent's system prompt.",
+          "helps": "one rule per topic. e.g. <em>gaokao: empathize, never minimize · mental health: never 'overcome', use 'support' · 卷: acknowledge the system, don't celebrate it</em>"
+        },
+        {
+          "n": 31,
+          "q": "<b>Photos of minors</b> — what's your default rule across all schools? Faces shown, blurred, or back-of-head only? Per-school overrides we'll catch in Part 3B.",
+          "hint": "this is the highest-stakes question in this section — please answer it even if you skip everything else. legal + reputational stakes.",
+          "rows": 4,
+          "sensitive": true,
+          "why": "image pipeline's hard rule for face visibility. agency default here, per-school override per-card.",
+          "helps": "a clear default + which schools deviate. e.g. <em>default across all: back-of-head + side-profile only · faces only with signed release stored in /assets/consent/ · School A allows faces (private K, all consents signed) · School E forbids any visible student even in silhouette</em>"
+        },
+        {
+          "n": 32,
+          "q": "When you frame foreign teachers in content, are there sensitivities to watch for across all your schools? Any framing rules you follow?",
+          "why": "framing rule when generating teacher-spotlight content.",
+          "helps": "2–3 rules. e.g. <em>always credential by years + degree · never 'foreign expert' or '外教大咖' · avoid lone photos with a single student · never tag nationality in a way that exoticizes</em>"
+        }
+      ]
+    }
   ],
-
-  part2: [
-    { sub: "公众号 articles", items: [
-      { n:33, q:"What's your sweet-spot 公众号 article length for the three big content types — recruitment, campus storytelling, parent-education?",
-        why:"公众号 agent's character cap per content category.",
-        helps:"a range per type. e.g. <em>recruitment 1200–1800字 · storytelling 1800–2500字 · parent-ed 800–1200字</em>" },
-      { n:34, q:"The first 3 lines show up in the feed preview. What patterns earn the open, and what patterns bury an otherwise good article?",
-        why:"公众号 preview-line generator follows these patterns.",
-        helps:"one pattern each. e.g. <em>earn: question + specific number ('为什么87%的家长…') // bury: '在这个时代…' generic opener</em>" },
-      { n:35, q:"For the 公众号 header banner or cover, what are your defaults — ratio, style, text density? Any rules for not looking like a recruitment flyer?",
-        hint:"• ratio · • style · • text density · • how to avoid the 'flyer' look", rows:4,
-        why:"cover image generator's defaults for 公众号.",
-        helps:"value per field. e.g. <em>2.35:1 · documentary photo · single 8–12字 title bottom-left · no logos cluttering the cover</em>" },
-      { n:36, q:"What's the rhythm for breaking up a 公众号 article — how often do you drop in an image, a pull-quote, a subheading, a divider?",
-        why:"article structure validator — too dense or too sparse triggers regen.",
-        helps:"a rhythm guide. e.g. <em>image every 300字 · subheading every 500字 · 1 pull-quote per section</em>" },
-      { n:37, q:"When you use pull-quotes, do you go with the in-app blockquote, image-card style, or both depending on the moment?",
-        why:"公众号 agent's quote-rendering choice.",
-        helps:"e.g. <em>image-card for emotional moments · blockquote for data + facts</em>" },
-      { n:38, q:"Roughly how many images do you place per 1000 characters of an article?",
-        why:"article density check.",
-        helps:"a ratio. e.g. <em>1 image per 300–400字</em>" },
-      { n:39, q:"What's your footer / CTA convention on 公众号 — QR code, handle, '回复 1 了解…'? What actually converts to a real conversation?",
-        why:"the 公众号 article's closing block template.",
-        helps:"a structure + what converts. e.g. <em>QR + handle + '回复 校名 看更多' — converts ~2x our default</em>" },
-      { n:40, q:"Do you use Mini-programs or H5 landing pages anywhere in your 公众号 articles? For what?",
-        why:"deep-link slot in 公众号 footer.",
-        helps:"yes/no + use case. e.g. <em>yes — H5 form for open-house RSVP · mini-program for tuition calculator</em>" },
-      { n:41, q:"Do the schools have auto-reply keywords set up? Should generated content reference them in the CTA?",
-        why:"the agent can reference keywords in CTA copy.",
-        helps:"keyword list per school. e.g. <em>回复 '开放日' · '学费' · '体验课' · '校长信'</em>" },
-      { n:42, q:"What KPI do the schools actually care about — open rate, forward count, in-reading time? Rank them if they're not all equal.",
-        why:"success metric the system tracks per piece.",
-        helps:"ranked list. e.g. <em>in-reading time &gt; forward count &gt; opens. recruitment season also tracks leads.</em>" },
-    ]},
-    { sub: "朋友圈 & 视频号", items: [
-      { n:43, q:"How is the 朋友圈 voice different from the 公众号 voice? Be specific.",
-        why:"the tone shift rule between channels.",
-        helps:"one sentence each. e.g. <em>公众号 = polished article voice // 朋友圈 = first-person, casual, like talking to mom friends</em>" },
-      { n:44, q:"What's the 朋友圈 length sweet spot? When does the '全文' cut-off help you, and when does it hurt?",
-        why:"朋友圈 generator's character cap.",
-        helps:"a range + rule. e.g. <em>70–120字 · cut just before '全文' so curiosity bites · 200+ kills it</em>" },
-      { n:45, q:"On 朋友圈, when do you use 1 vs 3 vs 6 vs 9 image grid? Any composition tricks for the 9-grid?",
-        why:"朋友圈 image-count template.",
-        helps:"a rule per occasion. e.g. <em>1 for portrait moment · 6 for event recap · 9 only if you have a layout trick</em>" },
-      { n:46, q:"How active is each school on 视频号? Do you treat it as its own platform, or basically as an XHS twin?",
-        why:"whether to generate parallel 视频号 outputs.",
-        helps:"active scale + treatment. e.g. <em>active on 2 of 5 schools · treat as XHS twin for now</em>" },
-      { n:47, q:"Do you cross-post the same video to 视频号 and Douyin, or treat them as different audiences? If different, what shifts?",
-        why:"cross-post decision logic.",
-        helps:"e.g. <em>cross-post same video · 视频号 audience is older parents · Douyin is teachers</em>" },
-    ]},
-    { sub: "Compliance & voice", items: [
-      { n:48, q:"What 公众号 review triggers have you actually tripped — specific words, claims, or image content that got you flagged?",
-        why:"the 公众号 hard-validator's blocklist gets these.",
-        helps:"actual examples that got you flagged. e.g. <em>'第一' '最佳' '名校保送' — instant rejection</em>" },
-      { n:49, q:"What needs to be approved before publishing on WeChat, and what can you ship same-day?",
-        why:"workflow gate — does the agent wait for a human review step?",
-        helps:"split by content type. e.g. <em>principal approves: 公众号 articles + recruitment posts · operator-only: 朋友圈 + lightweight XHS</em>" },
-      { n:50, q:"When you want to say 'best,' 'top,' or 'guaranteed' on WeChat without tripping review, what equivalents do you reach for?",
-        why:"phrase-substitution dictionary used by the agent.",
-        helps:"3–5 swaps. e.g. <em>顶级 → 用心 · 保证 → 一贯 · 最 → 持续 · 名校 → 知名院校</em>" },
-    ]},
+  "part2": [
+    {
+      "sub": "公众号 articles",
+      "items": [
+        {
+          "n": 33,
+          "q": "What's your sweet-spot 公众号 article length for the three big content types — recruitment, campus storytelling, parent-education?",
+          "why": "公众号 agent's character cap per content category.",
+          "helps": "a range per type. e.g. <em>recruitment 1200–1800字 · storytelling 1800–2500字 · parent-ed 800–1200字</em>"
+        },
+        {
+          "n": 34,
+          "q": "The first 3 lines show up in the feed preview. What patterns earn the open for you, and what patterns bury an otherwise good article?",
+          "why": "公众号 preview-line generator follows these patterns.",
+          "helps": "one pattern each. e.g. <em>earn: question + specific number ('为什么87%的家长…') // bury: '在这个时代…' generic opener</em>"
+        },
+        {
+          "n": 35,
+          "q": "For the 公众号 header banner or cover, what are your defaults — ratio, style, text density? Any rules for not looking like a recruitment flyer?",
+          "hint": "• ratio · • style · • text density · • how to avoid the 'flyer' look",
+          "rows": 4,
+          "why": "cover image generator's defaults for 公众号.",
+          "helps": "value per field. e.g. <em>2.35:1 · documentary photo · single 8–12字 title bottom-left · no logos cluttering · never use sticker text or 喜报-style banners</em>"
+        },
+        {
+          "n": 36,
+          "q": "What's the rhythm for breaking up a 公众号 article — how often do you drop in an image, a pull-quote, a subheading, a divider?",
+          "why": "article structure validator — too dense or too sparse triggers regen.",
+          "helps": "a rhythm guide. e.g. <em>image every 300字 · subheading every 500字 · 1 pull-quote per section · divider between major sections</em>"
+        },
+        {
+          "n": 37,
+          "q": "When you use pull-quotes in 公众号 articles, do you go with the in-app blockquote, image-card style, or both depending on the moment?",
+          "why": "the 公众号 agent's quote-rendering choice.",
+          "helps": "e.g. <em>image-card for emotional moments · in-app blockquote for data + facts · both for long features</em>"
+        },
+        {
+          "n": 38,
+          "q": "Roughly how many images do you place per 1000 characters of a 公众号 article?",
+          "why": "article density check.",
+          "helps": "a ratio. e.g. <em>1 image per 300–400字</em>"
+        },
+        {
+          "n": 39,
+          "q": "What's your footer / CTA convention on 公众号 — QR code, handle, '回复 1 了解…'? Which version actually converts to a real conversation?",
+          "why": "the 公众号 article's closing block template. agency default; per-school CTA tone in 3B.",
+          "helps": "a structure + what converts. e.g. <em>QR + handle + '回复 校名 看更多' — converts ~2x our default formal close</em>"
+        },
+        {
+          "n": 40,
+          "q": "Do you use Mini-programs or H5 landing pages anywhere in your 公众号 articles? For what?",
+          "why": "deep-link slot in the 公众号 footer.",
+          "helps": "yes/no + use case. e.g. <em>yes — H5 form for open-house RSVP · mini-program for tuition calculator · no for most schools, just QR</em>"
+        },
+        {
+          "n": 41,
+          "q": "Do your schools have auto-reply keywords set up? Should generated content reference those keywords in the CTA?",
+          "why": "the agent can reference keywords in CTA copy.",
+          "helps": "keyword list, ideally per school but agency-wide is fine here. e.g. <em>most schools have: 回复 '开放日' · '学费' · '体验课' · '校长信'</em>"
+        },
+        {
+          "n": 42,
+          "q": "What KPI do your schools actually care about on 公众号 — open rate, forward count, in-reading time? Rank them. Does it differ school-to-school?",
+          "why": "success metric the system tracks per piece.",
+          "helps": "ranked list + variation. e.g. <em>in-reading time &gt; forward count &gt; opens (most schools) · recruitment-season schools also track form-fills via H5</em>"
+        }
+      ]
+    },
+    {
+      "sub": "朋友圈 & 视频号",
+      "items": [
+        {
+          "n": 43,
+          "q": "How is the 朋友圈 voice different from the 公众号 voice for your schools? Be specific.",
+          "why": "the tone shift rule between channels.",
+          "helps": "one sentence each. e.g. <em>公众号 = polished article voice, third-person // 朋友圈 = first-person, casual, like talking to mom friends, single moment instead of a full story</em>"
+        },
+        {
+          "n": 44,
+          "q": "What's the 朋友圈 length sweet spot? When does the '全文' cut-off help you, and when does it hurt?",
+          "why": "朋友圈 generator's character cap.",
+          "helps": "a range + rule. e.g. <em>70–120字 · cut just before '全文' so curiosity bites · 200+ kills it · cut-off helps for storytelling, hurts for announcements</em>"
+        },
+        {
+          "n": 45,
+          "q": "On 朋友圈, when do you use 1 vs 3 vs 6 vs 9 image grid? Any composition tricks for the 9-grid?",
+          "why": "朋友圈 image-count template.",
+          "helps": "a rule per occasion + a 9-grid tip. e.g. <em>1 for portrait moment · 3 for a quick three-shot story · 6 for event recap · 9 only if you have a layout trick (e.g. 3 wide panels split into 3 each)</em>"
+        },
+        {
+          "n": 46,
+          "q": "How active are your schools on 视频号? Do you treat it as its own platform with its own content, or as basically an XHS twin?",
+          "why": "whether to generate parallel 视频号 outputs vs cross-post.",
+          "helps": "active scale + treatment. e.g. <em>active on 2 of 8 schools · those two get original videos · rest just get XHS cross-post when it makes sense</em>"
+        },
+        {
+          "n": 47,
+          "q": "Do you cross-post the same video to 视频号 and Douyin, or treat them as different audiences? If different, what shifts?",
+          "why": "cross-post decision logic.",
+          "helps": "e.g. <em>视频号 audience is older parents (40+) · Douyin is younger (teachers, students themselves) · I shorten and pace faster for Douyin</em>"
+        }
+      ]
+    },
+    {
+      "sub": "Compliance & voice",
+      "items": [
+        {
+          "n": 48,
+          "q": "What 公众号 review triggers have you actually tripped — specific words, claims, or image content that got you flagged? Real examples.",
+          "why": "the 公众号 hard-validator's blocklist gets these.",
+          "helps": "actual examples that got you rejected. e.g. <em>'第一' '最佳' '名校保送' '官方' '保送985' — instant rejection · faces of teachers with title '专家' triggers review · screenshots of test scores get flagged</em>"
+        },
+        {
+          "n": 49,
+          "q": "Across your portfolio, what's the general rule on what must be approved before publishing vs what you can ship same-day? (School-specific approval contacts live in Part 3B.)",
+          "why": "workflow gate default — agency-wide pattern. specific approver per school lives in the per-school card.",
+          "helps": "split by content type. e.g. <em>公众号 articles always need approval · 朋友圈 + XHS lightweight pieces are operator-only ship · recruitment posts always reviewed</em>"
+        },
+        {
+          "n": 50,
+          "q": "When you want to say 'best,' 'top,' or 'guaranteed' on WeChat without tripping review, what equivalents do you reach for?",
+          "why": "phrase-substitution dictionary used by the agent.",
+          "helps": "3–5 swaps. e.g. <em>顶级 → 用心 · 保证 → 一贯 · 最 → 持续 · 名校 → 知名院校 · 保送 → 录取</em>"
+        }
+      ]
+    }
   ],
-
-  part3: [
-    { sub: "Identity", items: [
-      { n:51, q:"What type of school is this — 国际, 双语, 公立, 民办, 培训, etc.? And does it sub-position as anything specific, like 精英国际 or 社区双语?",
-        why:"dictates which platform / voice presets apply.",
-        helps:"category + sub-positioning. e.g. <em>K-12 双语国际化 · 升学型 · 中产精英赛道</em>" },
-      { n:52, q:"Where is the school — city, district, neighborhood? And how far do parents typically commute to it?",
-        why:"feeds geo-references in copy ('五分钟到陆家嘴' etc).",
-        helps:"address-level + radius. e.g. <em>上海浦东张江 · 半径15km · 8成来自张江/世纪公园/陆家嘴</em>" },
-      { n:53, q:"What's the school's website and all its social handles — XHS, 公众号, 视频号, Douyin, anything else?",
-        why:"the school profile's public-presence registry.",
-        helps:"URLs + handles, one per line. just paste." },
-      { n:54, q:"What are the existing follower counts on each platform?",
-        why:"tone calibration — established account vs cold start.",
-        helps:"numbers per platform. e.g. <em>XHS 3.2k · 公众号 12k · 视频号 800 · Douyin 0</em>" },
-    ]},
-    { sub: "Voice & audience", items: [
-      { n:55, q:"If a parent asked you 'what's special about this school?' at a coffee shop, what are the exact words you'd say in 30 seconds?",
-        why:"the seed paragraph the agent rewrites into every 'what is this school' line.",
-        helps:"3–5 real sentences. write like you'd say it out loud, not like a brochure." },
-      { n:56, q:"Picture one specific parent who sends her kid to this school, and answer for her — not for 'parents in general'.",
-        hint:"• what does she do for a living? • where does she live? • what did she Google at 11pm last Tuesday? • what's the thing she'd never admit she's worried about? • what would make her recommend the school to a friend?", rows:7,
-        why:"the agent writes to this specific imagined reader — not 'parents in general'.",
-        helps:"one specific person who feels real. answer each bullet in a sentence. don't generalize." },
-      { n:57, q:"Give me 3 adjectives the school's voice <b>should</b> be. Then 3 it should never be.",
-        why:"the explicit tone vector for this school across all content.",
-        helps:"3+3 single adjectives. e.g. <em>should: 温暖 · 严谨 · 不端着 // never: 冷漠 · 招生腔 · 浮夸</em>" },
-      { n:58, q:"Whose voice does this school's voice sit close to — another brand, account, or publication? And why that one?",
-        why:"anchor brand the agent calibrates voice against — much easier than describing in words.",
-        helps:"1–2 brand or account names + one line why. e.g. <em>the FT More section · LinkedIn-tier polish without the smugness</em>" },
-      { n:59, q:"What are the top 3 messages you want woven into every piece of content — present in the background, not literally repeated?",
-        why:"hidden refrain — the agent ensures each piece nods at one of these.",
-        helps:"3 short sentences. e.g. <em>我们教孩子提问 · 我们认识每一个孩子 · 升学不是终点</em>" },
-      { n:60, q:"Does the tone shift depending on who you're talking to — current parents, prospective parents, alumni, students, teachers? Or is it the same across the board?",
-        why:"per-audience tone overrides.",
-        helps:"one line per audience. e.g. <em>current: casual · prospective: formal-warm · alumni: nostalgic · students: playful · teachers: respectful</em>" },
-    ]},
-    { sub: "Proof & evidence", items: [
-      { n:61, q:"Give me 5–7 facts the copywriter can lean on — alumni colleges, competition wins, teacher credentials, retention rates, awards. Year and source where you have them.",
-        hint:"alumni colleges · competition wins · teacher credentials · retention rates · awards. include year + source if handy — don't dig.\nformat hint: <em>2024 — 87% → top-30 universities (internal report)</em>", rows:8,
-        why:"the factbase the copywriter cites + the validator checks against (never claim what isn't here).",
-        helps:"one fact per line, with year + source where you can. partial info beats blanks." },
-      { n:62, q:"What are 3–5 'greatest hits' stories — alumni journeys, project showcases, signature events — that we can paraphrase across content?",
-        why:"the story bank the agent paraphrases when long-form is needed.",
-        helps:"title + one-line summary each. e.g. <em>Alex → MIT 2023: from shy fifth-grader to robotics team captain</em>" },
-      { n:63, q:"What can the school never claim publicly — for legal reasons or because of school policy?",
-        why:"hard claim-blocker for the validator.",
-        helps:"a list. e.g. <em>升学率具体数字 · '官方合作' with any university · 老师私人信息 · 学费金额</em>" },
-    ]},
-    { sub: "Guardrails", items: [
-      { n:64, q:"What words should never appear in copy for this school — about the school itself, and about the world (competitors etc.)?",
-        why:"per-school blocklist (in addition to platform-level).",
-        helps:"two lists, comma-separated. e.g. <em>about us: 应试, 卷, 廉价 // about world: 平庸, 差校, [specific competitor names]</em>" },
-      { n:65, q:"What imagery is off-limits — specific faces, places, partner brands you can't show?",
-        why:"image generator's negative-prompt + asset filter.",
-        helps:"a list. e.g. <em>founder's son · the renovation site · competitor logos · students wearing other school uniforms</em>" },
-      { n:66, q:"What's your comparison policy — can the school mention direct competitors, only implicit comparisons, or never?",
-        why:"validator's competitor-mention rule.",
-        helps:"one of: direct OK / implicit OK / never. + one line why." },
-      { n:67, q:"Are there religious, political, or regional sensitivities specific to this school I need to know about?",
-        why:"editorial guardrails specific to this school.",
-        helps:"2–4 specifics, or 'none' if genuinely nothing." },
-    ]},
-    { sub: "Visual brand", items: [
-      { n:68, q:"What logo files do you have for this school — primary, mono, small-size variant? (Send the actual files separately in WeChat.)",
-        why:"image generator overlays — we need the actual files in /assets/brand/.",
-        helps:"describe what you have. send files separately." },
-      { n:69, q:"What are the brand colors — primary, secondary, accent? Exact hex if you have them. And are there any colors you never use?",
-        why:"image palette + cover frame defaults.",
-        helps:"3–5 hex codes + a never-use list. e.g. <em>primary #1a3a52 · secondary #d4a017 · accent #e8e2d4 · never: pure red</em>" },
-      { n:70, q:"What are the brand fonts in Chinese and English? Do you have license files, or should I substitute with Noto / Source Han?",
-        why:"image generator's font selection.",
-        helps:"font names + license posture. e.g. <em>CN: 思源黑体 Heavy · EN: Inter Bold · no license — substitute Noto Sans SC</em>" },
-      { n:71, q:"What's the mood of the school's visual world — calm, warm, rigorous, playful? Describe it, or send me 5–10 reference images.",
-        why:"image agent's style anchor.",
-        helps:"3 adjectives + 5–10 ref images in WeChat. e.g. <em>calm · documentary · natural-light</em>" },
-      { n:72, q:"Does the school have a recurring cover frame template — a layout you reuse across posts? If yes, send an example.",
-        why:"reused cover scaffold across posts.",
-        helps:"describe it or send an example. e.g. <em>brand-color top border 12% height · logo top-left · large title centered</em>" },
-      { n:73, q:"What photo style fits the school — natural-light, staged, studio? Wide, medium, or close-up bias?",
-        why:"image gen + restyle direction.",
-        helps:"e.g. <em>natural-light documentary · mid-distance · no flash · never studio</em>" },
-    ]},
-    { sub: "Slogans, taglines, claims", items: [
-      { n:74, q:"What are the official slogans or taglines (Chinese and English)?",
-        why:"the agent surfaces these in specific slots (article close, video outro).",
-        helps:"exact wording in both languages." },
-      { n:75, q:"Are there short reusable phrases that have already been approved by leadership? Give me 5–10.",
-        why:"reusable phrase bank for the copywriter.",
-        helps:"5–10 short approved phrases. e.g. <em>'每个孩子都被看见' · '从提问开始的教育'</em>" },
-    ]},
-    { sub: "Operating reality", items: [
-      { n:76, q:"Who has to approve content before it publishes — a single person, a committee, no one?",
-        why:"workflow gate — review-step routing.",
-        helps:"name + role per content type. e.g. <em>Principal Wang for 公众号 · me for everything else</em>" },
-      { n:77, q:"What's the approval turnaround in practice — same day, 24h, 'whenever the principal gets to it'?",
-        why:"scheduling sets the correct buffer before publish dates.",
-        helps:"realistic windows. e.g. <em>24h normal · 3-day for sensitive · same-day for 朋友圈</em>" },
-      { n:78, q:"What's the posting cadence target per platform per week?",
-        why:"scheduler's per-platform-per-week target.",
-        helps:"numbers. e.g. <em>XHS 3–5/week · 公众号 1/week · 朋友圈 daily · 视频号 2/week</em>" },
-      { n:79, q:"When does the school's audience actually open their phone — what's the best posting time for them?",
-        why:"scheduler defaults — overrides the platform-wide default.",
-        helps:"time windows. e.g. <em>wake/commute (7–9am) + evening (8–10pm)</em>" },
-      { n:80, q:"Are there quiet seasons or blackout dates — exam periods, holidays, internal events — where you should absolutely not post?",
-        why:"scheduler avoids these.",
-        helps:"a list of dates / periods. e.g. <em>exam weeks (mid-Jan, June) · CNY · anniversary embargo week</em>" },
-      { n:81, q:"If something breaks — wrong fact published, bad reaction in comments — who do we ping immediately?",
-        why:"who the system messages if a publish goes wrong.",
-        helps:"name + WeChat handle + how to reach them after hours." },
-    ]},
+  "part3a": [
+    {
+      "sub": "",
+      "items": [
+        {
+          "n": 51,
+          "q": "How many schools are you actively running content for RIGHT NOW? And what was the peak and lowest count in the last 12 months?",
+          "why": "feeds the tool's capacity assumptions — UI density, batch-size defaults, monthly cost projections all key off this. tells me whether you're a 5-school operator or a 25-school operator.",
+          "helps": "two numbers. e.g. <em>right now 8 · last 12 months ranged 5–14</em>"
+        },
+        {
+          "n": 52,
+          "q": "How often does your roster change? Roughly how many new schools onboard per quarter, and how many churn?",
+          "why": "shapes how much the onboarding flow needs to be polished — if you add one a year it's a paper checklist, if one a month it's a real wizard.",
+          "helps": "a number each. e.g. <em>~2 new per quarter · 1 churn per quarter on average · busier in spring</em>"
+        },
+        {
+          "n": 53,
+          "q": "How long does a typical school stay with you?",
+          "why": "tells us how long a school profile typically needs to live; informs archive-vs-delete defaults and asset retention policy.",
+          "helps": "a rough number + variance. e.g. <em>most stay 18 months · 2 schools have been with me 3+ years · some short-term project clients only 3 months</em>"
+        },
+        {
+          "n": 54,
+          "q": "The 80/20 — which 2–3 schools eat the most of your time and what makes them demanding? Which 2–3 are the lowest-effort and why?",
+          "why": "lets the tool prioritize quality + review intensity per school. demanding schools get the full pipeline + self-critique; low-effort schools can use defaults.",
+          "helps": "name (or short name) of 2–3 each + one-line reason. e.g. <em>demanding: SchoolA (weekly 公众号 + bilingual), SchoolB (principal reviews every piece) // easy: SchoolE (just 朋友圈 reshares), SchoolH (template-driven)</em>"
+        },
+        {
+          "n": 55,
+          "q": "On a 1–10 scale, how different are your schools from each other? 1 = basically the same voice/playbook everywhere. 10 = wildly different audiences, brands, languages.",
+          "why": "dictates whether the tool can share prompts/templates aggressively (low number) or needs maximum per-school isolation (high number).",
+          "helps": "a number + one-line explanation. e.g. <em>6 — three are international K-12 with similar brand voice; two are vocational training, completely different audience and tone</em>"
+        },
+        {
+          "n": 56,
+          "q": "Walk me through onboarding a new school today — what does week one actually involve, step by step?",
+          "why": "identifies what the new-school wizard should automate or fast-path. probably also reveals manual work this tool could eliminate.",
+          "helps": "bullet steps. e.g. <em>1) intake call to capture brand voice · 2) collect logo + 30+ photos · 3) draft 3 sample posts for principal approval · 4) calibrate after feedback · 5) start regular cadence · usually takes 2 weeks before steady state</em>"
+        },
+        {
+          "n": 57,
+          "q": "If a tool removed your biggest bottleneck, what's the realistic ceiling — how many schools could you actually serve well? And what's that bottleneck right now?",
+          "why": "targets growth conversations + tier pricing decisions for v2. also names the #1 thing to fix.",
+          "helps": "a ceiling number + the bottleneck. e.g. <em>without any tool: max 8. with image generation automated: 15. with full publishing too: 25. bottleneck right now = video editing eats half my week.</em>"
+        },
+        {
+          "n": 58,
+          "q": "Do you ever have schools similar enough that they could literally share a profile in the tool, or does each one need its own?",
+          "why": "informs whether the tool supports a 'profile template + per-school overrides' architecture vs strict one-school-one-profile.",
+          "helps": "yes/no + one example either way. e.g. <em>no — every school has at least one thing that makes it incompatible · but I do start from a 'template profile' I've built up over the years</em>"
+        },
+        {
+          "n": 59,
+          "q": "Do you mentally tier your schools (premium / standard / lite, or however you bucket them)? If yes, describe each tier briefly.",
+          "why": "tier-based defaults (review intensity, generation quality, asset depth, even API budget) can be auto-applied to new schools in the same tier.",
+          "helps": "2–3 tier names + 1 line each. e.g. <em>premium (3 schools): full pipeline + manual review + custom assets · standard (4 schools): fast pipeline + spot-check · lite (1 school): templates only, mostly automation</em>"
+        },
+        {
+          "n": 60,
+          "q": "Have you stopped working with any schools? What made them no longer fit? (Helps me see what a bad-fit client looks like so the tool doesn't accidentally optimize for them.)",
+          "why": "surfaces patterns we should design AROUND or even refuse to serve well.",
+          "helps": "1–2 examples + one-line why each. e.g. <em>School X wanted me to ghostwrite the principal's personal blog, not brand content — bad fit · School Y kept moving the brand goalposts weekly — exhausting and not what the tool is for</em>"
+        }
+      ]
+    }
   ],
-
-  part4: [
-    { sub: "", items: [
-      { n:82, q:"For one active school, what's the rough weekly mix by content type? Give me percentages across recruitment, brand storytelling, parent-education, seasonal, and behind-the-scenes.",
-        hint:"recruitment · brand storytelling · parent-education · seasonal · behind-the-scenes",
-        why:"content planner's weekly distribution.",
-        helps:"5 percentages adding to 100. e.g. <em>recruitment 20 · brand 30 · parent-ed 30 · seasonal 10 · BTS 10</em>" },
-      { n:83, q:"What's the format mix per week — single images, carousels, short videos, long articles, 朋友圈 posts?",
-        why:"format planner.",
-        helps:"counts per format. e.g. <em>carousels 3 · single image 2 · short video 1 · article 0–1 · 朋友圈 daily</em>" },
-      { n:84, q:"When you make a piece, does it get reused across channels? Does an XHS post become a 朋友圈 post the same day? A 公众号 article a week later? Map a typical lifecycle.",
-        why:"the cross-poster logic — how content flows between channels.",
-        helps:"a one-week lifecycle. e.g. <em>Mon: XHS · Tue: 朋友圈 reshare · Fri: 公众号 expanded version</em>" },
-      { n:85, q:"Be honest — how much content per school per week does this tool actually need to make?",
-        why:"calibrates the tool's batch size + provider budget.",
-        helps:"integers. e.g. <em>5 XHS pieces + 1 公众号 + daily 朋友圈 + 1 video</em>" },
-    ]},
+  "part3b_card": {
+    "intro": "Fill in for ONE school first — pick your most active one, it unlocks 80% of the work. When you're done, hit 'Save this school + add another' and the card resets so you can do the next one. Or stop after one and we'll loop back later.",
+    "groups": [
+      {
+        "sub": "Identity",
+        "items": [
+          {
+            "n": "id_name",
+            "type": "text",
+            "label": "School name (zh / en)",
+            "why": "the school's display name everywhere in the tool.",
+            "helps": "both languages if it has both. e.g. <em>诺德安达国际学校 / Nord Anglia International School</em>"
+          },
+          {
+            "n": "id_short",
+            "type": "text",
+            "label": "Short name we'll use internally",
+            "why": "used in filenames, dashboard chips, and the chat ('switch to <short>').",
+            "helps": "a short slug. e.g. <em>nais · or just 'Nord'</em>"
+          },
+          {
+            "n": "id_founded",
+            "type": "text",
+            "label": "Founded year",
+            "why": "surfaces in 'about us' generated copy.",
+            "helps": "a year. e.g. <em>2002</em>"
+          },
+          {
+            "n": "id_students",
+            "type": "text",
+            "label": "Student count + age range",
+            "why": "used in factual copy ('a 1,200-student K-12 school…').",
+            "helps": "e.g. <em>~1,200 students · K-12 · ages 5–18</em>"
+          },
+          {
+            "n": "p1",
+            "q": "What type of school is this — 国际 / 双语 / 公立 / 民办 / 培训 / etc.? And does it sub-position as anything specific (e.g. 精英国际, 社区双语, 升学型)?",
+            "why": "dictates which platform / voice presets apply for this school.",
+            "helps": "category + sub-positioning. e.g. <em>K-12 双语国际化 · 升学型 · 中产精英赛道</em>"
+          },
+          {
+            "n": "p2",
+            "q": "Where is the school — city, district, neighborhood? And how far do parents typically commute to it?",
+            "why": "feeds geo-references in copy ('五分钟到陆家嘴' etc).",
+            "helps": "address-level + radius. e.g. <em>上海浦东张江 · 半径15km · 8成家长来自张江/世纪公园/陆家嘴</em>"
+          },
+          {
+            "n": "p3",
+            "q": "What's the school's website and all its social handles — XHS, 公众号, 视频号, Douyin, anything else?",
+            "why": "the school profile's public-presence registry.",
+            "helps": "URLs + handles, one per line. just paste."
+          },
+          {
+            "n": "p4",
+            "q": "What are the existing follower counts on each platform?",
+            "why": "tone calibration — established account vs cold start. cold-start accounts need more aggressive hooks.",
+            "helps": "numbers per platform. e.g. <em>XHS 3.2k · 公众号 12k · 视频号 800 · Douyin 0</em>"
+          }
+        ]
+      },
+      {
+        "sub": "Voice & audience",
+        "items": [
+          {
+            "n": "p5",
+            "q": "If a parent asked you 'what's special about this school?' at a coffee shop, what are the exact words you'd say in 30 seconds?",
+            "why": "the seed paragraph the agent rewrites into every 'what is this school' line.",
+            "helps": "3–5 real sentences. write like you'd say it out loud — pauses, contractions, mid-sentence corrections all welcome."
+          },
+          {
+            "n": "p6",
+            "q": "Picture one specific parent who sends her kid to this school, and answer for HER — not for 'parents in general'.",
+            "hint": "• what does she do for a living? • where does she live? • what did she Google at 11pm last Tuesday? • what's the thing she'd never admit she's worried about? • what would make her recommend the school to a friend?",
+            "rows": 7,
+            "why": "the agent writes to this specific imagined reader instead of a demographic average.",
+            "helps": "one specific person who feels real. answer each bullet in a sentence. don't generalize."
+          },
+          {
+            "n": "p7",
+            "q": "Give me 3 adjectives the school's voice <b>should</b> be. Then 3 it should never be.",
+            "why": "the explicit per-school tone vector that overrides the agency-wide default.",
+            "helps": "3+3 single adjectives. e.g. <em>should: 温暖 · 严谨 · 不端着 // never: 冷漠 · 招生腔 · 浮夸</em>"
+          },
+          {
+            "n": "p8",
+            "q": "Whose voice does this school's voice sit close to — another brand, account, or publication? And why that one?",
+            "why": "anchor reference the agent calibrates voice against — much easier than describing in adjectives alone.",
+            "helps": "1–2 brand/account names + one line why. e.g. <em>the FT More section — same kind of polished-but-curious tone · or '小红书账号@阿圆的择校笔记' for the warmer parent-talk register</em>"
+          },
+          {
+            "n": "p9",
+            "q": "What are the top 3 messages you want woven into every piece of content for this school — present in the background, not literally repeated?",
+            "why": "hidden refrain — the agent ensures each piece nods at one of these three messages.",
+            "helps": "3 short sentences. e.g. <em>我们教孩子提问 · 我们认识每一个孩子 · 升学不是终点</em>"
+          },
+          {
+            "n": "p10",
+            "q": "Does the tone shift depending on who you're talking to — current parents vs prospective parents vs alumni vs students vs teachers? Or is it the same across the board?",
+            "why": "per-audience tone overrides within this school.",
+            "helps": "one line per audience. e.g. <em>current: casual · prospective: formal-warm · alumni: nostalgic · students: playful · teachers: respectful</em>"
+          }
+        ]
+      },
+      {
+        "sub": "Proof & evidence",
+        "items": [
+          {
+            "n": "p11",
+            "q": "Give me 5–7 facts the copywriter can lean on for this school — alumni colleges, competition wins, teacher credentials, retention rates, awards. Year and source where you have them.",
+            "hint": "format hint:\n<em>2024 — 87% → top-30 US/UK universities (internal counselor report)</em>\n<em>2023 — Math Olympiad gold ×3 (XHS post link)</em>",
+            "rows": 8,
+            "why": "the factbase the copywriter cites + the validator checks against. nothing claimed publicly that isn't here.",
+            "helps": "one fact per line, with year + source where you can. partial info beats blanks."
+          },
+          {
+            "n": "p12",
+            "q": "What are 3–5 'greatest hits' stories for this school — alumni journeys, project showcases, signature events — that we can paraphrase across content?",
+            "why": "the story bank the agent paraphrases when long-form is needed.",
+            "helps": "title + one-line summary each. e.g. <em>Alex → MIT 2023: from shy fifth-grader to robotics team captain</em>"
+          },
+          {
+            "n": "p13",
+            "q": "What can this school never claim publicly — for legal reasons or because of school policy?",
+            "why": "hard claim-blocker for the validator on this school.",
+            "helps": "a list. e.g. <em>升学率具体数字 · '官方合作' with any university · 老师私人信息 · 学费金额 · '保送' anything</em>"
+          }
+        ]
+      },
+      {
+        "sub": "Guardrails",
+        "items": [
+          {
+            "n": "p14",
+            "q": "What words should never appear in copy for this school — about the school itself, and about the world (e.g. competitors)?",
+            "why": "per-school blocklist (in addition to platform-level and agency-level lists).",
+            "helps": "two lists, comma-separated. e.g. <em>about us: 应试, 卷, 廉价, '名校直通车' // about world: 平庸, 差校, [specific competitor school names]</em>"
+          },
+          {
+            "n": "p15",
+            "q": "What imagery is off-limits for this school — specific faces, places, partner brands you can't show?",
+            "why": "image generator's negative-prompt + asset filter for this school.",
+            "helps": "a list. e.g. <em>founder's son (no public face) · the unfinished renovation wing · competitor school logos · students wearing other school uniforms · the back parking lot</em>"
+          },
+          {
+            "n": "p16",
+            "q": "What's your comparison policy for this school — direct competitor mentions allowed, implicit only, or never?",
+            "why": "validator's competitor-mention rule for this school.",
+            "helps": "one of: direct OK / implicit OK / never. + one line why."
+          },
+          {
+            "n": "p17",
+            "q": "Are there religious, political, or regional sensitivities specific to this school I need to know about?",
+            "why": "editorial guardrails specific to this school.",
+            "helps": "2–4 specifics, or 'none' if genuinely nothing. e.g. <em>founder is Christian but school stays secular — no religious imagery · school is in a sensitive district — no political content at all</em>"
+          },
+          {
+            "n": "p18",
+            "q": "For THIS school specifically — photos of minors rule? (Even if the agency default from Q31 covers most, note any deviation.)",
+            "why": "per-school override of the agency-wide minors rule. legal stakes.",
+            "helps": "a clear default for this school. e.g. <em>same as agency default · OR: private K, all consents signed, faces OK · OR: stricter — no faces ever, even silhouettes</em>",
+            "sensitive": true
+          }
+        ]
+      },
+      {
+        "sub": "Visual brand",
+        "items": [
+          {
+            "n": "p19",
+            "q": "What logo files do you have for this school — primary, mono, small-size variant? (Send the actual files separately in WeChat.)",
+            "why": "image generator overlays — we need the actual files in /assets/brand/.",
+            "helps": "describe what you have. send files separately. e.g. <em>have: primary PNG + mono SVG · missing: small-size icon variant · I'll send via WeChat</em>"
+          },
+          {
+            "n": "p20",
+            "q": "What are the brand colors for this school — primary, secondary, accent? Exact hex if you have them. Any colors you never use?",
+            "why": "image palette + cover frame defaults for this school.",
+            "helps": "3–5 hex codes + a never-use list. e.g. <em>primary #1a3a52 · secondary #d4a017 · accent #e8e2d4 · never: pure red, neon anything</em>"
+          },
+          {
+            "n": "p21",
+            "q": "What are the brand fonts in Chinese and English? Do you have license files, or should I substitute with Noto / Source Han equivalents?",
+            "why": "image generator's font selection for this school.",
+            "helps": "font names + license posture. e.g. <em>CN: 思源黑体 Heavy · EN: Inter Bold · no license — substitute Noto Sans SC is fine</em>"
+          },
+          {
+            "n": "p22",
+            "q": "What's the mood of this school's visual world — calm, warm, rigorous, playful? Describe it, or send me 5–10 reference images.",
+            "why": "image agent's style anchor for this school.",
+            "helps": "3 adjectives + 5–10 ref images in WeChat. e.g. <em>calm · documentary · natural-light · I'll share a 网盘 folder with refs</em>"
+          },
+          {
+            "n": "p23",
+            "q": "Does this school have a recurring cover frame template — a layout you reuse across posts? If yes, send an example.",
+            "why": "reused cover scaffold across posts for this school.",
+            "helps": "describe it or send an example. e.g. <em>brand-color top border 12% height · logo top-left · large title centered · I'll send screenshot</em>"
+          },
+          {
+            "n": "p24",
+            "q": "What photo style fits this school — natural-light, staged, studio? Wide, medium, or close-up bias?",
+            "why": "image gen + restyle direction for this school.",
+            "helps": "e.g. <em>natural-light documentary · mid-distance · no flash · never studio backdrops</em>"
+          }
+        ]
+      },
+      {
+        "sub": "Slogans, taglines, claims",
+        "items": [
+          {
+            "n": "p25",
+            "q": "What are the official slogans or taglines for this school (Chinese and English if both exist)?",
+            "why": "the agent surfaces these in specific slots (article close, video outro).",
+            "helps": "exact wording in both languages."
+          },
+          {
+            "n": "p26",
+            "q": "Are there short reusable phrases that have already been approved by leadership for this school? Give me 5–10.",
+            "why": "reusable phrase bank for the copywriter.",
+            "helps": "5–10 short approved phrases. e.g. <em>'每个孩子都被看见' · '从提问开始的教育' · '学术与人格并重'</em>"
+          }
+        ]
+      },
+      {
+        "sub": "Operating reality",
+        "items": [
+          {
+            "n": "p27",
+            "q": "Who at this school has to approve content before it publishes — a single person, a committee, no one?",
+            "why": "workflow gate — review-step routing for this school.",
+            "helps": "name + role per content type. e.g. <em>Principal Wang for 公众号 · marketing director Lin for XHS · me-only for 朋友圈</em>"
+          },
+          {
+            "n": "p28",
+            "q": "What's the approval turnaround in practice — same day, 24h, 'whenever the principal gets to it'?",
+            "why": "scheduling sets the correct buffer before publish dates.",
+            "helps": "realistic windows. e.g. <em>24h normal · 3-day for sensitive · same-day for 朋友圈</em>"
+          },
+          {
+            "n": "p29",
+            "q": "What's the posting cadence target for this school — per platform, per week?",
+            "why": "scheduler's per-school-per-platform target.",
+            "helps": "numbers. e.g. <em>XHS 3–5/week · 公众号 1/week · 朋友圈 daily · 视频号 2/week</em>"
+          },
+          {
+            "n": "p30",
+            "q": "When does this school's audience actually open their phone? What's the best posting time for them?",
+            "why": "scheduler default for this school — overrides the agency-wide best-time.",
+            "helps": "time windows. e.g. <em>wake/commute (7–9am) + evening (8–10pm) · principal posts only on weekend mornings</em>"
+          },
+          {
+            "n": "p31",
+            "q": "Are there quiet seasons or blackout dates for this school — exam periods, holidays, internal events — where you should absolutely not post?",
+            "why": "scheduler avoids these.",
+            "helps": "a list of dates / periods. e.g. <em>exam weeks (mid-Jan, June) · CNY · school anniversary embargo week (Sep 12–18)</em>"
+          },
+          {
+            "n": "p32",
+            "q": "If something breaks for this school — wrong fact published, bad reaction in comments — who do we ping immediately?",
+            "why": "who the system messages if a publish goes wrong on this school.",
+            "helps": "name + WeChat handle + how to reach them after hours."
+          }
+        ]
+      }
+    ]
+  },
+  "part3c": [
+    {
+      "sub": "",
+      "items": [
+        {
+          "n": 61,
+          "q": "Are there universal rules you apply across ALL your schools regardless of brand? (Things you'd never do for any client, ever.)",
+          "why": "becomes the agency-level guardrails layer — applied to every school's prompts before per-school rules even kick in.",
+          "helps": "3–5 examples. e.g. <em>never publish on Sunday afternoons · never tag a parent without permission · never use stock photo of obvious foreigners pretending to be Chinese · never use AI-generated student faces</em>"
+        },
+        {
+          "n": 62,
+          "q": "Are there voice / style patterns you apply across your portfolio? Things that hold even when each school has a different brand voice.",
+          "why": "the agency 'house style' layer — sits above platform standards, below per-school voice.",
+          "helps": "2–3 patterns. e.g. <em>always avoid 招生腔 everywhere · I never start a post with '亲爱的家长们' · always end with a question, never a statement</em>"
+        },
+        {
+          "n": 63,
+          "q": "Are there forbidden words shared across every school you handle? (Universal blocklist, on top of per-school lists.)",
+          "why": "the agency-level word blocklist — universal.",
+          "helps": "comma list. e.g. <em>包过 · 保底 · 黑马 · 985直通车 · '一定能' · '绝对'</em>"
+        },
+        {
+          "n": 64,
+          "q": "When onboarding a new school, do you start from a 'template profile' (cloned from a similar past client) or build from scratch each time? If template, which school is your reference?",
+          "why": "informs the tool's 'clone from existing school' feature for new-school onboarding.",
+          "helps": "yes/no + which one. e.g. <em>yes — I clone from SchoolA's platform standards + my house style block · school-specific stuff (voice, evidence, brand) I always do fresh</em>"
+        },
+        {
+          "n": 65,
+          "q": "When you take on a new school, what's the FIRST piece of content you typically make to calibrate the voice? (Helps me know what the onboarding test piece should look like.)",
+          "why": "the new-school onboarding flow can auto-suggest this as the first run.",
+          "helps": "a content type + reason. e.g. <em>always a short 朋友圈 post about a single class moment — quickest to draft, fastest feedback loop, lowest stakes if it's off</em>"
+        },
+        {
+          "n": 66,
+          "q": "When a school churns / contract ends, what do you do with their files? Archive? Delete? Keep just-in-case?",
+          "why": "informs the soft-delete vs hard-delete UX + asset retention policy.",
+          "helps": "a rule. e.g. <em>archive everything for 12 months in case they come back · purge after 12 months · keep brand assets indefinitely so I can show portfolio examples</em>"
+        }
+      ]
+    }
   ],
-
-  part5: [
-    { sub: "Generation modes", items: [
-      { n:86, q:"How often per week per school do you expect to use t2t (text-only generation)?",
-        why:"usage forecast for queueing + cost.",
-        helps:"a number. e.g. <em>10–15/week</em>" },
-      { n:87, q:"How often do you expect to use t2i (text-to-image — covers, in-deck illustrations, no source photo available)?",
-        why:"same as above for image gen.",
-        helps:"a number + use case. e.g. <em>5/week — covers when no source photo</em>" },
-      { n:88, q:"How often do you expect to use i2i (editing an existing image — refining a stock photo, swapping backgrounds, applying brand style)?",
-        why:"same for image editing.",
-        helps:"e.g. <em>8/week — refining campus snaps before posting</em>" },
-      { n:89, q:"How often do you expect to use t2v (text-to-short-video — '15s teaser for the open house')?",
-        why:"same for video gen.",
-        helps:"e.g. <em>1–2/week — teasers for events</em>" },
-      { n:90, q:"How often will you use video_edit (cutting and captioning your own raw footage)? Be honest — this is the flagship mode.",
-        why:"flagship usage drives investment — be honest, this is the biggest signal.",
-        helps:"a number + a phrase. e.g. <em>3/week · this is the main reason I want this tool</em>" },
-      { n:91, q:"When would you reach for video_restyle or video_extend? Or are these rarely useful for you?",
-        why:"feature priority — if rarely used, we deprioritize.",
-        helps:"one line each, or 'rarely' / 'never'." },
-    ]},
-    { sub: "Review & iteration", items: [
-      { n:92, q:"Right now, audit-before-run is mandatory. Is that friction or value for you? Where would you compromise — for example, per-folder audit instead of per-file?",
-        why:"workflow setting — tradeoff between safety and speed.",
-        helps:"pick + reason. e.g. <em>per-folder audit fine · per-file too slow · let me skip audit if I check a 'trusted' box</em>" },
-      { n:93, q:"On every deliverable card, which actions do you actually want — accept, reject, regenerate-from-source, re-edit-result, 'give me 5 more variations,' 'more like this,' inline edit? Tick what you want, drop what you don't.",
-        why:"deliverable card UI affordances.",
-        helps:"tick what you want, drop what you don't. e.g. <em>must-have: accept · regenerate · inline-edit. nice: more-like-this. skip: 5-variations</em>" },
-      { n:94, q:"Do you want to type changes directly into the result, or always re-run with a new prompt? Different by mode (text vs image)?",
-        why:"the edit-affordance default.",
-        helps:"pick + when. e.g. <em>inline edit for text · always re-run for image</em>" },
-      { n:95, q:"Should the agent produce 3 variations per run by default, or one and iterate?",
-        why:"default fan-out per run.",
-        helps:"e.g. <em>3 variations by default · pick one · iterate from the winner</em>" },
-      { n:96, q:"Do you ever revert to a previous version of a post? Should every regenerate be a new version with a back-button?",
-        why:"UI needs version-stack vs flat-list.",
-        helps:"yes/no + window. e.g. <em>rarely revert · keep last 5 versions per piece</em>" },
-    ]},
-    { sub: "The chat", items: [
-      { n:97, q:"When the agent says 'I'm about to do X to files A, B, C — confirm?' — is that helpful, or does it just slow you down?",
-        why:"how chatty the agent should be before destructive actions.",
-        helps:"per mode. e.g. <em>helpful for video · annoying for text — just do it</em>" },
-      { n:98, q:"After a run, the agent shows an audit card — 'here's what I made, here's what's missing, here's what to do next.' Useful, or noise?",
-        why:"post-run reporting density.",
-        helps:"e.g. <em>useful — keep short and visual · skip if everything succeeded</em>" },
-      { n:99, q:"Would you want to message the tool from WeChat or Telegram, or strictly through the dashboard?",
-        why:"rollout priority for messaging entry points.",
-        helps:"e.g. <em>WeChat for quick checks · dashboard for real work</em>" },
-      { n:100,q:"Do you ever want to queue 3 schools' content overnight? How would you want to be notified when it's done?",
-        why:"queue + notify defaults.",
-        helps:"e.g. <em>yes queue overnight · WeChat ping when done · email if it failed</em>" },
-    ]},
-    { sub: "Output & delivery", items: [
-      { n:101,q:"Right now the final asset lands in <code>output/YYMMDD/</code>. Do you want it auto-synced somewhere — Dropbox, Drive, WeChat Files?",
-        why:"output-sync target.",
-        helps:"e.g. <em>auto-sync to Dropbox folder per school · zip per piece</em>" },
-      { n:102,q:"What filename convention do you want — something like <code>YYMMDD_school_platform_v1.md</code>, or your own scheme?",
-        why:"the file-naming pattern.",
-        helps:"a template. e.g. <em>YYMMDD_schoolshort_platform_topicslug_v1.md</em>" },
-      { n:103,q:"When a piece is finished (text + image + maybe video), should it come as a single zip per post, or loose files?",
-        why:"packaging strategy.",
-        helps:"pick one. e.g. <em>single zip per post + loose .md alongside</em>" },
-      { n:104,q:"If we wire one-click publish later, what's the trust gate — always preview before publishing, or sometimes auto-publish if pre-approved?",
-        why:"design constraint for the future publish API.",
-        helps:"e.g. <em>preview-then-publish always · never auto-publish for 公众号</em>" },
-    ]},
+  "part4": [
+    {
+      "sub": "",
+      "items": [
+        {
+          "n": 67,
+          "q": "Across your WHOLE portfolio in a typical week, roughly how much content do you publish? Rough totals — XHS posts, 公众号 articles, videos, 朋友圈 posts.",
+          "why": "capacity planning for the tool — sizes the batch defaults, the queue length, the monthly cost estimate.",
+          "helps": "a number per channel summed across schools. e.g. <em>~25 XHS pieces · 5 公众号 articles · 2–3 videos · daily 朋友圈 on most schools</em>"
+        },
+        {
+          "n": 68,
+          "q": "Give me the weekly output for your BUSIEST school. And for your LIGHTEST. (Shows me the range.)",
+          "why": "per-school cadence defaults; lets the tool auto-suggest a sensible weekly plan when adding a new school.",
+          "helps": "two mini-profiles. e.g. <em>busy: 6 XHS + 1 公众号 + 4 朋友圈/week // lite: 1 XHS + 1 朋友圈/week</em>"
+        },
+        {
+          "n": 69,
+          "q": "For a typical active school, rough weekly mix by CONTENT TYPE — give me percentages.",
+          "hint": "recruitment · brand storytelling · parent-education · seasonal · behind-the-scenes",
+          "why": "the content planner's weekly distribution per school.",
+          "helps": "5 percentages adding to 100. e.g. <em>recruitment 20 · brand storytelling 30 · parent-education 30 · seasonal 10 · BTS 10</em>"
+        },
+        {
+          "n": 70,
+          "q": "How does a single piece typically get reused across channels? Does an XHS post become a 朋友圈 post the same day? A 公众号 article a week later? Map a typical week-long lifecycle.",
+          "why": "the cross-poster logic — how content flows between channels.",
+          "helps": "a one-week lifecycle. e.g. <em>Mon: XHS info carousel · Tue: 朋友圈 reshare of the cover image · Fri: 公众号 expanded article version</em>"
+        },
+        {
+          "n": 71,
+          "q": "How does cadence change across recruitment season vs off-season? Do you batch-prep content ahead?",
+          "why": "seasonal scheduler defaults — the tool should plan ahead for known peak periods.",
+          "helps": "e.g. <em>Mar–May: 3x normal volume across all schools · I prep 2 weeks ahead during peak · summer is mostly evergreen reshares</em>"
+        },
+        {
+          "n": 72,
+          "q": "Honest gap — how much content would you LIKE to publish per week (across portfolio) vs what you actually manage? Where does the gap come from?",
+          "why": "identifies the real bottleneck — where the tool's leverage is biggest.",
+          "helps": "two numbers + a reason. e.g. <em>want: 40/week · actual: 25/week · the gap is video — each video eats 2 hours and I never have the time</em>"
+        }
+      ]
+    }
   ],
-
-  part6: [
-    { sub: "", items: [
-      { n:105,q:"How many 'this is the look' reference images can you provide per school? These anchor the image agent's style.",
-        hint:"5? 20? 50? these anchor the image agent",
-        why:"anchors the image agent's per-school style vector.",
-        helps:"a count + delivery. e.g. <em>10–20 per school · I'll share via WeChat folder</em>" },
-      { n:106,q:"What edit operations do you do by hand today that we could automate? Pick from things like remove-background, swap-background, logo overlay, subtitle bar, color grade, resize, composite — and add anything I missed.",
-        hint:"remove background · swap bg · logo overlay · subtitle bar · color grade · resize · composite · etc.",
-        why:"priority list for the edit pipeline.",
-        helps:"pick 3–5 with frequency. e.g. <em>logo overlay (every post) · bg replace (50%) · color grade (30%)</em>" },
-      { n:107,q:"What's the cover-text style for each school? Share mock-ups or screenshots if you can.",
-        why:"cover overlay defaults per school.",
-        helps:"per-school description or screenshots in WeChat." },
-      { n:108,q:"For video subtitles and overlays, what's your setup — font, color, stroke, position, animation in/out? Is this a house style across all schools, or does it shift per school?",
-        hint:"• font · • color · • stroke · • position · • animation in/out · • is this a house style or does it vary per school?", rows:6,
-        why:"video burn-in defaults.",
-        helps:"value per field. e.g. <em>思源黑体 Bold · white · 3px black stroke · bottom-center · fade in/out · house style across all schools</em>" },
-      { n:109,q:"For video BGM, is there a curated set of approved tracks per school? Or should the tool pick from a royalty-free library?",
-        why:"video BGM source per school.",
-        helps:"e.g. <em>curated 5-track set per school · I'll send a folder · royalty-free fallback OK</em>" },
-      { n:110,q:"Are there terms with preferred translations or abbreviations per school — like '国际部 → International Division (ID)' instead of 'IB Section'? Give me 5–10 pairs.",
-        hint:"e.g. '国际部 → International Division (ID)' not 'IB Section'",
-        why:"term-substitution table per school.",
-        helps:"5–10 pairs. e.g. <em>国际部 → International Division (ID) · 老师 → educator · 课程 → curriculum</em>" },
-    ]},
+  "part5": [
+    {
+      "sub": "Generation modes (frequency across your whole portfolio)",
+      "items": [
+        {
+          "n": 73,
+          "q": "t2t (text-only generation) — how often per week across all your schools combined?",
+          "why": "usage forecast for queueing + cost.",
+          "helps": "a number. e.g. <em>40–50/week across all schools</em>"
+        },
+        {
+          "n": 74,
+          "q": "t2i (text-to-image — covers, in-deck illustrations when no source photo exists) — how often across the portfolio?",
+          "why": "same for image gen.",
+          "helps": "a number + when. e.g. <em>15/week — mostly covers when no campus photo fits</em>"
+        },
+        {
+          "n": 75,
+          "q": "i2i (editing an existing image — refining a stock photo, swapping backgrounds, applying brand style) — how often?",
+          "why": "same for image editing.",
+          "helps": "e.g. <em>25/week — this is most of my image work, refining campus snaps before posting</em>"
+        },
+        {
+          "n": 76,
+          "q": "t2v (text-to-short-video — like a 15s teaser for an open house with no source footage) — how often?",
+          "why": "same for video gen.",
+          "helps": "e.g. <em>3–5/week — teasers for events, mostly for premium-tier schools</em>"
+        },
+        {
+          "n": 77,
+          "q": "video_edit (cutting and captioning your own raw footage) — how often? And which of your schools is this mostly for?",
+          "why": "flagship usage drives investment. naming which schools it's for tells me whether to optimize for that segment.",
+          "helps": "a number + school names. e.g. <em>6/week · mostly for the 3 premium-tier schools · this is the #1 reason I want this tool</em>"
+        },
+        {
+          "n": 78,
+          "q": "video_restyle and video_extend — when do you reach for these, or are they rarely useful for you?",
+          "why": "feature priority — if rarely used, we deprioritize them.",
+          "helps": "one line each, or 'rarely' / 'never'. e.g. <em>restyle: never · extend: rarely, only when a school sends me a 10s clip I need to stretch</em>"
+        }
+      ]
+    },
+    {
+      "sub": "Review & iteration",
+      "items": [
+        {
+          "n": 79,
+          "q": "Right now, audit-before-run is mandatory. Across 5+ schools that adds up. Is the audit step friction or value for you? Where would you compromise — per-folder audit instead of per-file? Skip audit for trusted schools?",
+          "why": "workflow setting — safety vs speed tradeoff at multi-school scale.",
+          "helps": "pick + reason. e.g. <em>per-folder audit is fine · per-file too slow at scale · let me mark 'trusted' schools that skip audit · audit always required for the premium tier</em>"
+        },
+        {
+          "n": 80,
+          "q": "On every deliverable card, which actions do you actually want? Accept, reject, regenerate-from-source, re-edit-result, '5 more variations,' 'more like this,' inline edit? Tick what you want, drop what you don't.",
+          "why": "deliverable card UI affordances.",
+          "helps": "must-have vs nice vs skip. e.g. <em>must: accept · regenerate · inline-edit · 'more like this' // nice: 5-variations · re-edit-result // skip: reject (I just don't accept)</em>"
+        },
+        {
+          "n": 81,
+          "q": "Do you want to type changes directly into the result (inline edit), or always re-run with a new prompt? Different by mode?",
+          "why": "the edit-affordance default per mode.",
+          "helps": "pick + when. e.g. <em>inline edit for text · always re-run with prompt for image · video: too expensive to re-run, prefer inline</em>"
+        },
+        {
+          "n": 82,
+          "q": "Should the agent produce 3 variations per run by default, or one and iterate?",
+          "why": "default fan-out per run — affects cost + cognitive load.",
+          "helps": "e.g. <em>1 variation for text (iterate) · 3 variations for image (pick) · 1 for video (too expensive)</em>"
+        },
+        {
+          "n": 83,
+          "q": "Do you ever revert to a previous version of a post? Should every regenerate create a new version with a back-button, or just overwrite?",
+          "why": "UI needs version-stack vs flat-list.",
+          "helps": "yes/no + window. e.g. <em>rarely revert · keep last 5 versions per piece is plenty · just give me a 'restore yesterday' shortcut</em>"
+        }
+      ]
+    },
+    {
+      "sub": "The chat (with the main agent)",
+      "items": [
+        {
+          "n": 84,
+          "q": "When you chat with the tool, would you rather TYPE the school name ('now do this for Nord') or pick from a dropdown — or both?",
+          "why": "context-switching UX across many schools.",
+          "helps": "pick + reason. e.g. <em>both · dropdown for the 'who am I working on now' state · typing 'switch to <name>' in chat for fast moves mid-conversation</em>"
+        },
+        {
+          "n": 85,
+          "q": "Do you ever batch across schools — 'do the morning post for all 5 schools at once' — or always one school at a time?",
+          "why": "informs batch operation UX + queueing model.",
+          "helps": "e.g. <em>yes for evergreen content (parent-ed tips) · always one-at-a-time for school-specific brand storytelling</em>"
+        },
+        {
+          "n": 86,
+          "q": "When the agent says 'I'm about to do X to files A, B, C — confirm?' — is that helpful, or does it just slow you down?",
+          "why": "how chatty the agent should be before destructive or expensive actions.",
+          "helps": "per scope. e.g. <em>helpful for video (expensive) · annoying for text (just do it) · always confirm if it'll cost &gt;¥10</em>"
+        },
+        {
+          "n": 87,
+          "q": "After a run, the agent shows an audit card — 'here's what I made, here's what's missing, here's what to do next.' Useful, or noise?",
+          "why": "post-run reporting density.",
+          "helps": "e.g. <em>useful — keep short and visual · skip if everything succeeded with no warnings · always show for video</em>"
+        },
+        {
+          "n": 88,
+          "q": "Would you message the tool from WeChat or Telegram, or strictly through the dashboard?",
+          "why": "rollout priority for messaging entry points.",
+          "helps": "e.g. <em>WeChat for quick checks ('what's the open-house post for SchoolB?') · dashboard for real work</em>"
+        },
+        {
+          "n": 89,
+          "q": "Do you ever want to queue overnight work — '3 schools' content, run while I sleep'? How do you want to be notified when it's done or if it failed?",
+          "why": "queue + notify defaults.",
+          "helps": "e.g. <em>yes, queue overnight · WeChat ping with summary when done · email if anything failed · don't bother me at 3am even if it finishes</em>"
+        }
+      ]
+    },
+    {
+      "sub": "Output & delivery",
+      "items": [
+        {
+          "n": 90,
+          "q": "Where should the final asset go? Right now it lands in <code>output/&lt;school&gt;/YYMMDD/</code>. Do you want auto-sync to Dropbox, Drive, WeChat Files, or somewhere else?",
+          "why": "output-sync target — major UX choice for an agency operator.",
+          "helps": "e.g. <em>auto-sync to one Dropbox folder, structured per-school · I share that folder with my schools so they see drafts in real-time</em>"
+        },
+        {
+          "n": 91,
+          "q": "What filename convention do you want? Something like <code>YYMMDD_school_platform_v1.md</code>, or your own scheme?",
+          "why": "the file-naming pattern.",
+          "helps": "a template. e.g. <em>YYMMDD_schoolshort_platform_topicslug_v1.md · plus image filenames following the same pattern</em>"
+        },
+        {
+          "n": 92,
+          "q": "When a piece is finished (text + image + maybe video), should it come as a single zip per post, or loose files?",
+          "why": "packaging strategy.",
+          "helps": "pick + reason. e.g. <em>single zip per post + loose .md alongside · easier to drop into WeChat for client approval</em>"
+        },
+        {
+          "n": 93,
+          "q": "If we wire one-click publish later (v2), what's the trust gate? Always preview before publishing? Sometimes auto-publish if a piece is pre-approved by the school?",
+          "why": "design constraint for the future publish API. one-shot question, low priority for now.",
+          "helps": "e.g. <em>preview-then-publish always · never auto-publish for 公众号 · 朋友圈 could maybe auto-publish if pre-approved</em>"
+        }
+      ]
+    }
   ],
-
-  part7: [
-    { sub: "", items: [
-      { n:111,q:"Is there anything per school that should never leave your machine — even for a cloud-API call? E.g. a school where we can't send student faces to remote providers?",
-        why:"routing — keep certain school data local-only (we'd switch that school to local providers).",
-        helps:"per-school. e.g. <em>School A: anything cloud is fine · School B: no faces to cloud APIs · School C: strict, everything local</em>" },
-      { n:112,q:"What's the rough API cost budget per school per month, so I can flag overruns?",
-        why:"spend-cap alerts per school.",
-        helps:"a number in 元 or USD. e.g. <em>300–500元/month/school</em>" },
-      { n:113,q:"Are you comfortable with all the providers — Anthropic, OpenAI, Volcengine, Aliyun? Any you must not use, for trust or regional reasons?",
-        why:"provider routing.",
-        helps:"any 'yes prefer' or 'never use'. e.g. <em>comfortable with all · prefer Anthropic for text where quality matters</em>" },
-      { n:114,q:"Do any of the schools require a 'made with AI' disclosure on posts? If yes, what's the exact wording they want?",
-        why:"AI-disclosure footer per school.",
-        helps:"yes/no per school + the exact wording if required." },
-      { n:115,q:"On image rights — royalty-free is safe. What about Midjourney or Sora output, where the rights are murkier? Where do you draw the line for client deliverables vs internal mockups?",
-        why:"provider-by-school routing for image gen.",
-        helps:"e.g. <em>royalty-free only for client deliverables · internal mockups: anything OK</em>" },
-    ]},
+  "part6": [
+    {
+      "sub": "",
+      "items": [
+        {
+          "n": 94,
+          "q": "Across all your schools, how many 'this is the look' reference images can you typically provide per school? (5? 20? 50?)",
+          "why": "anchors the image agent's per-school style vector. more refs = better calibration.",
+          "helps": "a count range + delivery method. e.g. <em>10–20 per school for active ones · 5 minimum for new schools · I'll share via WeChat folder per school</em>"
+        },
+        {
+          "n": 95,
+          "q": "What edit operations do you do by hand today that we could automate? Pick from things like remove-background, swap-background, logo overlay, subtitle bar, color grade, resize, composite — and add anything I missed.",
+          "why": "priority list for the edit pipeline — first thing to ship per-school.",
+          "helps": "3–5 with frequency. e.g. <em>logo overlay (every single post, every school) · background blur/replace (50% of posts) · color grade to brand (30%) · resize to platform (always)</em>"
+        },
+        {
+          "n": 96,
+          "q": "Do schools have wildly different cover-text styles, or is there a common pattern? Share mock-ups or screenshots if you can.",
+          "why": "cover overlay defaults — per-school vs agency-wide.",
+          "helps": "e.g. <em>common pattern: top-band title + small subtitle · 3 schools deviate completely (one uses no text at all, two use sticker-style)</em>"
+        },
+        {
+          "n": 97,
+          "q": "For video subtitles and overlays, what's your setup — font, color, stroke, position, animation in/out? Is this a house style across all schools, or does it shift per school?",
+          "hint": "• font · • color · • stroke · • position · • animation in/out · • house style or per-school?",
+          "rows": 6,
+          "why": "video burn-in defaults across the portfolio.",
+          "helps": "value per field + scope. e.g. <em>思源黑体 Bold · white · 3px black stroke · bottom-center · fade in/out · house style across all schools (saves my time, no school has objected)</em>"
+        },
+        {
+          "n": 98,
+          "q": "For video BGM, do you maintain a curated set of approved tracks per school, or do you pick from a royalty-free library each time?",
+          "why": "video BGM source per school.",
+          "helps": "e.g. <em>curated 5-track set per premium school · royalty-free library for the rest · I'll send 网盘 folder of approved tracks</em>"
+        },
+        {
+          "n": 99,
+          "q": "Per-school brand dictionary — terms with preferred translations or abbreviations (like '国际部 → International Division (ID)' instead of 'IB Section')? Give me 5–10 pairs for one school as an example.",
+          "why": "term-substitution table per school.",
+          "helps": "5–10 pairs for one example school. e.g. <em>SchoolA: 国际部 → International Division (ID) · 老师 → educator · 课程 → curriculum · 校长 → Head of School (not 'Principal')</em>"
+        }
+      ]
+    }
   ],
-
-  part8: [
-    { sub: "", items: [
-      { n:116,q:"Walk me through a normal operating day — 7am to 7pm. What are you doing hour by hour, even rough?",
-        why:"surfaces where the tool slots into your actual reality (vs. where I think it does).",
-        helps:"rough hour-by-hour, even bullets. voice memo if faster — I'll transcribe." },
-      { n:117,q:"What's the most annoying part of your current workflow — the one thing that makes you sigh every week?",
-        why:"top bottleneck to attack first.",
-        helps:"one specific recurring task you dread. specificity wins." },
-      { n:118,q:"What tools do you already use day-to-day — Notion, Feishu, Lark, Trello, WeChat, Capcut, Adobe, anything else? I'd rather integrate with what you have than ask you to switch.",
-        why:"integration targets vs displacement — we'd rather hook into what you have.",
-        helps:"a list: what + what for + how often. e.g. <em>Notion: client briefs (daily) · Capcut: video edits (3×/week)</em>" },
-      { n:119,q:"How do you measure your own performance for each client — engagement, leads, retention, vibes? Rank them.",
-        why:"aligns the tool's success metric with yours.",
-        helps:"2–4 metrics, ranked. e.g. <em>client retention &gt; engagement growth &gt; leads · 'vibes' real too</em>" },
-      { n:120,q:"What would make you cancel this tool 6 months in? The honest answer wins.",
-        why:"failure modes to engineer out from day one.",
-        helps:"1–2 honest dealbreakers. don't soften them." },
-      { n:121,q:"What's the bottleneck — if it went away, you could double the number of schools you serve. What is it?",
-        why:"the scaling priority.",
-        helps:"the specific bottleneck. e.g. <em>if image briefs become finished images, I could take 2x the clients</em>" },
-    ]},
+  "part7": [
+    {
+      "sub": "",
+      "items": [
+        {
+          "n": 100,
+          "q": "Is there anything per school that should never leave your machine — even for a cloud-API call? E.g. a school where you can't send student faces to remote providers?",
+          "why": "per-school routing — those schools would force local providers only for sensitive operations.",
+          "helps": "per-school. e.g. <em>most schools: any cloud is fine · SchoolB: no student faces to cloud (compliance) · SchoolE: strictly local only, everything</em>"
+        },
+        {
+          "n": 101,
+          "q": "What's the rough API cost budget per school per month, so I can flag overruns? And what's your total monthly tool-cost ceiling across the portfolio?",
+          "why": "per-school spend alerts + agency-wide ceiling.",
+          "helps": "a per-school number + portfolio cap. e.g. <em>~¥300/school/month · agency total cap ~¥3,000/month · alert me at 80%</em>"
+        },
+        {
+          "n": 102,
+          "q": "Are you comfortable with all the providers we use — Anthropic, OpenAI, Volcengine, Aliyun? Any you must not use, for trust or regional reasons? Different per school?",
+          "why": "provider routing per school.",
+          "helps": "any 'yes prefer' or 'never use'. e.g. <em>comfortable with all · prefer Anthropic for text where quality matters · School E (foreign-funded) wants no domestic-only providers</em>"
+        },
+        {
+          "n": 103,
+          "q": "Do any of your schools require a 'made with AI' disclosure on posts? If yes, which schools and what's the exact wording they want?",
+          "why": "AI-disclosure footer per school.",
+          "helps": "yes/no per school + wording. e.g. <em>SchoolB: '部分内容由AI辅助生成' · SchoolE: no disclosure required · rest: not required but I add one anyway for transparency</em>"
+        },
+        {
+          "n": 104,
+          "q": "On image rights — royalty-free is safe. What about Midjourney or Sora output, where the rights are murkier? Where do you draw the line for client deliverables vs internal mockups?",
+          "why": "provider-by-school routing for image gen + client-deliverable filtering.",
+          "helps": "e.g. <em>royalty-free or fully-licensed only for client deliverables · internal mockups: anything OK · premium schools insist on commercially-cleared only</em>"
+        }
+      ]
+    }
   ],
-};
+  "part8": [
+    {
+      "sub": "",
+      "items": [
+        {
+          "n": 105,
+          "q": "Walk me through a normal operating day — 7am to 7pm. What are you doing hour by hour across your portfolio? Even rough.",
+          "why": "surfaces where the tool slots into your actual reality vs where I imagine it does.",
+          "helps": "rough hour-by-hour, even bullets. voice memo if faster — I'll transcribe."
+        },
+        {
+          "n": 106,
+          "q": "What's the most annoying part of your current workflow — the one thing that makes you sigh every week?",
+          "why": "top bottleneck to attack first.",
+          "helps": "one specific recurring task you dread. specificity wins."
+        },
+        {
+          "n": 107,
+          "q": "What tools do you already use day-to-day — Notion, Feishu, Lark, Trello, WeChat, Capcut, Adobe, anything else? I'd rather integrate with what you have than ask you to switch.",
+          "why": "integration targets vs displacement.",
+          "helps": "a list: tool + what for + how often. e.g. <em>Notion: client briefs (daily) · Capcut: video edits (3×/week) · Lark: 1 school's internal comms · WeChat: everything else</em>"
+        },
+        {
+          "n": 108,
+          "q": "How do you measure your own performance for each client — engagement, leads, retention, vibes? Rank them.",
+          "why": "aligns the tool's success metric with yours.",
+          "helps": "2–4 metrics, ranked. e.g. <em>client retention &gt; engagement growth &gt; leads · 'vibes' real too · I track follower growth weekly for premium schools</em>"
+        },
+        {
+          "n": 109,
+          "q": "What would make you cancel this tool 6 months in? The honest answer wins.",
+          "why": "failure modes to engineer out from day one.",
+          "helps": "1–2 honest dealbreakers. don't soften them. e.g. <em>if it makes me redo work more than it saves · if it goes down during recruitment season · if it costs more than ¥3k/month</em>"
+        },
+        {
+          "n": 110,
+          "q": "What's the bottleneck — if it went away, you could double the number of schools you serve. What is it?",
+          "why": "the scaling priority.",
+          "helps": "the specific bottleneck. e.g. <em>if image briefs become finished images, I could take 2x the clients · if I could publish from inside the tool, I could take 3x</em>"
+        }
+      ]
+    }
+  ]
+}
+;
 
-// ===== RENDER =====
+// ===== HELPERS =====
+function esc(s){ return (s==null?'':String(s)).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function metaHTML(it){
+  const lines = [];
+  if(it.why)   lines.push(`<span class="row-line"><span class="lbl-why">why</span>${it.why}</span>`);
+  if(it.helps) lines.push(`<span class="row-line helps"><span class="lbl-helps">helps</span>${it.helps}</span>`);
+  return lines.length ? `<div class="meta">${lines.join('')}</div>` : '';
+}
+// Build the HTML for one regular Q&A block with attach + thumbs.
+// attachKey + thumbsKey are STRING data-key values (e.g. "q.5" or "s.s1.p7").
+function questionBlockHTML(it, attachKey, opts){
+  opts = opts || {};
+  const numShown = opts.numShown != null ? opts.numShown : it.n;
+  const hintHTML = it.hint ? `<div class="hint">${it.hint.replace(/\n/g, '<br>')}</div>` : '';
+  const rows = it.rows || 2;
+  const sensitive = it.sensitive ? ' q-sensitive' : '';
+  const ariaSafe = String(attachKey).replace(/"/g,'');
+  return `<div class="q${sensitive}" data-qn="${esc(numShown)}" data-attach-key="${esc(attachKey)}">
+    <div class="row">
+      <div class="n">${esc(numShown)}</div>
+      <div class="qtext">${it.q}</div>
+    </div>
+    ${metaHTML(it)}
+    ${hintHTML}
+    <textarea data-key="${esc(attachKey)}" rows="${rows}" placeholder="your answer…" aria-label="answer to question ${esc(numShown)}"></textarea>
+    <div class="q-attach">
+      <label class="q-attach-btn">
+        📎 attach screenshot
+        <input type="file" accept="image/*" multiple data-attach="${esc(attachKey)}">
+      </label>
+      <span class="q-attach-hint">or just paste (Cmd-V / Ctrl-V) anywhere on this question</span>
+    </div>
+    <div class="q-thumbs" data-thumbs="${esc(attachKey)}"></div>
+  </div>`;
+}
+
+// ===== RENDER (top-level parts) =====
 function render(){
   Object.keys(Q).forEach(sec => {
+    if(sec === 'part3b_card') return; // rendered separately as school cards
     const host = document.querySelector(`.qg[data-section="${sec}"]`);
     if(!host) return;
-    Q[sec].forEach(group => {
+    const part = Q[sec];
+    if(!Array.isArray(part)) return;
+    part.forEach(group => {
       if(group.sub){
         const h = document.createElement('h3');
         h.className = 'sub';
@@ -1462,63 +2299,182 @@ function render(){
         host.appendChild(h);
       }
       group.items.forEach(it => {
-        const div = document.createElement('div');
-        div.dataset.qn = it.n;
-        const hintHTML = it.hint ? `<div class="hint">${it.hint.replace(/\n/g, '<br>')}</div>` : '';
-        const metaLines = [];
-        if(it.why)   metaLines.push(`<span class="row-line"><span class="lbl-why">why</span>${it.why}</span>`);
-        if(it.helps) metaLines.push(`<span class="row-line helps"><span class="lbl-helps">helps</span>${it.helps}</span>`);
-        const metaHTML = metaLines.length ? `<div class="meta">${metaLines.join('')}</div>` : '';
-        const rows = it.rows || 2;
-        div.className = 'q' + (it.sensitive ? ' q-sensitive' : '');
-        div.innerHTML = `
-          <div class="row">
-            <div class="n">${it.n}</div>
-            <div class="qtext">${it.q}</div>
-          </div>
-          ${metaHTML}
-          ${hintHTML}
-          <textarea data-key="q.${it.n}" rows="${rows}" placeholder="your answer…" aria-label="answer to question ${it.n}"></textarea>
-          <div class="q-attach">
-            <label class="q-attach-btn">
-              📎 attach screenshot
-              <input type="file" accept="image/*" multiple data-attach="${it.n}">
-            </label>
-            <span class="q-attach-hint">or just paste (Cmd-V / Ctrl-V) anywhere on this question</span>
-          </div>
-          <div class="q-thumbs" data-thumbs="${it.n}"></div>
-        `;
-        host.appendChild(div);
+        const wrap = document.createElement('div');
+        wrap.innerHTML = questionBlockHTML(it, `q.${it.n}`);
+        host.appendChild(wrap.firstElementChild);
       });
     });
   });
 }
 render();
 
+// ===== SCHOOL CARDS (3B accumulator) =====
+let schoolList = [];          // ordered list of school IDs in this session
+let currentSchool = null;     // id of the school currently displayed in #school-active
+
+function nextSchoolId(){
+  let n = 1;
+  while(schoolList.includes('s' + n)) n++;
+  return 's' + n;
+}
+
+function renderSchoolCard(sid){
+  const card = Q.part3b_card;
+  let html = `<p class="card-intro">${card.intro}</p>`;
+  for(const group of card.groups){
+    html += `<h4 class="card-sub">${esc(group.sub)}</h4>`;
+    for(const it of group.items){
+      const key = `s.${sid}.${it.n}`;
+      if(it.type === 'text'){
+        html += `<div class="q card-q card-q-text" data-attach-key="${esc(key)}">
+          <div class="card-q-label">${esc(it.label)}</div>
+          ${metaHTML(it)}
+          <input type="text" data-key="${esc(key)}" placeholder="…">
+        </div>`;
+      } else {
+        // numbered question with attach + thumbs, scoped to school
+        html += questionBlockHTML(it, key, { numShown: it.n });
+      }
+    }
+  }
+  return html;
+}
+
+function getSchoolDisplayName(sid){
+  const el = document.querySelector(`input[data-key="s.${sid}.id_name"]`);
+  let n = (el && el.value.trim()) || '';
+  if(!n){
+    const stored = (function(){
+      try{ return JSON.parse(localStorage.getItem(LS_KEY) || '{}')[`s.${sid}.id_name`] || ''; }catch(e){ return ''; }
+    })();
+    n = stored;
+  }
+  return n.trim() || '(unnamed)';
+}
+
+function renderSavedList(){
+  const list = document.getElementById('school-saved-list');
+  if(!list) return;
+  if(schoolList.length === 0){
+    list.innerHTML = '<div class="school-empty">No schools added yet.</div>';
+    return;
+  }
+  let html = `<div class="school-list-label">${schoolList.length} school${schoolList.length>1?'s':''} in this session</div><div class="school-chips">`;
+  schoolList.forEach(sid => {
+    const name = getSchoolDisplayName(sid);
+    const active = sid === currentSchool ? ' active' : '';
+    html += `<div class="school-chip${active}" data-sid="${esc(sid)}">
+      <button class="school-chip-name" data-sid="${esc(sid)}" type="button">${esc(name)}</button>
+      <button class="school-chip-x" data-sid="${esc(sid)}" type="button" title="remove" aria-label="remove this school">×</button>
+    </div>`;
+  });
+  html += '</div>';
+  list.innerHTML = html;
+}
+
+function updateActiveSchoolName(){
+  const el = document.getElementById('school-active-name');
+  if(el) el.textContent = getSchoolDisplayName(currentSchool || 's1');
+}
+
+function switchToSchool(sid){
+  currentSchool = sid;
+  if(!schoolList.includes(sid)) schoolList.push(sid);
+  const host = document.getElementById('school-active');
+  host.innerHTML = renderSchoolCard(sid);
+  // restore stored values into the freshly-rendered fields
+  loadFieldsFromStorage(host);
+  // re-render thumbnails for this school's keys
+  restoreThumbs();
+  renderSavedList();
+  updateActiveSchoolName();
+  persistSchoolMeta();
+  refresh();
+}
+
+function persistSchoolMeta(){
+  try{
+    localStorage.setItem('sas_qna_schools', JSON.stringify({ list: schoolList, current: currentSchool }));
+  }catch(e){}
+}
+function loadSchoolMeta(){
+  try{
+    const raw = localStorage.getItem('sas_qna_schools');
+    if(raw){
+      const meta = JSON.parse(raw);
+      if(Array.isArray(meta.list)) schoolList = meta.list;
+      if(meta.current) currentSchool = meta.current;
+    }
+  }catch(e){}
+  if(!currentSchool){
+    currentSchool = 's1';
+    if(!schoolList.includes('s1')) schoolList.unshift('s1');
+  }
+}
+
+function removeSchool(sid){
+  // remove all storage keys scoped to this school
+  const prefix = `s.${sid}.`;
+  try{
+    const raw = localStorage.getItem(LS_KEY);
+    if(raw){
+      const map = JSON.parse(raw);
+      Object.keys(map).forEach(k => { if(k.startsWith(prefix)) delete map[k]; });
+      localStorage.setItem(LS_KEY, JSON.stringify(map));
+    }
+  }catch(e){}
+  // remove all IDB images for this school
+  idbAll().then(all => {
+    all.forEach(rec => {
+      if(rec.qkey && rec.qkey.startsWith(prefix)) idbDel(rec.id);
+    });
+  });
+  schoolList = schoolList.filter(s => s !== sid);
+  if(currentSchool === sid){
+    currentSchool = schoolList[0] || 's1';
+    if(!schoolList.includes(currentSchool)) schoolList.unshift(currentSchool);
+  }
+  switchToSchool(currentSchool);
+}
+
 // ===== STORAGE =====
-const LS_KEY = 'sas_qna_v3';
+const LS_KEY = 'sas_qna_v4';
 function getAll(){
   const map = {};
+  // include stored values not currently in the DOM (other school cards)
+  try{
+    const raw = localStorage.getItem(LS_KEY);
+    if(raw) Object.assign(map, JSON.parse(raw));
+  }catch(e){}
   document.querySelectorAll('[data-key]').forEach(el => map[el.dataset.key] = el.value || '');
   return map;
 }
-function setAll(map){
-  document.querySelectorAll('[data-key]').forEach(el => {
-    if(map[el.dataset.key]) el.value = map[el.dataset.key];
-  });
-}
-function load(){
+function loadFieldsFromStorage(scope){
+  scope = scope || document;
   try{
     const raw = localStorage.getItem(LS_KEY);
-    if(raw){ setAll(JSON.parse(raw)); }
+    if(!raw) return;
+    const map = JSON.parse(raw);
+    scope.querySelectorAll('[data-key]').forEach(el => {
+      if(map[el.dataset.key] != null) el.value = map[el.dataset.key];
+    });
   }catch(e){}
-  // Auto-grow restored textareas
-  document.querySelectorAll('textarea[data-key]').forEach(t => {
-    if(t.value.trim().length > 0){
+  // auto-grow textareas
+  scope.querySelectorAll('textarea[data-key]').forEach(t => {
+    if(t.value && t.value.trim().length > 0){
       t.style.height = 'auto';
       t.style.height = (t.scrollHeight + 2) + 'px';
     }
   });
+}
+function load(){
+  loadSchoolMeta();
+  // Render the school card BEFORE loading fields so the inputs exist
+  const host = document.getElementById('school-active');
+  if(host) host.innerHTML = renderSchoolCard(currentSchool);
+  loadFieldsFromStorage(document);
+  renderSavedList();
+  updateActiveSchoolName();
   refresh();
 }
 let saveTimer = null;
@@ -1532,7 +2488,7 @@ function save(){
     if(!storageWarned){
       storageWarned = true;
       const fb = document.getElementById('feedback');
-      if(fb){ fb.style.color = '#c4533a'; fb.textContent = '⚠ Browser storage full — your latest answers may not be saved. Use Save (sidebar) or Download (bottom) now.'; }
+      if(fb){ fb.style.color = '#c4533a'; fb.textContent = '⚠ Browser storage full — your latest answers may not be saved. Use Save (sidebar) or Download zip (bottom) now.'; }
       const ind = document.getElementById('saveInd');
       if(ind){ ind.textContent = '⚠ storage full'; ind.style.background = '#c4533a'; ind.classList.add('show'); }
     }
@@ -1551,16 +2507,35 @@ function flashSaved(){
 
 // ===== PROGRESS + TOUCH =====
 function refresh(){
-  const all = document.querySelectorAll('textarea[data-key^="q."]');
-  let filled = 0;
-  all.forEach(t => {
+  // Count: every top-level Q (data-key^="q.") + every school's id_name (gives a sense of breadth)
+  const topAll = document.querySelectorAll('textarea[data-key^="q."]');
+  let topFilled = 0;
+  topAll.forEach(t => {
     const has = t.value.trim().length > 0;
-    if(has) filled++;
+    if(has) topFilled++;
     const q = t.closest('.q');
     if(q) q.classList.toggle('touched', has);
   });
-  document.getElementById('prog-text').textContent = `${filled} / ${all.length} answered`;
-  document.getElementById('prog-bar').style.width = (100*filled/all.length) + '%';
+  // also count card textareas in the active school
+  const cardAll = document.querySelectorAll('#school-active textarea[data-key]');
+  let cardFilled = 0;
+  cardAll.forEach(t => {
+    if(t.value.trim().length > 0){
+      cardFilled++;
+      const q = t.closest('.q');
+      if(q) q.classList.toggle('touched', true);
+    }
+  });
+  const total = topAll.length + cardAll.length;
+  const filled = topFilled + cardFilled;
+  document.getElementById('prog-text').textContent = `${filled} / ${total} answered`;
+  document.getElementById('prog-bar').style.width = (100*filled/Math.max(1,total)) + '%';
+  // update active school name as she types
+  updateActiveSchoolName();
+  // re-render chips if a name input changed
+  if(document.activeElement && document.activeElement.dataset && /^s\.s\d+\.id_name$/.test(document.activeElement.dataset.key || '')){
+    renderSavedList();
+  }
 }
 
 document.addEventListener('input', e => {
@@ -1584,36 +2559,44 @@ function updateActive(){
   for(const s of sections){
     if(s && s.getBoundingClientRect().top < 200) cur = s;
   }
+  if(!cur) return;
   navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#'+cur.id));
 }
 window.addEventListener('scroll', updateActive);
 
 // ===== SERIALIZE =====
 function serialize(imageIndex){
-  // imageIndex: optional { qn -> [filename, ...] } — only available when building the zip
+  // imageIndex: optional { attachKey -> [filename, ...] } populated by buildZip
   const map = getAll();
   const now = new Date().toISOString().slice(0,10);
   let md = `# SAS Client QnA — answers\n\n_submitted ${now}_\n\n`;
-  const schoolFields = [['school.name','School name'],['school.short','Short name'],['school.founded','Founded'],['school.students','Students']];
-  const sd = schoolFields.filter(([k,_]) => (map[k]||'').trim()).map(([k,l]) => `- **${l}:** ${map[k]}`).join('\n');
-  if(sd) md += `## School\n\n${sd}\n\n`;
+
   const partTitles = {
-    part1:'01 · XHS', part2:'02 · WeChat', part3:'03 · School', part4:'04 · Mix & cadence',
-    part5:'05 · How we work', part6:'06 · Visuals', part7:'07 · Business', part8:'08 · About you'
+    part1:'01 · XHS',
+    part2:'02 · WeChat',
+    part3a:'03A · The agency at scale',
+    part3c:'03C · Patterns across schools',
+    part4:'04 · Mix & cadence',
+    part5:'05 · How we work',
+    part6:'06 · Visuals & editing',
+    part7:'07 · Business & compliance',
+    part8:'08 · About you'
   };
-  Object.keys(Q).forEach(sec => {
+
+  function emitTopPart(sec){
+    const part = Q[sec];
+    if(!Array.isArray(part)) return '';
     let body = '';
-    Q[sec].forEach(group => {
+    part.forEach(group => {
       let sect = '';
       group.items.forEach(it => {
-        const a = (map[`q.${it.n}`] || '').trim();
-        const imgs = imageIndex && imageIndex[it.n] ? imageIndex[it.n] : [];
+        const key = `q.${it.n}`;
+        const a = (map[key] || '').trim();
+        const imgs = imageIndex && imageIndex[key] ? imageIndex[key] : [];
         if(a || imgs.length){
           const qtxt = it.q.replace(/<[^>]+>/g,'');
           sect += `\n**Q${it.n}. ${qtxt}**\n\n${a || '_(no written answer)_'}\n`;
-          if(imgs.length){
-            sect += `\n_attached: ${imgs.map(f => `\`${f}\``).join(', ')}_\n`;
-          }
+          if(imgs.length) sect += `\n_attached: ${imgs.map(f => `\`${f}\``).join(', ')}_\n`;
         }
       });
       if(sect){
@@ -1621,13 +2604,61 @@ function serialize(imageIndex){
         else body += sect;
       }
     });
+    return body;
+  }
+
+  // 1, 2, 3A
+  ['part1','part2','part3a'].forEach(sec => {
+    const body = emitTopPart(sec);
     if(body) md += `## ${partTitles[sec]}\n${body}\n\n`;
   });
+
+  // 3B — one section per school
+  const card = Q.part3b_card;
+  if(card && schoolList.length){
+    md += `## 03B · Schools\n\n`;
+    schoolList.forEach((sid, idx) => {
+      const nm = (map[`s.${sid}.id_name`] || '').trim();
+      // only emit if at least one field has content
+      const hasAny = card.groups.some(g => g.items.some(it => {
+        const k = `s.${sid}.${it.n}`;
+        return (map[k] || '').trim().length > 0 || (imageIndex && imageIndex[k] && imageIndex[k].length);
+      }));
+      if(!hasAny) return;
+      md += `### School ${idx+1}: ${nm || '(unnamed)'}\n`;
+      card.groups.forEach(group => {
+        let sect = '';
+        group.items.forEach(it => {
+          const k = `s.${sid}.${it.n}`;
+          const a = (map[k] || '').trim();
+          const imgs = imageIndex && imageIndex[k] ? imageIndex[k] : [];
+          if(!a && !imgs.length) return;
+          if(it.type === 'text'){
+            sect += `- **${it.label}:** ${a}\n`;
+          } else {
+            const qtxt = it.q.replace(/<[^>]+>/g,'');
+            sect += `\n**${it.n}. ${qtxt}**\n\n${a || '_(no written answer)_'}\n`;
+            if(imgs.length) sect += `\n_attached: ${imgs.map(f => `\`${f}\``).join(', ')}_\n`;
+          }
+        });
+        if(sect) md += `\n_${group.sub}_\n${sect}`;
+      });
+      md += '\n';
+    });
+  }
+
+  // 3C and rest
+  ['part3c','part4','part5','part6','part7','part8'].forEach(sec => {
+    const body = emitTopPart(sec);
+    if(body) md += `## ${partTitles[sec]}\n${body}\n\n`;
+  });
+
   return md;
 }
 
 function feedback(msg, isErr){
   const el = document.getElementById('feedback');
+  if(!el) return;
   el.textContent = msg;
   el.style.color = isErr ? '#c4533a' : '';
 }
@@ -1687,8 +2718,14 @@ async function idbClear(){
   });
 }
 
-function renderThumb(qn, rec){
-  const zone = document.querySelector(`.q-thumbs[data-thumbs="${qn}"]`);
+function thumbsZoneFor(qkey){
+  const zones = document.querySelectorAll('.q-thumbs');
+  for(const z of zones){ if(z.dataset.thumbs === qkey) return z; }
+  return null;
+}
+
+function renderThumb(qkey, rec){
+  const zone = thumbsZoneFor(qkey);
   if(!zone) return;
   const url = URL.createObjectURL(rec.blob);
   const thumb = document.createElement('div');
@@ -1706,15 +2743,16 @@ function renderThumb(qn, rec){
   zone.appendChild(thumb);
 }
 
-async function attachImage(qn, file){
-  if(!file || !file.type || !file.type.startsWith('image/')) return;
-  const id = `q${qn}-${Date.now()}-${Math.random().toString(36).slice(2,7)}`;
+async function attachImage(qkey, file){
+  if(!qkey || !file || !file.type || !file.type.startsWith('image/')) return;
+  const safe = String(qkey).replace(/[^a-zA-Z0-9_]/g,'_');
+  const id = `${safe}-${Date.now()}-${Math.random().toString(36).slice(2,7)}`;
   let ext = (file.type.split('/')[1] || 'png').toLowerCase().split('+')[0];
   if(ext === 'jpeg') ext = 'jpg';
-  const rec = { id, qn, ext, blob: file, name: file.name || `screenshot.${ext}`, ts: Date.now() };
+  const rec = { id, qkey, ext, blob: file, name: file.name || `screenshot.${ext}`, ts: Date.now() };
   try{
     await idbPut(rec);
-    renderThumb(qn, rec);
+    renderThumb(qkey, rec);
     flashSaved();
   }catch(e){
     feedback('⚠ could not save image — likely browser storage is full.', true);
@@ -1722,62 +2760,80 @@ async function attachImage(qn, file){
 }
 
 async function restoreThumbs(){
+  // clear any existing thumbs in visible zones first (since switchToSchool re-renders the card)
+  document.querySelectorAll('.q-thumbs').forEach(z => { z.innerHTML = ''; });
   try{
     const all = await idbAll();
-    for(const rec of all) renderThumb(rec.qn, rec);
+    for(const rec of all){
+      const key = rec.qkey || (rec.qn != null ? `q.${rec.qn}` : null);
+      if(key) renderThumb(key, rec);
+    }
   }catch(e){}
 }
 
-// File input handler
+// File input handler — uses string attach key
 document.addEventListener('change', e => {
   if(e.target.matches('input[type="file"][data-attach]')){
-    const qn = parseInt(e.target.dataset.attach);
-    [...e.target.files].forEach(f => attachImage(qn, f));
-    e.target.value = ''; // allow reattach same file
+    const qkey = e.target.dataset.attach;
+    [...e.target.files].forEach(f => attachImage(qkey, f));
+    e.target.value = '';
   }
 });
 
-// Paste handler — when user pastes anywhere inside a .q, attach images to that question
+// Paste handler — attaches images to the question being focused on
 document.addEventListener('paste', e => {
   const qDiv = e.target.closest && e.target.closest('.q');
   if(!qDiv) return;
-  const qn = parseInt(qDiv.dataset.qn);
-  if(!qn) return;
+  const qkey = qDiv.dataset.attachKey;
+  if(!qkey) return;
   const items = (e.clipboardData && e.clipboardData.items) || [];
   let attached = 0;
   for(const item of items){
     if(item.type && item.type.startsWith('image/')){
       const blob = item.getAsFile();
-      if(blob){ attachImage(qn, blob); attached++; }
+      if(blob){ attachImage(qkey, blob); attached++; }
     }
   }
   if(attached > 0){
     e.preventDefault();
-    feedback(`✓ ${attached} screenshot${attached>1?'s':''} attached to Q${qn}.`);
+    feedback(`✓ ${attached} screenshot${attached>1?'s':''} attached.`);
   }
 });
 
 // ===== ZIP BUILDER =====
+function qkeyToImgFolder(qkey){
+  // q.5 -> "q5"   s.s1.p7 -> "s1-p7"   s.s1.id_name -> "s1-id_name"
+  const parts = qkey.split('.');
+  if(parts[0] === 'q') return 'q' + parts[1];
+  if(parts[0] === 's') return parts.slice(1).join('-');
+  return qkey.replace(/\./g,'-');
+}
+
 async function buildZip(){
   if(typeof JSZip === 'undefined') throw new Error('JSZip not loaded');
   const all = await idbAll();
-  // group by qn so we can name them stably
-  const byQ = {};
-  all.forEach(r => { (byQ[r.qn] = byQ[r.qn] || []).push(r); });
-  // create image-index for serialize
+  // group by attach key
+  const byKey = {};
+  all.forEach(r => {
+    const k = r.qkey || (r.qn != null ? `q.${r.qn}` : null);
+    if(!k) return;
+    (byKey[k] = byKey[k] || []).push(r);
+  });
   const imageIndex = {};
-  Object.keys(byQ).forEach(qn => {
-    byQ[qn].sort((a,b) => a.ts - b.ts);
-    imageIndex[qn] = byQ[qn].map((_, i) => `images/q${qn}-${i+1}.${byQ[qn][i].ext}`);
+  Object.keys(byKey).forEach(k => {
+    byKey[k].sort((a,b) => a.ts - b.ts);
+    const folderStub = qkeyToImgFolder(k);
+    imageIndex[k] = byKey[k].map((rec, i) => `images/${folderStub}-${i+1}.${rec.ext}`);
   });
   const md = serialize(imageIndex);
   const zip = new JSZip();
   zip.file('answers.md', md);
   if(all.length > 0){
     const imgs = zip.folder('images');
-    Object.keys(byQ).forEach(qn => {
-      byQ[qn].forEach((rec, i) => {
-        imgs.file(`q${qn}-${i+1}.${rec.ext}`, rec.blob);
+    Object.keys(byKey).forEach(k => {
+      const folderStub = qkeyToImgFolder(k);
+      byKey[k].forEach((rec, i) => {
+        imgs.file(`${folderStub}-${i+1}.${rec.ext}`, rec.blob);
       });
     });
   }
@@ -1812,13 +2868,66 @@ document.getElementById('btn-copy').addEventListener('click', async () => {
 });
 
 document.getElementById('btn-clear').addEventListener('click', async () => {
-  if(confirm('Clear all your answers AND attached screenshots? This cannot be undone.')){
+  if(confirm('Clear all your answers AND attached screenshots from ALL schools? This cannot be undone.')){
     localStorage.removeItem(LS_KEY);
+    localStorage.removeItem('sas_qna_schools');
     try{ await idbClear(); }catch(e){}
+    schoolList = ['s1'];
+    currentSchool = 's1';
+    persistSchoolMeta();
     document.querySelectorAll('[data-key]').forEach(el => el.value = '');
     document.querySelectorAll('.q-thumbs').forEach(z => z.innerHTML = '');
+    const host = document.getElementById('school-active');
+    if(host) host.innerHTML = renderSchoolCard('s1');
+    renderSavedList();
+    updateActiveSchoolName();
     refresh();
     feedback('cleared.');
+  }
+});
+
+// ===== SCHOOL ACCUMULATOR BUTTONS =====
+document.getElementById('btn-save-school').addEventListener('click', () => {
+  // require at least a name on the current card
+  const nameInput = document.querySelector(`input[data-key="s.${currentSchool}.id_name"]`);
+  if(!nameInput || !nameInput.value.trim()){
+    feedback('⚠ Please fill at least the school name before adding another.', true);
+    if(nameInput){ nameInput.focus(); nameInput.scrollIntoView({behavior:'smooth', block:'center'}); }
+    return;
+  }
+  save();
+  const newSid = nextSchoolId();
+  schoolList.push(newSid);
+  switchToSchool(newSid);
+  feedback('✓ school saved. Card cleared — fill in the next one.');
+  document.getElementById('school-active').scrollIntoView({behavior:'smooth', block:'start'});
+});
+
+document.getElementById('btn-school-done').addEventListener('click', () => {
+  save();
+  feedback('✓ done with schools for now. Scrolling to Part 4.');
+  document.getElementById('part4').scrollIntoView({behavior:'smooth', block:'start'});
+});
+
+// Chip click handlers (event-delegated)
+document.getElementById('school-saved-list').addEventListener('click', (e) => {
+  const sid = e.target && e.target.dataset && e.target.dataset.sid;
+  if(!sid) return;
+  if(e.target.classList.contains('school-chip-x')){
+    if(schoolList.length <= 1){
+      feedback('⚠ Need at least one school card. Clear it instead of removing.', true);
+      return;
+    }
+    if(confirm(`Remove "${getSchoolDisplayName(sid)}" — including all its answers and attachments? Cannot be undone.`)){
+      removeSchool(sid);
+      feedback('school removed.');
+    }
+  } else if(e.target.classList.contains('school-chip-name')){
+    if(sid !== currentSchool){
+      save();
+      switchToSchool(sid);
+      document.getElementById('school-active').scrollIntoView({behavior:'smooth', block:'start'});
+    }
   }
 });
 
