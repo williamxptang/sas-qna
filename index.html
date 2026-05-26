@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>A letter from your tool · please read &amp; reply</title>
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
 <style>
   :root{
     --ink:#1d212c;
@@ -294,6 +295,93 @@
     font-style:normal;
   }
   .q.q-sensitive .n{ color:var(--accent); }
+
+  .q-attach{
+    margin:6px 0 0 42px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .q-attach-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-size:12px;
+    color:var(--ink-mute);
+    background:transparent;
+    border:1px dashed var(--rule);
+    padding:4px 10px;
+    border-radius:4px;
+    cursor:pointer;
+    font-family:inherit;
+    transition:all .15s;
+  }
+  .q-attach-btn:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+    background:#fff7ec;
+  }
+  .q-attach-btn input{ display:none; }
+  .q-attach-hint{
+    font-size:11px;
+    color:var(--ink-mute);
+    font-style:italic;
+  }
+  .q-thumbs{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+    margin:8px 0 0 42px;
+  }
+  .q-thumbs:empty{ display:none; }
+  .q-thumb{
+    position:relative;
+    width:72px;
+    height:72px;
+    border-radius:4px;
+    overflow:hidden;
+    background:#fff;
+    border:1px solid var(--rule);
+    box-shadow:0 1px 3px rgba(0,0,0,.05);
+  }
+  .q-thumb img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  .q-thumb-x{
+    position:absolute;
+    top:3px;
+    right:3px;
+    width:18px;
+    height:18px;
+    background:rgba(28,33,44,.85);
+    color:#fff;
+    border:none;
+    border-radius:50%;
+    font-size:13px;
+    line-height:1;
+    cursor:pointer;
+    padding:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .q-thumb-x:hover{ background:var(--accent); }
+  .q-thumb-label{
+    position:absolute;
+    bottom:0;
+    left:0;
+    right:0;
+    background:rgba(0,0,0,.55);
+    color:#fff;
+    font-size:9px;
+    text-align:center;
+    padding:1px 2px;
+    pointer-events:none;
+  }
   .q .row{
     display:flex;
     gap:14px;
@@ -529,7 +617,7 @@
 
   <button class="save-btn" id="btn-save-side">
     <span class="save-btn-main">💾 Save progress on this device</span>
-    <span class="save-btn-sub" id="save-btn-sub">also downloads a backup file you can keep</span>
+    <span class="save-btn-sub" id="save-btn-sub">also downloads a backup zip you can keep</span>
   </button>
 </aside>
 
@@ -549,7 +637,7 @@
 
   <p>Below is basically my notebook from the last three months — every time I caught myself wondering <em>how do you actually decide this</em>, I wrote it down. Your answers turn into the rules the tool follows. Every prompt, every guardrail, every "no don't say that" lands here first.</p>
 
-  <p>A few practical notes: bullets are fine, better than essays. If it's faster to talk, just send me voice notes on WeChat and I'll transcribe on this end. One real screenshot of a post you loved (or hated) teaches the tool more than any paragraph you could write — drop those in WeChat too, not here.</p>
+  <p>A few practical notes: bullets are fine, better than essays. If it's faster to talk, just send me voice notes on WeChat and I'll transcribe on this end. <b>You can also paste or attach screenshots</b> directly on any question — every question has a little 📎 below it, and Cmd-V works anywhere in a question. A real example of a post you loved (or hated) teaches the tool more than a paragraph of explanation.</p>
 
   <p>If today you only have headspace for one thing: <b>Part 3, your most active school.</b> That alone unlocks the bulk of the work.</p>
 
@@ -895,16 +983,18 @@
 <!-- ===================== SEND ===================== -->
 <section class="send" id="send">
   <h2>That's it — send it over.</h2>
-  <p>Three ways, same outcome. Pick whichever's easiest right now.</p>
+  <p>Two paths, same outcome. Pick whichever's easiest right now.</p>
   <div class="buttons">
-    <button class="btn primary" id="btn-download">⬇ Download as file</button>
-    <button class="btn teal" id="btn-copy">📋 Copy for WeChat</button>
-    <a class="btn ghost" id="btn-email" href="#">✉ Email it back</a>
+    <button class="btn primary" id="btn-send">📤 Send to William</button>
+    <button class="btn teal" id="btn-zip">⬇ Download zip (for WeChat)</button>
+    <button class="btn ghost" id="btn-copy">📋 Copy text only</button>
     <button class="btn ghost" id="btn-clear">↻ Clear &amp; start over</button>
   </div>
   <div class="feedback" id="feedback"></div>
   <p style="margin-top:24px;font-size:13px;color:var(--ink-mute);">
-    The file is a plain <code>.md</code> — readable in any text app, WeChat, email. Sending screenshots and example posts separately is even better than answering in writing.
+    <b>Send to William</b> ships your answers + any attached screenshots straight to his inbox (under 5MB total).<br>
+    <b>Download zip</b> packages everything into a single file — drop it into our WeChat chat and that's it.<br>
+    Either way: thank you 🙏 — this is the most useful hour you'll spend on this project.
   </p>
 </section>
 
@@ -1390,6 +1480,14 @@ function render(){
           ${metaHTML}
           ${hintHTML}
           <textarea data-key="q.${it.n}" rows="${rows}" placeholder="your answer…" aria-label="answer to question ${it.n}"></textarea>
+          <div class="q-attach">
+            <label class="q-attach-btn">
+              📎 attach screenshot
+              <input type="file" accept="image/*" multiple data-attach="${it.n}">
+            </label>
+            <span class="q-attach-hint">or just paste (Cmd-V / Ctrl-V) anywhere on this question</span>
+          </div>
+          <div class="q-thumbs" data-thumbs="${it.n}"></div>
         `;
         host.appendChild(div);
       });
@@ -1492,7 +1590,8 @@ function updateActive(){
 window.addEventListener('scroll', updateActive);
 
 // ===== SERIALIZE =====
-function serialize(){
+function serialize(imageIndex){
+  // imageIndex: optional { qn -> [filename, ...] } — only available when building the zip
   const map = getAll();
   const now = new Date().toISOString().slice(0,10);
   let md = `# SAS Client QnA — answers\n\n_submitted ${now}_\n\n`;
@@ -1509,9 +1608,13 @@ function serialize(){
       let sect = '';
       group.items.forEach(it => {
         const a = (map[`q.${it.n}`] || '').trim();
-        if(a){
+        const imgs = imageIndex && imageIndex[it.n] ? imageIndex[it.n] : [];
+        if(a || imgs.length){
           const qtxt = it.q.replace(/<[^>]+>/g,'');
-          sect += `\n**Q${it.n}. ${qtxt}**\n\n${a}\n`;
+          sect += `\n**Q${it.n}. ${qtxt}**\n\n${a || '_(no written answer)_'}\n`;
+          if(imgs.length){
+            sect += `\n_attached: ${imgs.map(f => `\`${f}\``).join(', ')}_\n`;
+          }
         }
       });
       if(sect){
@@ -1524,49 +1627,242 @@ function serialize(){
   return md;
 }
 
-function feedback(msg){
-  document.getElementById('feedback').textContent = msg;
+function feedback(msg, isErr){
+  const el = document.getElementById('feedback');
+  el.textContent = msg;
+  el.style.color = isErr ? '#c4533a' : '';
+}
+
+// ===== IMAGE ATTACHMENTS (IndexedDB) =====
+const IDB_NAME = 'sas_qna_imgs';
+const IDB_STORE = 'images';
+let idbDB = null;
+function openIDB(){
+  return new Promise((resolve, reject) => {
+    if(idbDB) return resolve(idbDB);
+    const req = indexedDB.open(IDB_NAME, 1);
+    req.onupgradeneeded = e => {
+      const db = e.target.result;
+      if(!db.objectStoreNames.contains(IDB_STORE)){
+        db.createObjectStore(IDB_STORE, { keyPath: 'id' });
+      }
+    };
+    req.onsuccess = e => { idbDB = e.target.result; resolve(idbDB); };
+    req.onerror = e => reject(e.target.error);
+  });
+}
+async function idbPut(rec){
+  const db = await openIDB();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction(IDB_STORE, 'readwrite');
+    tx.objectStore(IDB_STORE).put(rec);
+    tx.oncomplete = () => resolve();
+    tx.onerror = e => reject(e.target.error);
+  });
+}
+async function idbDel(id){
+  const db = await openIDB();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction(IDB_STORE, 'readwrite');
+    tx.objectStore(IDB_STORE).delete(id);
+    tx.oncomplete = () => resolve();
+    tx.onerror = e => reject(e.target.error);
+  });
+}
+async function idbAll(){
+  const db = await openIDB();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction(IDB_STORE, 'readonly');
+    const req = tx.objectStore(IDB_STORE).getAll();
+    req.onsuccess = () => resolve(req.result || []);
+    req.onerror = e => reject(e.target.error);
+  });
+}
+async function idbClear(){
+  const db = await openIDB();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction(IDB_STORE, 'readwrite');
+    tx.objectStore(IDB_STORE).clear();
+    tx.oncomplete = () => resolve();
+    tx.onerror = e => reject(e.target.error);
+  });
+}
+
+function renderThumb(qn, rec){
+  const zone = document.querySelector(`.q-thumbs[data-thumbs="${qn}"]`);
+  if(!zone) return;
+  const url = URL.createObjectURL(rec.blob);
+  const thumb = document.createElement('div');
+  thumb.className = 'q-thumb';
+  thumb.dataset.id = rec.id;
+  thumb.innerHTML = `
+    <img src="${url}" alt="attached screenshot">
+    <button class="q-thumb-x" title="remove" aria-label="remove attachment">×</button>
+  `;
+  thumb.querySelector('.q-thumb-x').addEventListener('click', async () => {
+    await idbDel(rec.id);
+    URL.revokeObjectURL(url);
+    thumb.remove();
+  });
+  zone.appendChild(thumb);
+}
+
+async function attachImage(qn, file){
+  if(!file || !file.type || !file.type.startsWith('image/')) return;
+  const id = `q${qn}-${Date.now()}-${Math.random().toString(36).slice(2,7)}`;
+  let ext = (file.type.split('/')[1] || 'png').toLowerCase().split('+')[0];
+  if(ext === 'jpeg') ext = 'jpg';
+  const rec = { id, qn, ext, blob: file, name: file.name || `screenshot.${ext}`, ts: Date.now() };
+  try{
+    await idbPut(rec);
+    renderThumb(qn, rec);
+    flashSaved();
+  }catch(e){
+    feedback('⚠ could not save image — likely browser storage is full.', true);
+  }
+}
+
+async function restoreThumbs(){
+  try{
+    const all = await idbAll();
+    for(const rec of all) renderThumb(rec.qn, rec);
+  }catch(e){}
+}
+
+// File input handler
+document.addEventListener('change', e => {
+  if(e.target.matches('input[type="file"][data-attach]')){
+    const qn = parseInt(e.target.dataset.attach);
+    [...e.target.files].forEach(f => attachImage(qn, f));
+    e.target.value = ''; // allow reattach same file
+  }
+});
+
+// Paste handler — when user pastes anywhere inside a .q, attach images to that question
+document.addEventListener('paste', e => {
+  const qDiv = e.target.closest && e.target.closest('.q');
+  if(!qDiv) return;
+  const qn = parseInt(qDiv.dataset.qn);
+  if(!qn) return;
+  const items = (e.clipboardData && e.clipboardData.items) || [];
+  let attached = 0;
+  for(const item of items){
+    if(item.type && item.type.startsWith('image/')){
+      const blob = item.getAsFile();
+      if(blob){ attachImage(qn, blob); attached++; }
+    }
+  }
+  if(attached > 0){
+    e.preventDefault();
+    feedback(`✓ ${attached} screenshot${attached>1?'s':''} attached to Q${qn}.`);
+  }
+});
+
+// ===== ZIP BUILDER =====
+async function buildZip(){
+  if(typeof JSZip === 'undefined') throw new Error('JSZip not loaded');
+  const all = await idbAll();
+  // group by qn so we can name them stably
+  const byQ = {};
+  all.forEach(r => { (byQ[r.qn] = byQ[r.qn] || []).push(r); });
+  // create image-index for serialize
+  const imageIndex = {};
+  Object.keys(byQ).forEach(qn => {
+    byQ[qn].sort((a,b) => a.ts - b.ts);
+    imageIndex[qn] = byQ[qn].map((_, i) => `images/q${qn}-${i+1}.${byQ[qn][i].ext}`);
+  });
+  const md = serialize(imageIndex);
+  const zip = new JSZip();
+  zip.file('answers.md', md);
+  if(all.length > 0){
+    const imgs = zip.folder('images');
+    Object.keys(byQ).forEach(qn => {
+      byQ[qn].forEach((rec, i) => {
+        imgs.file(`q${qn}-${i+1}.${rec.ext}`, rec.blob);
+      });
+    });
+  }
+  const blob = await zip.generateAsync({ type: 'blob' });
+  return { blob, imageCount: all.length, md };
+}
+
+// ===== WEB3FORMS (direct-to-inbox) =====
+// To enable: sign up at https://web3forms.com (free, 60 seconds, no payment)
+// → confirm your email → paste the access key below ↓
+const WEB3FORMS_KEY = 'PASTE_YOUR_WEB3FORMS_ACCESS_KEY_HERE';
+const WEB3FORMS_LIMIT_MB = 5;
+
+async function sendToWilliam(){
+  if(!WEB3FORMS_KEY || WEB3FORMS_KEY.startsWith('PASTE_')){
+    feedback('⚠ Direct-send not yet configured. Use Download Zip + send via WeChat instead.', true);
+    return false;
+  }
+  feedback('sending… one moment.');
+  let pkg;
+  try{ pkg = await buildZip(); }
+  catch(e){ feedback('⚠ could not build the file. Try Download Zip instead.', true); return false; }
+  if(pkg.blob.size > WEB3FORMS_LIMIT_MB * 1024 * 1024){
+    feedback(`⚠ Total size ${(pkg.blob.size/1024/1024).toFixed(1)}MB > ${WEB3FORMS_LIMIT_MB}MB cap. Use Download Zip + WeChat instead.`, true);
+    return false;
+  }
+  const form = new FormData();
+  form.append('access_key', WEB3FORMS_KEY);
+  form.append('subject', 'SAS QnA — answers received');
+  form.append('from_name', 'SAS Client');
+  form.append('message', pkg.md);
+  const stamp = new Date().toISOString().slice(0,10);
+  form.append('attachment', pkg.blob, `sas-qna-${stamp}.zip`);
+  try{
+    const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: form });
+    const data = await res.json();
+    if(data && data.success){
+      feedback('✓ sent to William. You can close this tab whenever — thank you 🙏');
+      return true;
+    }
+    feedback('⚠ delivery failed (' + (data.message || 'unknown') + '). Use Download Zip instead.', true);
+    return false;
+  }catch(e){
+    feedback('⚠ network error. Use Download Zip + WeChat instead.', true);
+    return false;
+  }
 }
 
 // ===== BUTTONS =====
-document.getElementById('btn-download').addEventListener('click', () => {
-  const md = serialize();
-  const blob = new Blob([md], {type:'text/markdown'});
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  const stamp = new Date().toISOString().slice(0,10);
-  a.download = `sas-qna-${stamp}.md`;
-  a.click();
-  feedback('✓ downloaded — drop the file in WeChat or email and you\'re done.');
+document.getElementById('btn-send').addEventListener('click', async () => {
+  await sendToWilliam();
+});
+
+document.getElementById('btn-zip').addEventListener('click', async () => {
+  feedback('packaging…');
+  try{
+    const { blob, imageCount } = await buildZip();
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    const stamp = new Date().toISOString().slice(0,10);
+    a.download = `sas-qna-${stamp}.zip`;
+    a.click();
+    const imgNote = imageCount ? ` (${imageCount} screenshot${imageCount>1?'s':''} included)` : '';
+    feedback(`✓ zip downloaded${imgNote} — drop it into our WeChat chat.`);
+  }catch(e){
+    feedback('⚠ could not build the zip. Try Copy text instead.', true);
+  }
 });
 
 document.getElementById('btn-copy').addEventListener('click', async () => {
   try{
     await navigator.clipboard.writeText(serialize());
-    feedback('✓ copied — paste it into our WeChat chat and you\'re done.');
+    feedback('✓ text copied — paste it into our WeChat chat. (Screenshots not included — use Download zip or paste them directly in WeChat.)');
   }catch(e){
-    feedback('couldn\'t copy automatically. use download instead.');
+    feedback('⚠ could not copy automatically. Use Download zip instead.', true);
   }
 });
 
-document.getElementById('btn-email').addEventListener('click', e => {
-  e.preventDefault();
-  const md = serialize();
-  const subject = 'SAS client QnA — my answers';
-  let body;
-  if(md.length > 1500){
-    body = md.slice(0, 1200) + '\n\n[...email truncated by your browser. The full file is too long to send via mailto.\nPlease use the ⬇ Download or 📋 Copy button instead, or paste the full text below this line:]\n\n';
-    feedback('⚠ Email opened with first chunk only — for the full answers, use Download or Copy instead.');
-  } else {
-    body = md;
-  }
-  window.location.href = `mailto:williamxptang@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-});
-
-document.getElementById('btn-clear').addEventListener('click', () => {
-  if(confirm('Clear all your answers? This cannot be undone.')){
+document.getElementById('btn-clear').addEventListener('click', async () => {
+  if(confirm('Clear all your answers AND attached screenshots? This cannot be undone.')){
     localStorage.removeItem(LS_KEY);
+    try{ await idbClear(); }catch(e){}
     document.querySelectorAll('[data-key]').forEach(el => el.value = '');
+    document.querySelectorAll('.q-thumbs').forEach(z => z.innerHTML = '');
     refresh();
     feedback('cleared.');
   }
@@ -1576,36 +1872,36 @@ document.getElementById('btn-clear').addEventListener('click', () => {
 const saveBtn = document.getElementById('btn-save-side');
 const saveBtnSub = document.getElementById('save-btn-sub');
 let saveBtnTimer = null;
-saveBtn.addEventListener('click', () => {
+saveBtn.addEventListener('click', async () => {
   save();
   const all = document.querySelectorAll('textarea[data-key^="q."]');
   let filled = 0;
   all.forEach(t => { if(t.value.trim().length > 0) filled++; });
 
-  // Trigger a backup .md download so progress is portable
+  // Trigger a backup zip download (includes any attached screenshots)
   try{
-    const md = serialize();
-    const blob = new Blob([md], {type:'text/markdown'});
+    const { blob } = await buildZip();
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
     const stamp = new Date().toISOString().slice(0,10);
-    a.download = `sas-qna-backup-${stamp}.md`;
+    a.download = `sas-qna-backup-${stamp}.zip`;
     a.click();
   }catch(e){}
 
   saveBtn.classList.add('saved');
   saveBtn.querySelector('.save-btn-main').textContent = `✓ saved · ${filled} / ${all.length}`;
-  saveBtnSub.textContent = 'backup file downloaded — keep it just in case';
+  saveBtnSub.textContent = 'backup zip downloaded — keep it as a safety net';
   clearTimeout(saveBtnTimer);
   saveBtnTimer = setTimeout(() => {
     saveBtn.classList.remove('saved');
     saveBtn.querySelector('.save-btn-main').textContent = '💾 Save progress on this device';
-    saveBtnSub.textContent = 'also downloads a backup file you can keep';
+    saveBtnSub.textContent = 'also downloads a backup zip you can keep';
   }, 4500);
 });
 
 // ===== INIT =====
 load();
+restoreThumbs();
 updateActive();
 </script>
 </body>
