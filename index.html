@@ -213,6 +213,34 @@
   }
   .figure svg{ width:100%; height:auto; display:block; }
 
+  /* MAP TABLE (Figure 3) */
+  .map{
+    display:grid;
+    grid-template-columns: minmax(150px, 1fr) minmax(0, 2fr);
+    column-gap:24px;
+    row-gap:0;
+    margin-top:6px;
+  }
+  .map-head{
+    font-size:10.5px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--ink-mute);
+    font-weight:700;
+    padding:0 0 10px 0;
+    border-bottom:1.5px solid var(--rule);
+  }
+  .map-cell{
+    padding:10px 0;
+    border-bottom:1px dotted var(--rule);
+    font-size:14.5px;
+    color:var(--ink);
+    line-height:1.45;
+  }
+  .map-from{ font-weight:600; color:var(--accent); }
+  .map-to i{ color:var(--ink-mute); font-style:italic; font-size:13px; }
+  .map > div:nth-last-child(-n+2){ border-bottom:none; }
+
   /* PART HEADER */
   .part{
     margin:64px 0 0 0;
@@ -255,6 +283,17 @@
     transition:background .15s;
   }
   .q.touched{ background:rgba(255,247,236,.55); }
+  .q.q-sensitive{
+    background:#fff5f1;
+    border-left:3px solid var(--accent);
+    padding-left:14px;
+  }
+  .q.q-sensitive .hint{
+    color:var(--accent);
+    font-weight:600;
+    font-style:normal;
+  }
+  .q.q-sensitive .n{ color:var(--accent); }
   .q .row{
     display:flex;
     gap:14px;
@@ -378,17 +417,41 @@
       height:auto;
       border-right:none;
       border-bottom:1px solid var(--rule);
-      padding:20px 0;
+      padding:16px 0;
     }
-    aside nav{ display:flex; flex-wrap:wrap; gap:4px 14px; }
+    aside nav{ display:flex; flex-wrap:nowrap; overflow-x:auto; gap:0 14px; padding-bottom:4px; }
     aside nav a{
       padding:4px 0;
       border:none;
       margin:0;
+      white-space:nowrap;
+      flex-shrink:0;
     }
-    .opening h1{ font-size:34px; }
-    .part h2{ font-size:26px; }
+    aside .status{ font-size:11.5px; padding:10px; }
+    .save-btn{ padding:10px 12px; }
+    .save-btn-main{ font-size:13px; }
+    .save-btn-sub{ font-size:10.5px; }
+    .opening h1{ font-size:30px; }
+    .part h2{ font-size:24px; }
+    .figure{ padding:18px 16px; }
+    .figure svg{ font-size:14px; } /* unused but doesn't hurt */
   }
+  /* Hide the architecture SVG on phones — it's unreadable below ~500px. Show a text fallback. */
+  @media (max-width:600px){
+    #fig-arch-svg{ display:none; }
+    #fig-arch-fallback{ display:block; }
+    .map{ grid-template-columns:1fr; row-gap:0; }
+    .map-head:nth-child(2){ display:none; }
+    .map-from{ padding-bottom:2px; border-bottom:none; }
+    .map-to{ padding-top:2px; padding-bottom:14px; }
+  }
+  #fig-arch-fallback{ display:none; }
+  #fig-arch-fallback ol{
+    padding-left:20px; margin:8px 0 0 0;
+    color:var(--ink-soft); line-height:1.6;
+  }
+  #fig-arch-fallback ol li{ margin:6px 0; }
+  #fig-arch-fallback ol li b{ color:var(--ink); }
 
   /* Save indicator */
   .save-indicator{
@@ -442,8 +505,8 @@
   </div>
 
   <button class="save-btn" id="btn-save-side">
-    <span class="save-btn-main">💾 Save &amp; come back later</span>
-    <span class="save-btn-sub" id="save-btn-sub">all your answers are stored on this device</span>
+    <span class="save-btn-main">💾 Save progress on this device</span>
+    <span class="save-btn-sub" id="save-btn-sub">also downloads a backup file you can keep</span>
   </button>
 </aside>
 
@@ -452,23 +515,18 @@
 <!-- ===================== OPENING LETTER ===================== -->
 <section class="opening" id="open">
   <div class="eyebrow">A quick brief, then your turn</div>
-  <h1>The tool needs <em>your taste,</em><br>not just your time.</h1>
+  <h1>A few months in.<br><em>Time to hand you the keyboard.</em></h1>
   <span class="stamp">~5 min to read &nbsp;·&nbsp; fill in chunks, no rush</span>
 
   <p>Hey 👋</p>
 
   <p>I've been heads-down for a few months on the thing I keep telling you about over WeChat — the tool that takes your raw materials (brochures, campus photos, the random clips on your phone) and turns them into XHS + 公众号 posts, one school at a time.</p>
 
-  <p>It mostly works. But "works" isn't the bar — the bar is <em>"sounds like someone who actually knows the school."</em> Right now it sounds like a tool, which is the whole problem.</p>
+  <p>It mostly works. The problem is it sounds like a tool — clean, generic, instantly forgettable. You can tell when a post was written by someone who's actually walked the campus, and right now mine can't.</p>
 
-  <p>So here's where you come in. The questions below are basically every <em>"wait, how do you actually…?"</em> I've been jotting down for months. Your answers become the system's instincts — every prompt it runs, every rule it follows, every "no don't say that" comes from what you write here.</p>
+  <p>Below is basically my notebook from the last three months — every time I caught myself wondering <em>how do you actually decide this</em>, I wrote it down. Your answers turn into the rules the tool follows. Every prompt, every guardrail, every "no don't say that" lands here first.</p>
 
-  <p><b>Three things up front:</b></p>
-  <ul style="font-size:16px;color:var(--ink-soft);max-width:620px;padding-left:20px;line-height:1.55;">
-    <li>Bullets &gt; essays. Voice memos &gt; both — if it's faster to talk, send WeChat voice notes and I'll transcribe.</li>
-    <li>One real screenshot of a post you loved (or hated) teaches the tool more than a paragraph of theory. Drop them in WeChat anytime.</li>
-    <li>The page autosaves. Close the tab, come back tomorrow — it's all still there.</li>
-  </ul>
+  <p>A few practical notes: bullets are fine, better than essays. If it's faster to talk, just send me voice notes on WeChat and I'll transcribe on this end. One real screenshot of a post you loved (or hated) teaches the tool more than any paragraph you could write — drop those in WeChat too, not here.</p>
 
   <p>If today you only have headspace for one thing: <b>Part 3, your most active school.</b> That alone unlocks the bulk of the work.</p>
 
@@ -538,7 +596,15 @@
 <div class="figure">
   <div class="cap">Figure 2</div>
   <h3>Inside the tool — three layers, stacked</h3>
-  <svg viewBox="0 0 720 420" xmlns="http://www.w3.org/2000/svg">
+  <div id="fig-arch-fallback">
+    <ol>
+      <li><b>Knowledge layer</b> — School profile (one per school), platform standards (XHS · WeChat rules), brand assets (logo · colors · fonts · BGM). This is what your answers below build.</li>
+      <li><b>Chat layer</b> — One assistant you talk to. It confirms what you want, runs it, shows the result. Your materials drop in here.</li>
+      <li><b>Pipeline layer</b> — Five modes the assistant picks from: <code>t2t</code> (write text), <code>t2i</code> (create image), <code>i2i</code> (edit image), <code>t2v</code> (short video), <code>video edit</code> (cut your footage). Output lands in <code>output/&lt;school&gt;/YYMMDD/</code>, ready to post.</li>
+    </ol>
+    <p style="font-size:12px;color:var(--ink-mute);margin-top:10px;">Backed by Anthropic · Volcengine (Seedream + Seedance) · ffmpeg.</p>
+  </div>
+  <svg id="fig-arch-svg" viewBox="0 0 720 420" xmlns="http://www.w3.org/2000/svg">
     <defs>
       <marker id="arr2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
         <path d="M0,0 L10,5 L0,10 z" fill="#7a8194"/>
@@ -630,10 +696,38 @@
 </div>
 
 <!-- DIAGRAM 3 — where your answers go -->
-<div class="figure">
+<div class="figure" id="fig3">
   <div class="cap">Figure 3</div>
-  <h3>Where your answers live inside the tool</h3>
-  <svg viewBox="0 0 720 290" xmlns="http://www.w3.org/2000/svg">
+  <h3>Where each part of your answers lands</h3>
+  <div class="map">
+    <div class="map-head">Parts you answer</div>
+    <div class="map-head">What it powers in the tool</div>
+
+    <div class="map-cell map-from">01 · XHS</div>
+    <div class="map-cell map-to">→ Platform standards · <i>XHS rules: caption length · hooks · taboos</i></div>
+
+    <div class="map-cell map-from">02 · WeChat</div>
+    <div class="map-cell map-to">→ Platform standards · <i>公众号 + 朋友圈 + 视频号 rules</i></div>
+
+    <div class="map-cell map-from">03 · Your school</div>
+    <div class="map-cell map-to">→ School profile · voice · audience · evidence · guardrails · brand</div>
+
+    <div class="map-cell map-from">04 · Mix &amp; cadence</div>
+    <div class="map-cell map-to">→ Content planner · <i>weekly mix · cross-platform lifecycle</i></div>
+
+    <div class="map-cell map-from">05 · How we work</div>
+    <div class="map-cell map-to">→ Workflow defaults · <i>chat tone · review style · delivery</i></div>
+
+    <div class="map-cell map-from">06 · Visuals</div>
+    <div class="map-cell map-to">→ Image &amp; video defaults · <i>cover style · subtitles · BGM · brand dictionary</i></div>
+
+    <div class="map-cell map-from">07 · Business</div>
+    <div class="map-cell map-to">→ Compliance &amp; cost rules · <i>provider routing · budget guardrails</i></div>
+
+    <div class="map-cell map-from">08 · About you</div>
+    <div class="map-cell map-to">→ How the tool prioritizes <i>your</i> bottlenecks first</div>
+  </div>
+  <svg style="display:none" viewBox="0 0 720 290" xmlns="http://www.w3.org/2000/svg">
     <style>
       .lbl{ font:600 13px "Inter",sans-serif; fill:#1d212c; }
       .sub{ font:11px "Inter",sans-serif; fill:#7a8194; }
@@ -803,7 +897,7 @@ const Q = {
       { n:2,  q:"Three first-line hooks you trust most.", hint:"the openers you keep reusing because they just work" },
       { n:3,  q:"5 adjectives the XHS voice for your schools <b>should</b> be. Then 5 it should never be." },
       { n:4,  q:"Emoji rules — how many, where, any that scream 'ad' to you?" },
-      { n:5,  q:"Hashtag strategy — count, broad vs niche mix, end-block or woven, any always-on tags?" },
+      { n:5,  q:"Hashtag strategy:", hint:"• how many total · • broad vs niche mix · • end-block or woven in · • any always-on tags", rows:4 },
       { n:6,  q:"Three soft CTAs that work + three hard CTAs that flop." },
       { n:7,  q:"What makes a post <em>read</em> like an ad even when it isn't?" },
       { n:8,  q:"Forbidden words you avoid — for both 营销 reasons and XHS review reasons." },
@@ -811,7 +905,7 @@ const Q = {
     ]},
     { sub: "Visuals — image & carousel", items: [
       { n:10, q:"Your top 3 cover archetypes that consistently get the click.", hint:"face? scene? text-only? object close-up?" },
-      { n:11, q:"Cover text overlay rules — character count, font weight, position, color block." },
+      { n:11, q:"Cover text overlay rules:", hint:"• character count · • font weight · • position on the image · • color block / treatment", rows:4 },
       { n:12, q:"Carousel page count sweet spot. When do extra pages help vs hurt?" },
       { n:13, q:"Page 1 vs last page — payoff on the last page, or sprinkled throughout?" },
       { n:14, q:"In-image text style — serif vs sans, bold vs regular, English subtitle under Chinese?" },
@@ -821,7 +915,7 @@ const Q = {
     { sub: "Short video on XHS", items: [
       { n:17, q:"Video length sweet spot — by content type (campus tour vs testimonial vs class snippet)." },
       { n:18, q:"First 3 seconds — what opens reliably?" },
-      { n:19, q:"Subtitles — burned-in or platform auto-caption? Font, position, color, stroke. Bilingual?" },
+      { n:19, q:"Subtitles for short video:", hint:"• burned-in or platform auto-caption · • font · • position · • color + stroke · • bilingual or CN only", rows:5 },
       { n:20, q:"B-roll vs talking-head ratio." },
       { n:21, q:"Music — trending sounds vs royalty-free brand-safe? Genres and tempos that just work." },
       { n:22, q:"End-frame CTA card — do you use one? What's on it?" },
@@ -837,7 +931,7 @@ const Q = {
     ]},
     { sub: "Edge cases", items: [
       { n:30, q:"Sensitive topics (admissions stress · gaokao · 卷 · mental health) — how do you handle them tastefully?" },
-      { n:31, q:"Photos of minors — default rule. When faces shown, blurred, back-of-head only?" },
+      { n:31, q:"<b>Photos of minors</b> — what's the default rule? Faces shown, blurred, or back-of-head only? Per school, or one rule across all?", hint:"this is the highest-stakes question on the page — please answer it even if you skip everything else.", rows:4, sensitive:true },
       { n:32, q:"Foreign teachers — any sensitivities, framing rules?" },
     ]},
   ],
@@ -846,7 +940,7 @@ const Q = {
     { sub: "公众号 articles", items: [
       { n:33, q:"Article length sweet spot — recruitment · campus storytelling · parent-education." },
       { n:34, q:"Opening 3 lines (feed preview) — patterns that earn the open vs patterns that bury it." },
-      { n:35, q:"Header banner — ratio, style, text density. Rules to avoid the 'flyer' look." },
+      { n:35, q:"公众号 header banner / cover:", hint:"• ratio · • style · • text density · • how to avoid the 'flyer' look", rows:4 },
       { n:36, q:"Section break rhythm — how often image, pull-quote, subheading, divider?" },
       { n:37, q:"Pull-quote style — in-app blockquote, image-card, or both?" },
       { n:38, q:"Image-to-text ratio — roughly how many images per 1000 characters?" },
@@ -878,14 +972,14 @@ const Q = {
     ]},
     { sub: "Voice & audience", items: [
       { n:55, q:"30-second pitch — the exact words you'd use to a parent at a coffee shop." },
-      { n:56, q:"Parent persona — income, neighborhood, job archetype, primary fear, primary aspiration. Be uncomfortably specific." },
+      { n:56, q:"Parent persona — picture one specific parent and answer for her:", hint:"• what does she do for a living? • where does she live? • what did she Google at 11pm last Tuesday? • what's the thing she'd never admit she's worried about? • what would make her recommend the school to a friend?", rows:7 },
       { n:57, q:"3 adjectives the school voice should be. Then 3 it should never be." },
       { n:58, q:"'Sounds like…' — another brand or account whose voice this school sits near." },
       { n:59, q:"Top 3 messages woven into every piece (present, not literally repeated)." },
       { n:60, q:"Tone shifts by audience — current parents · prospective parents · alumni · students · teachers — same or different?" },
     ]},
     { sub: "Proof & evidence", items: [
-      { n:61, q:"Evidence bank — 10–20 facts the copywriter can lean on. Alumni colleges, wins, teacher credentials, retention rates, awards (with year + source)." },
+      { n:61, q:"Evidence bank — 5–7 facts the copywriter can lean on:", hint:"alumni colleges · competition wins · teacher credentials · retention rates · awards. Include year + source if handy — don't dig.\nformat hint: 2024 — 87% → top-30 universities (internal report)", rows:8 },
       { n:62, q:"3–5 'greatest hits' stories — alumni journeys, project showcases, signature events — that we can paraphrase." },
       { n:63, q:"Things you can never claim publicly (legal or school-policy reasons)." },
     ]},
@@ -961,7 +1055,7 @@ const Q = {
       { n:105,q:"Reference images per school — how many 'this is the look' images can you provide?", hint:"5? 20? 50? these anchor the image agent" },
       { n:106,q:"Common edit ops you do by hand today — that we could automate.", hint:"remove background · swap bg · logo overlay · subtitle bar · color grade · resize · composite · etc." },
       { n:107,q:"Cover-text style per school — share mock-ups or screenshots if you can." },
-      { n:108,q:"Subtitle / overlay style for video — font, color, stroke, position, animation. House style or per-school?" },
+      { n:108,q:"Subtitle / overlay style for video:", hint:"• font · • color · • stroke · • position · • animation in/out · • is this a house style or does it vary per school?", rows:6 },
       { n:109,q:"BGM library — curated approved tracks per school, or pick from royalty-free?" },
       { n:110,q:"Brand dictionary — preferred translations and abbreviations.", hint:"e.g. '国际部 → International Division (ID)' not 'IB Section'" },
     ]},
@@ -1005,13 +1099,17 @@ function render(){
         const div = document.createElement('div');
         div.className = 'q';
         div.dataset.qn = it.n;
+        const hintHTML = it.hint ? `<div class="hint">${it.hint.replace(/\n/g, '<br>')}</div>` : '';
+        const rows = it.rows || 2;
+        const sensitive = it.sensitive ? ' q-sensitive' : '';
+        div.className = 'q' + sensitive;
         div.innerHTML = `
           <div class="row">
             <div class="n">${it.n}</div>
             <div class="qtext">${it.q}</div>
           </div>
-          ${it.hint ? `<div class="hint">${it.hint}</div>` : ''}
-          <textarea data-key="q.${it.n}" rows="2" placeholder="your answer…"></textarea>
+          ${hintHTML}
+          <textarea data-key="q.${it.n}" rows="${rows}" placeholder="your answer…" aria-label="answer to question ${it.n}"></textarea>
         `;
         host.appendChild(div);
       });
@@ -1037,14 +1135,35 @@ function load(){
     const raw = localStorage.getItem(LS_KEY);
     if(raw){ setAll(JSON.parse(raw)); }
   }catch(e){}
+  // Auto-grow restored textareas
+  document.querySelectorAll('textarea[data-key]').forEach(t => {
+    if(t.value.trim().length > 0){
+      t.style.height = 'auto';
+      t.style.height = (t.scrollHeight + 2) + 'px';
+    }
+  });
   refresh();
 }
 let saveTimer = null;
+let saveDebounce = null;
+let storageWarned = false;
 function save(){
   try{
     localStorage.setItem(LS_KEY, JSON.stringify(getAll()));
     flashSaved();
-  }catch(e){}
+  }catch(e){
+    if(!storageWarned){
+      storageWarned = true;
+      const fb = document.getElementById('feedback');
+      if(fb){ fb.style.color = '#c4533a'; fb.textContent = '⚠ Browser storage full — your latest answers may not be saved. Use Save (sidebar) or Download (bottom) now.'; }
+      const ind = document.getElementById('saveInd');
+      if(ind){ ind.textContent = '⚠ storage full'; ind.style.background = '#c4533a'; ind.classList.add('show'); }
+    }
+  }
+}
+function saveDebounced(){
+  clearTimeout(saveDebounce);
+  saveDebounce = setTimeout(save, 400);
 }
 function flashSaved(){
   const el = document.getElementById('saveInd');
@@ -1069,10 +1188,15 @@ function refresh(){
 
 document.addEventListener('input', e => {
   if(e.target.matches('[data-key]')){
-    save();
+    saveDebounced();
     refresh();
+    if(e.target.tagName === 'TEXTAREA'){
+      e.target.style.height = 'auto';
+      e.target.style.height = (e.target.scrollHeight + 2) + 'px';
+    }
   }
 });
+window.addEventListener('beforeunload', () => { save(); });
 
 // ===== NAV ACTIVE =====
 const navLinks = document.querySelectorAll('aside nav a');
@@ -1149,7 +1273,13 @@ document.getElementById('btn-email').addEventListener('click', e => {
   e.preventDefault();
   const md = serialize();
   const subject = 'SAS client QnA — my answers';
-  const body = md.length > 1500 ? md.slice(0,1500) + '\n\n[...truncated — see attached or pasted block below]\n\n' + md : md;
+  let body;
+  if(md.length > 1500){
+    body = md.slice(0, 1200) + '\n\n[...email truncated by your browser. The full file is too long to send via mailto.\nPlease use the ⬇ Download or 📋 Copy button instead, or paste the full text below this line:]\n\n';
+    feedback('⚠ Email opened with first chunk only — for the full answers, use Download or Copy instead.');
+  } else {
+    body = md;
+  }
   window.location.href = `mailto:williamxptang@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 });
 
@@ -1166,27 +1296,32 @@ document.getElementById('btn-clear').addEventListener('click', () => {
 const saveBtn = document.getElementById('btn-save-side');
 const saveBtnSub = document.getElementById('save-btn-sub');
 let saveBtnTimer = null;
-saveBtn.addEventListener('click', async () => {
+saveBtn.addEventListener('click', () => {
   save();
   const all = document.querySelectorAll('textarea[data-key^="q."]');
   let filled = 0;
   all.forEach(t => { if(t.value.trim().length > 0) filled++; });
-  let copied = false;
+
+  // Trigger a backup .md download so progress is portable
   try{
-    await navigator.clipboard.writeText(window.location.href);
-    copied = true;
+    const md = serialize();
+    const blob = new Blob([md], {type:'text/markdown'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    const stamp = new Date().toISOString().slice(0,10);
+    a.download = `sas-qna-backup-${stamp}.md`;
+    a.click();
   }catch(e){}
+
   saveBtn.classList.add('saved');
   saveBtn.querySelector('.save-btn-main').textContent = `✓ saved · ${filled} / ${all.length}`;
-  saveBtnSub.textContent = copied
-    ? 'link copied — bookmark or send to yourself to resume'
-    : 'come back to this page anytime on this device';
+  saveBtnSub.textContent = 'backup file downloaded — keep it just in case';
   clearTimeout(saveBtnTimer);
   saveBtnTimer = setTimeout(() => {
     saveBtn.classList.remove('saved');
-    saveBtn.querySelector('.save-btn-main').textContent = '💾 Save & come back later';
-    saveBtnSub.textContent = 'all your answers are stored on this device';
-  }, 4000);
+    saveBtn.querySelector('.save-btn-main').textContent = '💾 Save progress on this device';
+    saveBtnSub.textContent = 'also downloads a backup file you can keep';
+  }, 4500);
 });
 
 // ===== INIT =====
