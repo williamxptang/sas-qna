@@ -982,19 +982,18 @@
 
 <!-- ===================== SEND ===================== -->
 <section class="send" id="send">
-  <h2>That's it — send it over.</h2>
-  <p>Two paths, same outcome. Pick whichever's easiest right now.</p>
+  <h2>That's it — send it back to me.</h2>
+  <p>Click the button, drop the file in our WeChat chat. Done.</p>
   <div class="buttons">
-    <button class="btn primary" id="btn-send">📤 Send to William</button>
-    <button class="btn teal" id="btn-zip">⬇ Download zip (for WeChat)</button>
+    <button class="btn primary" id="btn-zip">⬇ Download zip for WeChat</button>
     <button class="btn ghost" id="btn-copy">📋 Copy text only</button>
     <button class="btn ghost" id="btn-clear">↻ Clear &amp; start over</button>
   </div>
   <div class="feedback" id="feedback"></div>
   <p style="margin-top:24px;font-size:13px;color:var(--ink-mute);">
-    <b>Send to William</b> ships your answers + any attached screenshots straight to his inbox (under 5MB total).<br>
-    <b>Download zip</b> packages everything into a single file — drop it into our WeChat chat and that's it.<br>
-    Either way: thank you 🙏 — this is the most useful hour you'll spend on this project.
+    The zip contains your answers as <code>answers.md</code> plus an <code>images/</code> folder with every screenshot you attached. Just drag it into our WeChat chat — that's the whole delivery.<br><br>
+    <b>Copy text only</b> is a fallback if WeChat is being weird about file attachments — it copies just the written answers (no screenshots).<br><br>
+    Thank you 🙏 — this is the most useful hour you'll spend on this project.
   </p>
 </section>
 
@@ -1786,52 +1785,7 @@ async function buildZip(){
   return { blob, imageCount: all.length, md };
 }
 
-// ===== WEB3FORMS (direct-to-inbox) =====
-// To enable: sign up at https://web3forms.com (free, 60 seconds, no payment)
-// → confirm your email → paste the access key below ↓
-const WEB3FORMS_KEY = 'PASTE_YOUR_WEB3FORMS_ACCESS_KEY_HERE';
-const WEB3FORMS_LIMIT_MB = 5;
-
-async function sendToWilliam(){
-  if(!WEB3FORMS_KEY || WEB3FORMS_KEY.startsWith('PASTE_')){
-    feedback('⚠ Direct-send not yet configured. Use Download Zip + send via WeChat instead.', true);
-    return false;
-  }
-  feedback('sending… one moment.');
-  let pkg;
-  try{ pkg = await buildZip(); }
-  catch(e){ feedback('⚠ could not build the file. Try Download Zip instead.', true); return false; }
-  if(pkg.blob.size > WEB3FORMS_LIMIT_MB * 1024 * 1024){
-    feedback(`⚠ Total size ${(pkg.blob.size/1024/1024).toFixed(1)}MB > ${WEB3FORMS_LIMIT_MB}MB cap. Use Download Zip + WeChat instead.`, true);
-    return false;
-  }
-  const form = new FormData();
-  form.append('access_key', WEB3FORMS_KEY);
-  form.append('subject', 'SAS QnA — answers received');
-  form.append('from_name', 'SAS Client');
-  form.append('message', pkg.md);
-  const stamp = new Date().toISOString().slice(0,10);
-  form.append('attachment', pkg.blob, `sas-qna-${stamp}.zip`);
-  try{
-    const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: form });
-    const data = await res.json();
-    if(data && data.success){
-      feedback('✓ sent to William. You can close this tab whenever — thank you 🙏');
-      return true;
-    }
-    feedback('⚠ delivery failed (' + (data.message || 'unknown') + '). Use Download Zip instead.', true);
-    return false;
-  }catch(e){
-    feedback('⚠ network error. Use Download Zip + WeChat instead.', true);
-    return false;
-  }
-}
-
 // ===== BUTTONS =====
-document.getElementById('btn-send').addEventListener('click', async () => {
-  await sendToWilliam();
-});
-
 document.getElementById('btn-zip').addEventListener('click', async () => {
   feedback('packaging…');
   try{
