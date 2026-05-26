@@ -108,6 +108,43 @@
   }
   aside .status b{color:var(--ink);font-weight:600}
 
+  .save-btn{
+    display:block;
+    width:100%;
+    margin-top:14px;
+    padding:14px 12px;
+    background:#fff;
+    border:1.5px solid var(--accent);
+    border-radius:8px;
+    color:var(--accent);
+    font-family:inherit;
+    cursor:pointer;
+    text-align:center;
+    transition:background .15s, transform .1s, box-shadow .15s;
+  }
+  .save-btn:hover{
+    background:var(--field-focus);
+    transform:translateY(-1px);
+    box-shadow:0 4px 12px rgba(196,83,58,.12);
+  }
+  .save-btn.saved{
+    background:var(--accent);
+    color:#fff;
+  }
+  .save-btn-main{
+    display:block;
+    font-size:14px;
+    font-weight:700;
+    margin-bottom:4px;
+  }
+  .save-btn-sub{
+    display:block;
+    font-size:11px;
+    opacity:.75;
+    font-weight:500;
+    line-height:1.35;
+  }
+
   /* MAIN */
   main{ padding:48px 0 120px 0; }
 
@@ -401,8 +438,13 @@
     <a href="#send"><span class="pn">▸</span>Send</a>
   </nav>
   <div class="status">
-    Autosaves as you type. Close the tab whenever — your answers will still be here. Hit <b>Send</b> at the bottom when you're done (or done-enough).
+    Autosaves as you type. Close the tab whenever — your answers stay in this browser. Hit <b>Send</b> at the bottom when you're done (or done-enough).
   </div>
+
+  <button class="save-btn" id="btn-save-side">
+    <span class="save-btn-main">💾 Save &amp; come back later</span>
+    <span class="save-btn-sub" id="save-btn-sub">all your answers are stored on this device</span>
+  </button>
 </aside>
 
 <main>
@@ -1119,6 +1161,33 @@ document.getElementById('btn-clear').addEventListener('click', () => {
     refresh();
     feedback('cleared.');
   }
+});
+
+// ===== SIDEBAR SAVE BUTTON =====
+const saveBtn = document.getElementById('btn-save-side');
+const saveBtnSub = document.getElementById('save-btn-sub');
+let saveBtnTimer = null;
+saveBtn.addEventListener('click', async () => {
+  save();
+  const all = document.querySelectorAll('textarea[data-key^="q."]');
+  let filled = 0;
+  all.forEach(t => { if(t.value.trim().length > 0) filled++; });
+  let copied = false;
+  try{
+    await navigator.clipboard.writeText(window.location.href);
+    copied = true;
+  }catch(e){}
+  saveBtn.classList.add('saved');
+  saveBtn.querySelector('.save-btn-main').textContent = `✓ saved · ${filled} / ${all.length}`;
+  saveBtnSub.textContent = copied
+    ? 'link copied — bookmark or send to yourself to resume'
+    : 'come back to this page anytime on this device';
+  clearTimeout(saveBtnTimer);
+  saveBtnTimer = setTimeout(() => {
+    saveBtn.classList.remove('saved');
+    saveBtn.querySelector('.save-btn-main').textContent = '💾 Save & come back later';
+    saveBtnSub.textContent = 'all your answers are stored on this device';
+  }, 4000);
 });
 
 // ===== INIT =====
