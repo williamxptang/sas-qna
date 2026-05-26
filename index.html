@@ -401,7 +401,7 @@
     <a href="#send"><span class="pn">▸</span>Send</a>
   </nav>
   <div class="status">
-    <b>Your answers save in your browser</b> as you type. Close the tab — they'll be here when you come back. Hit <b>Send</b> at the bottom when you're done.
+    Autosaves as you type. Close the tab whenever — your answers will still be here. Hit <b>Send</b> at the bottom when you're done (or done-enough).
   </div>
 </aside>
 
@@ -409,19 +409,28 @@
 
 <!-- ===================== OPENING LETTER ===================== -->
 <section class="opening" id="open">
-  <div class="eyebrow">A letter from your tool</div>
-  <h1>I need to <em>sound like you.</em></h1>
-  <span class="stamp">Reading time: ~5 minutes &nbsp;·&nbsp; Filling time: as long as you want</span>
+  <div class="eyebrow">A quick brief, then your turn</div>
+  <h1>The tool needs <em>your taste,</em><br>not just your time.</h1>
+  <span class="stamp">~5 min to read &nbsp;·&nbsp; fill in chunks, no rush</span>
 
-  <p>Hi —</p>
+  <p>Hey 👋</p>
 
-  <p>I'm a tool that writes social posts for your schools. The catch: if I don't know what <em>you</em> know, I just produce generic robot text. The kind every account on XHS already has too much of.</p>
+  <p>I've been heads-down for a few months on the thing I keep telling you about over WeChat — the tool that takes your raw materials (brochures, campus photos, the random clips on your phone) and turns them into XHS + 公众号 posts, one school at a time.</p>
 
-  <p>The only fix is for you to teach me — your taste, your rules, the things you know about each school that nobody ever wrote down. The questions below become the <b>brain</b> the tool runs on.</p>
+  <p>It mostly works. But "works" isn't the bar — the bar is <em>"sounds like someone who actually knows the school."</em> Right now it sounds like a tool, which is the whole problem.</p>
 
-  <p>Type whatever's easiest. Bullets, full sentences, voice-memo transcripts, "skip this one" — all fine. Your answers save in your browser as you go. Close the tab whenever; pick it up later.</p>
+  <p>So here's where you come in. The questions below are basically every <em>"wait, how do you actually…?"</em> I've been jotting down for months. Your answers become the system's instincts — every prompt it runs, every rule it follows, every "no don't say that" comes from what you write here.</p>
 
-  <p class="signoff">— the tool, on behalf of William</p>
+  <p><b>Three things up front:</b></p>
+  <ul style="font-size:16px;color:var(--ink-soft);max-width:620px;padding-left:20px;line-height:1.55;">
+    <li>Bullets &gt; essays. Voice memos &gt; both — if it's faster to talk, send WeChat voice notes and I'll transcribe.</li>
+    <li>One real screenshot of a post you loved (or hated) teaches the tool more than a paragraph of theory. Drop them in WeChat anytime.</li>
+    <li>The page autosaves. Close the tab, come back tomorrow — it's all still there.</li>
+  </ul>
+
+  <p>If today you only have headspace for one thing: <b>Part 3, your most active school.</b> That alone unlocks the bulk of the work.</p>
+
+  <p class="signoff">— William</p>
 </section>
 
 <!-- DIAGRAM 1 — what the tool does -->
@@ -483,9 +492,105 @@
   </svg>
 </div>
 
-<!-- DIAGRAM 2 — where your answers go -->
+<!-- DIAGRAM 2 — inside the tool (architecture) -->
 <div class="figure">
   <div class="cap">Figure 2</div>
+  <h3>Inside the tool — three layers, stacked</h3>
+  <svg viewBox="0 0 720 380" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <marker id="arr2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+        <path d="M0,0 L10,5 L0,10 z" fill="#7a8194"/>
+      </marker>
+    </defs>
+    <style>
+      .lbl{ font:600 12.5px "Inter",sans-serif; fill:#1d212c; }
+      .lblbig{ font:700 14px "Inter",sans-serif; fill:#1d212c; }
+      .sub{ font:11px "Inter",sans-serif; fill:#7a8194; }
+      .grp{ font:700 10px "Inter",sans-serif; fill:#c4533a; letter-spacing:.22em; }
+      .box{ fill:#fff; stroke:#e2d8c5; stroke-width:1; }
+      .accent{ fill:#fbe9e2; stroke:#c4533a; }
+      .chip{ fill:#fff7ec; stroke:#b48a3b; }
+      .out{ fill:#e2efef; stroke:#2f6b6a; }
+    </style>
+
+    <!-- Layer 1: KNOWLEDGE -->
+    <text class="grp" x="10" y="16">1 · KNOWLEDGE — YOUR ANSWERS BUILD THIS</text>
+    <rect class="box" x="10"  y="28" width="225" height="74" rx="6"/>
+    <text class="lbl" x="22" y="50">School profile</text>
+    <text class="sub" x="22" y="68">voice · audience · key messages</text>
+    <text class="sub" x="22" y="84">evidence · forbidden words</text>
+    <text class="sub" x="22" y="98" font-style="italic">one per school you serve</text>
+
+    <rect class="box" x="247" y="28" width="225" height="74" rx="6"/>
+    <text class="lbl" x="259" y="50">Platform standards</text>
+    <text class="sub" x="259" y="68">XHS rules · WeChat rules</text>
+    <text class="sub" x="259" y="84">caption length · hooks · taboos</text>
+    <text class="sub" x="259" y="98" font-style="italic">shared across all schools</text>
+
+    <rect class="box" x="484" y="28" width="226" height="74" rx="6"/>
+    <text class="lbl" x="496" y="50">Brand assets</text>
+    <text class="sub" x="496" y="68">logo · brand colors · fonts</text>
+    <text class="sub" x="496" y="84">mood refs · BGM library</text>
+    <text class="sub" x="496" y="98" font-style="italic">per school, in /assets/</text>
+
+    <!-- arrows down to chat layer -->
+    <line x1="120" y1="104" x2="290" y2="158" stroke="#7a8194" stroke-width="1" opacity=".5" marker-end="url(#arr2)"/>
+    <line x1="360" y1="104" x2="360" y2="158" stroke="#7a8194" stroke-width="1" opacity=".5" marker-end="url(#arr2)"/>
+    <line x1="600" y1="104" x2="430" y2="158" stroke="#7a8194" stroke-width="1" opacity=".5" marker-end="url(#arr2)"/>
+
+    <!-- Layer 2: CHAT -->
+    <text class="grp" x="10" y="148">2 · CHAT — YOU TALK TO THIS</text>
+    <rect class="accent" x="160" y="160" width="400" height="60" rx="8"/>
+    <text class="lblbig" x="360" y="186" text-anchor="middle">Chat assistant</text>
+    <text class="sub" x="360" y="204" text-anchor="middle">asks what you want · confirms before running · shows the result</text>
+
+    <!-- materials in from left -->
+    <rect class="box" x="10" y="170" width="120" height="40" rx="6"/>
+    <text class="lbl" x="70" y="188" text-anchor="middle">Materials</text>
+    <text class="sub" x="70" y="202" text-anchor="middle">today's input folder</text>
+    <line x1="132" y1="190" x2="158" y2="190" stroke="#7a8194" stroke-width="1.5" marker-end="url(#arr2)"/>
+
+    <!-- arrow down to pipeline -->
+    <line x1="360" y1="220" x2="360" y2="252" stroke="#7a8194" stroke-width="1.5" marker-end="url(#arr2)"/>
+
+    <!-- Layer 3: PIPELINE -->
+    <text class="grp" x="10" y="262">3 · PIPELINE — 5 MODES, PICKED PER JOB</text>
+    <g>
+      <rect class="chip" x="10"  y="274" width="130" height="52" rx="6"/>
+      <text class="lbl" x="75" y="296" text-anchor="middle">t2t</text>
+      <text class="sub" x="75" y="312" text-anchor="middle">write text</text>
+
+      <rect class="chip" x="150" y="274" width="130" height="52" rx="6"/>
+      <text class="lbl" x="215" y="296" text-anchor="middle">t2i</text>
+      <text class="sub" x="215" y="312" text-anchor="middle">create image</text>
+
+      <rect class="chip" x="290" y="274" width="130" height="52" rx="6"/>
+      <text class="lbl" x="355" y="296" text-anchor="middle">i2i</text>
+      <text class="sub" x="355" y="312" text-anchor="middle">edit image</text>
+
+      <rect class="chip" x="430" y="274" width="130" height="52" rx="6"/>
+      <text class="lbl" x="495" y="296" text-anchor="middle">t2v</text>
+      <text class="sub" x="495" y="312" text-anchor="middle">short video</text>
+
+      <rect class="chip" x="570" y="274" width="140" height="52" rx="6"/>
+      <text class="lbl" x="640" y="296" text-anchor="middle">video edit</text>
+      <text class="sub" x="640" y="312" text-anchor="middle">cut your footage</text>
+    </g>
+
+    <!-- arrow from pipeline to output -->
+    <line x1="360" y1="328" x2="360" y2="350" stroke="#7a8194" stroke-width="1.5" marker-end="url(#arr2)"/>
+    <rect class="out" x="240" y="352" width="240" height="22" rx="4"/>
+    <text class="lbl" x="360" y="368" text-anchor="middle">output/&lt;school&gt;/YYMMDD/  →  ready to post</text>
+
+    <!-- providers callout -->
+    <text class="sub" x="10" y="370">backed by</text>
+    <text class="lbl" x="56" y="370" fill="#7a8194" font-weight="500">Anthropic · Volcengine (Seedream + Seedance) · ffmpeg</text>
+  </svg>
+</div>
+
+<!-- DIAGRAM 3 — where your answers go -->
+<div class="figure">
+  <div class="cap">Figure 3</div>
   <h3>Where your answers live inside the tool</h3>
   <svg viewBox="0 0 720 290" xmlns="http://www.w3.org/2000/svg">
     <style>
@@ -631,12 +736,12 @@
 
 <!-- ===================== SEND ===================== -->
 <section class="send" id="send">
-  <h2>Done? Send it back.</h2>
-  <p>Pick whatever's easiest — they all give William the same answers.</p>
+  <h2>That's it — send it over.</h2>
+  <p>Three ways, same outcome. Pick whichever's easiest right now.</p>
   <div class="buttons">
     <button class="btn primary" id="btn-download">⬇ Download as file</button>
     <button class="btn teal" id="btn-copy">📋 Copy for WeChat</button>
-    <a class="btn ghost" id="btn-email" href="#">✉ Email to William</a>
+    <a class="btn ghost" id="btn-email" href="#">✉ Email it back</a>
     <button class="btn ghost" id="btn-clear">↻ Clear &amp; start over</button>
   </div>
   <div class="feedback" id="feedback"></div>
@@ -987,13 +1092,13 @@ document.getElementById('btn-download').addEventListener('click', () => {
   const stamp = new Date().toISOString().slice(0,10);
   a.download = `sas-qna-${stamp}.md`;
   a.click();
-  feedback('✓ downloaded — send the file to William via WeChat or email.');
+  feedback('✓ downloaded — drop the file in WeChat or email and you\'re done.');
 });
 
 document.getElementById('btn-copy').addEventListener('click', async () => {
   try{
     await navigator.clipboard.writeText(serialize());
-    feedback('✓ copied — paste into WeChat to William.');
+    feedback('✓ copied — paste it into our WeChat chat and you\'re done.');
   }catch(e){
     feedback('couldn\'t copy automatically. use download instead.');
   }
