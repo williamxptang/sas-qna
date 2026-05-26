@@ -1,0 +1,1024 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A letter from your tool · please read &amp; reply</title>
+<style>
+  :root{
+    --ink:#1d212c;
+    --ink-soft:#4a5063;
+    --ink-mute:#7a8194;
+    --paper:#fbf7f1;
+    --paper-2:#f3ece0;
+    --rule:#e2d8c5;
+    --accent:#c4533a;
+    --accent-soft:#e88a6e;
+    --teal:#2f6b6a;
+    --gold:#b48a3b;
+    --field:#ffffff;
+    --field-focus:#fff7ec;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Inter","Helvetica Neue",-apple-system,"PingFang SC","Hiragino Sans GB","Noto Sans",sans-serif;
+    font-size:16px;
+    line-height:1.6;
+  }
+  .layout{
+    display:grid;
+    grid-template-columns:240px 1fr;
+    max-width:1100px;
+    margin:0 auto;
+    gap:48px;
+    padding:0 32px;
+  }
+  /* SIDEBAR */
+  aside{
+    position:sticky;
+    top:0;
+    align-self:start;
+    height:100vh;
+    padding:32px 0 32px 0;
+    overflow-y:auto;
+    border-right:1px solid var(--rule);
+  }
+  aside .brand{
+    font-size:11px;
+    letter-spacing:.3em;
+    text-transform:uppercase;
+    color:var(--accent);
+    font-weight:700;
+    margin-bottom:18px;
+  }
+  aside .progress-wrap{
+    margin:0 0 22px 0;
+    font-size:12px;
+    color:var(--ink-mute);
+    letter-spacing:.05em;
+  }
+  aside .bar{
+    height:4px;
+    background:var(--rule);
+    border-radius:4px;
+    overflow:hidden;
+    margin-top:6px;
+  }
+  aside .bar > div{
+    height:100%;
+    background:linear-gradient(90deg,var(--accent),var(--gold));
+    width:0;
+    transition:width .25s ease;
+  }
+  aside nav a{
+    display:block;
+    padding:7px 0;
+    color:var(--ink-soft);
+    text-decoration:none;
+    font-size:13.5px;
+    border-left:2px solid transparent;
+    padding-left:10px;
+    margin-left:-12px;
+    transition:all .15s ease;
+  }
+  aside nav a:hover{ color:var(--accent); }
+  aside nav a.active{
+    color:var(--accent);
+    border-left-color:var(--accent);
+    font-weight:600;
+  }
+  aside nav a .pn{
+    color:var(--gold);
+    font-weight:700;
+    margin-right:8px;
+    font-family:"Iowan Old Style",Georgia,serif;
+  }
+  aside .status{
+    margin-top:24px;
+    padding:12px;
+    background:var(--paper-2);
+    border-radius:6px;
+    font-size:12px;
+    color:var(--ink-mute);
+    line-height:1.5;
+  }
+  aside .status b{color:var(--ink);font-weight:600}
+
+  /* MAIN */
+  main{ padding:48px 0 120px 0; }
+
+  /* LETTER OPENING */
+  .opening{ margin-bottom:48px; }
+  .opening .eyebrow{
+    font-size:11px;
+    letter-spacing:.3em;
+    text-transform:uppercase;
+    color:var(--accent);
+    font-weight:700;
+  }
+  .opening h1{
+    font-family:"Iowan Old Style","Charter",Georgia,"Songti SC",serif;
+    font-size:46px;
+    line-height:1.05;
+    margin:14px 0 6px 0;
+    letter-spacing:-.5px;
+  }
+  .opening h1 em{ font-style:italic; color:var(--accent); }
+  .opening .stamp{
+    display:inline-block;
+    margin-top:10px;
+    padding:4px 12px;
+    border:1px solid var(--rule);
+    border-radius:999px;
+    font-size:11.5px;
+    color:var(--ink-mute);
+    letter-spacing:.08em;
+  }
+  .opening p{
+    font-size:17px;
+    color:var(--ink-soft);
+    margin:18px 0;
+    max-width:620px;
+  }
+  .opening p.signoff{
+    font-family:"Iowan Old Style",Georgia,serif;
+    font-style:italic;
+    color:var(--ink);
+    font-size:18px;
+    margin-top:32px;
+  }
+
+  /* DIAGRAMS */
+  .figure{
+    background:#fff;
+    border:1px solid var(--rule);
+    border-radius:8px;
+    padding:24px 28px;
+    margin:32px 0;
+  }
+  .figure .cap{
+    font-size:11px;
+    letter-spacing:.3em;
+    text-transform:uppercase;
+    color:var(--ink-mute);
+    margin-bottom:10px;
+    font-weight:700;
+  }
+  .figure h3{
+    font-family:"Iowan Old Style",Georgia,serif;
+    font-size:20px;
+    margin:0 0 18px 0;
+    color:var(--ink);
+  }
+  .figure svg{ width:100%; height:auto; display:block; }
+
+  /* PART HEADER */
+  .part{
+    margin:64px 0 0 0;
+    padding-top:24px;
+    border-top:1px solid var(--rule);
+  }
+  .part .ptag{
+    font-size:11px;
+    letter-spacing:.3em;
+    text-transform:uppercase;
+    color:var(--ink-mute);
+    font-weight:700;
+  }
+  .part h2{
+    font-family:"Iowan Old Style",Georgia,serif;
+    font-size:34px;
+    margin:6px 0 8px 0;
+    color:var(--accent);
+    letter-spacing:-.3px;
+  }
+  .part .lead{
+    color:var(--ink-soft);
+    margin:0 0 24px 0;
+    max-width:620px;
+  }
+  h3.sub{
+    font-size:12px;
+    letter-spacing:.25em;
+    text-transform:uppercase;
+    color:var(--teal);
+    margin:32px 0 8px 0;
+    font-weight:700;
+  }
+
+  /* QUESTIONS */
+  .q{
+    margin:18px 0;
+    padding:14px 16px;
+    border-radius:6px;
+    transition:background .15s;
+  }
+  .q.touched{ background:rgba(255,247,236,.55); }
+  .q .row{
+    display:flex;
+    gap:14px;
+    align-items:baseline;
+    margin-bottom:8px;
+  }
+  .q .n{
+    flex:0 0 auto;
+    font-family:"Iowan Old Style",Georgia,serif;
+    font-size:18px;
+    line-height:1;
+    color:var(--accent);
+    font-weight:700;
+    min-width:28px;
+  }
+  .q .qtext{
+    flex:1;
+    font-size:16px;
+    color:var(--ink);
+    line-height:1.45;
+  }
+  .q .qtext b{ font-weight:600; }
+  .q .hint{
+    margin:0 0 8px 42px;
+    font-size:13px;
+    color:var(--ink-mute);
+    font-style:italic;
+  }
+  .q textarea, .q input[type=text]{
+    width:100%;
+    margin-left:0;
+    background:var(--field);
+    border:1px solid var(--rule);
+    border-radius:4px;
+    padding:10px 12px;
+    font-family:inherit;
+    font-size:15px;
+    color:var(--ink);
+    line-height:1.5;
+    resize:vertical;
+    transition:border-color .15s, background .15s;
+  }
+  .q textarea:focus, .q input:focus{
+    outline:none;
+    border-color:var(--accent);
+    background:var(--field-focus);
+  }
+  .q textarea{ min-height:60px; }
+
+  /* SCHOOL CARD */
+  .school-card{
+    border:1px dashed var(--accent);
+    background:#fff;
+    border-radius:8px;
+    padding:18px 22px;
+    margin:14px 0 24px 0;
+  }
+  .school-card label{
+    display:block;
+    font-size:11px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--ink-mute);
+    margin:8px 0 4px 0;
+    font-weight:700;
+  }
+  .school-card input{ margin-bottom:4px; }
+
+  /* SEND PANEL */
+  .send{
+    margin-top:64px;
+    padding:32px;
+    background:linear-gradient(180deg,var(--paper-2) 0%,var(--paper) 100%);
+    border-radius:10px;
+    border:1px solid var(--rule);
+  }
+  .send h2{
+    font-family:"Iowan Old Style",Georgia,serif;
+    font-size:28px;
+    margin:0 0 8px 0;
+    color:var(--accent);
+  }
+  .send p{ margin:8px 0; color:var(--ink-soft); }
+  .buttons{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-top:18px;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:11px 18px;
+    border-radius:6px;
+    border:none;
+    font-family:inherit;
+    font-size:14.5px;
+    font-weight:600;
+    cursor:pointer;
+    text-decoration:none;
+    transition:transform .1s, box-shadow .15s;
+  }
+  .btn:hover{ transform:translateY(-1px); box-shadow:0 4px 10px rgba(0,0,0,.06); }
+  .btn.primary{ background:var(--accent); color:#fff; }
+  .btn.ghost{ background:#fff; color:var(--ink); border:1px solid var(--rule); }
+  .btn.teal{ background:var(--teal); color:#fff; }
+  .feedback{
+    margin-top:14px;
+    font-size:13px;
+    color:var(--teal);
+    min-height:18px;
+    font-weight:600;
+  }
+
+  /* MOBILE */
+  @media (max-width:860px){
+    .layout{ grid-template-columns:1fr; gap:0; padding:0 20px; }
+    aside{
+      position:static;
+      height:auto;
+      border-right:none;
+      border-bottom:1px solid var(--rule);
+      padding:20px 0;
+    }
+    aside nav{ display:flex; flex-wrap:wrap; gap:4px 14px; }
+    aside nav a{
+      padding:4px 0;
+      border:none;
+      margin:0;
+    }
+    .opening h1{ font-size:34px; }
+    .part h2{ font-size:26px; }
+  }
+
+  /* Save indicator */
+  .save-indicator{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background:var(--teal);
+    color:#fff;
+    padding:8px 14px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:600;
+    opacity:0;
+    transform:translateY(10px);
+    transition:opacity .25s, transform .25s;
+    pointer-events:none;
+    z-index:100;
+  }
+  .save-indicator.show{
+    opacity:.95;
+    transform:translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<div class="save-indicator" id="saveInd">✓ saved</div>
+
+<div class="layout">
+
+<aside>
+  <div class="brand">SAS · CLIENT BRIEF</div>
+  <div class="progress-wrap">
+    <span id="prog-text">0 / 121 answered</span>
+    <div class="bar"><div id="prog-bar"></div></div>
+  </div>
+  <nav id="nav">
+    <a href="#open" class="active"><span class="pn">00</span>Letter</a>
+    <a href="#part1"><span class="pn">01</span>XHS</a>
+    <a href="#part2"><span class="pn">02</span>WeChat</a>
+    <a href="#part3"><span class="pn">03</span>Your school</a>
+    <a href="#part4"><span class="pn">04</span>Mix &amp; cadence</a>
+    <a href="#part5"><span class="pn">05</span>How we work</a>
+    <a href="#part6"><span class="pn">06</span>Visuals &amp; editing</a>
+    <a href="#part7"><span class="pn">07</span>Business</a>
+    <a href="#part8"><span class="pn">08</span>About you</a>
+    <a href="#send"><span class="pn">▸</span>Send</a>
+  </nav>
+  <div class="status">
+    <b>Your answers save in your browser</b> as you type. Close the tab — they'll be here when you come back. Hit <b>Send</b> at the bottom when you're done.
+  </div>
+</aside>
+
+<main>
+
+<!-- ===================== OPENING LETTER ===================== -->
+<section class="opening" id="open">
+  <div class="eyebrow">A letter from your tool</div>
+  <h1>I need to <em>sound like you.</em></h1>
+  <span class="stamp">Reading time: ~5 minutes &nbsp;·&nbsp; Filling time: as long as you want</span>
+
+  <p>Hi —</p>
+
+  <p>I'm a tool that writes social posts for your schools. The catch: if I don't know what <em>you</em> know, I just produce generic robot text. The kind every account on XHS already has too much of.</p>
+
+  <p>The only fix is for you to teach me — your taste, your rules, the things you know about each school that nobody ever wrote down. The questions below become the <b>brain</b> the tool runs on.</p>
+
+  <p>Type whatever's easiest. Bullets, full sentences, voice-memo transcripts, "skip this one" — all fine. Your answers save in your browser as you go. Close the tab whenever; pick it up later.</p>
+
+  <p class="signoff">— the tool, on behalf of William</p>
+</section>
+
+<!-- DIAGRAM 1 — what the tool does -->
+<div class="figure">
+  <div class="cap">Figure 1</div>
+  <h3>What this tool does, end to end</h3>
+  <svg viewBox="0 0 720 220" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+        <path d="M0,0 L10,5 L0,10 z" fill="#7a8194"/>
+      </marker>
+    </defs>
+    <style>
+      .lbl{ font:600 12px "Inter",sans-serif; fill:#1d212c; }
+      .sub{ font:11px "Inter",sans-serif; fill:#7a8194; }
+      .box{ fill:#fff; stroke:#e2d8c5; }
+      .accent{ fill:#fbe9e2; stroke:#c4533a; }
+      .teal{ fill:#e2efef; stroke:#2f6b6a; }
+      .gold{ fill:#f5ecd6; stroke:#b48a3b; }
+    </style>
+
+    <!-- 1 materials -->
+    <rect class="box" x="10" y="60" width="130" height="60" rx="8"/>
+    <text class="lbl" x="75" y="86" text-anchor="middle">Materials</text>
+    <text class="sub" x="75" y="104" text-anchor="middle">PDF · photos · video</text>
+
+    <line x1="142" y1="90" x2="180" y2="90" stroke="#7a8194" stroke-width="1.5" marker-end="url(#arr)"/>
+
+    <!-- 2 audit -->
+    <rect class="teal" x="182" y="60" width="130" height="60" rx="8"/>
+    <text class="lbl" x="247" y="86" text-anchor="middle">Audit</text>
+    <text class="sub" x="247" y="104" text-anchor="middle">you mark what's useful</text>
+
+    <line x1="314" y1="90" x2="352" y2="90" stroke="#7a8194" stroke-width="1.5" marker-end="url(#arr)"/>
+
+    <!-- 3 assistant -->
+    <rect class="accent" x="354" y="40" width="160" height="100" rx="8"/>
+    <text class="lbl" x="434" y="68" text-anchor="middle">Chat assistant</text>
+    <text class="sub" x="434" y="86" text-anchor="middle">confirms · runs · audits</text>
+    <line x1="370" y1="100" x2="498" y2="100" stroke="#c4533a" stroke-width=".5" stroke-dasharray="2 2"/>
+    <text class="sub" x="434" y="118" text-anchor="middle" fill="#c4533a">t2t · t2i · i2i · t2v · video</text>
+
+    <line x1="516" y1="90" x2="554" y2="90" stroke="#7a8194" stroke-width="1.5" marker-end="url(#arr)"/>
+
+    <!-- 4 review -->
+    <rect class="gold" x="556" y="60" width="150" height="60" rx="8"/>
+    <text class="lbl" x="631" y="86" text-anchor="middle">Posts ready</text>
+    <text class="sub" x="631" y="104" text-anchor="middle">XHS · WeChat</text>
+
+    <!-- bottom loop label -->
+    <line x1="247" y1="120" x2="247" y2="170" stroke="#7a8194" stroke-width="1" stroke-dasharray="3 3"/>
+    <line x1="247" y1="170" x2="434" y2="170" stroke="#7a8194" stroke-width="1" stroke-dasharray="3 3"/>
+    <line x1="434" y1="170" x2="434" y2="140" stroke="#7a8194" stroke-width="1" stroke-dasharray="3 3" marker-end="url(#arr)"/>
+    <text class="sub" x="340" y="190" text-anchor="middle">accept · re-edit · regenerate</text>
+
+    <text class="sub" x="0" y="15">You</text>
+    <text class="sub" x="354" y="15">Tool</text>
+    <text class="sub" x="556" y="15">Result</text>
+  </svg>
+</div>
+
+<!-- DIAGRAM 2 — where your answers go -->
+<div class="figure">
+  <div class="cap">Figure 2</div>
+  <h3>Where your answers live inside the tool</h3>
+  <svg viewBox="0 0 720 290" xmlns="http://www.w3.org/2000/svg">
+    <style>
+      .lbl{ font:600 13px "Inter",sans-serif; fill:#1d212c; }
+      .sub{ font:11px "Inter",sans-serif; fill:#7a8194; }
+      .pcell{ fill:#fff7ec; stroke:#c4533a; }
+      .scell{ fill:#fff; stroke:#e2d8c5; }
+    </style>
+
+    <!-- left column: question parts -->
+    <rect class="pcell" x="10" y="10" width="170" height="38" rx="6"/>
+    <text class="lbl" x="20" y="34">01 · XHS</text>
+    <rect class="pcell" x="10" y="56" width="170" height="38" rx="6"/>
+    <text class="lbl" x="20" y="80">02 · WeChat</text>
+    <rect class="pcell" x="10" y="102" width="170" height="38" rx="6"/>
+    <text class="lbl" x="20" y="126">03 · Your school</text>
+    <rect class="pcell" x="10" y="148" width="170" height="38" rx="6"/>
+    <text class="lbl" x="20" y="172">04 · Mix &amp; cadence</text>
+    <rect class="pcell" x="10" y="194" width="170" height="38" rx="6"/>
+    <text class="lbl" x="20" y="218">05 · How we work</text>
+    <rect class="pcell" x="10" y="240" width="170" height="38" rx="6"/>
+    <text class="lbl" x="20" y="264">06 · Visuals</text>
+
+    <!-- right column: components -->
+    <rect class="scell" x="380" y="10" width="320" height="38" rx="6"/>
+    <text class="lbl" x="395" y="28">Platform standards</text>
+    <text class="sub" x="395" y="42">caption length, hooks, hashtags, banned words</text>
+
+    <rect class="scell" x="380" y="56" width="320" height="38" rx="6"/>
+    <text class="lbl" x="395" y="74">School profile · voice &amp; audience</text>
+    <text class="sub" x="395" y="88">tone, persona, key messages, "sounds like…"</text>
+
+    <rect class="scell" x="380" y="102" width="320" height="38" rx="6"/>
+    <text class="lbl" x="395" y="120">Evidence bank</text>
+    <text class="sub" x="395" y="134">facts, alumni stories, awards, programs</text>
+
+    <rect class="scell" x="380" y="148" width="320" height="38" rx="6"/>
+    <text class="lbl" x="395" y="166">Guardrails</text>
+    <text class="sub" x="395" y="180">forbidden words &amp; imagery, approval rules</text>
+
+    <rect class="scell" x="380" y="194" width="320" height="38" rx="6"/>
+    <text class="lbl" x="395" y="212">Brand assets</text>
+    <text class="sub" x="395" y="226">logo, colors, fonts, mood, BGM</text>
+
+    <rect class="scell" x="380" y="240" width="320" height="38" rx="6"/>
+    <text class="lbl" x="395" y="258">Workflow defaults</text>
+    <text class="sub" x="395" y="272">cadence, review style, output format</text>
+
+    <!-- arrows: many-to-many -->
+    <g stroke="#c4533a" stroke-width="1" fill="none" opacity=".55">
+      <path d="M180,29 C260,29 280,29 380,29"/>
+      <path d="M180,75 C260,75 280,75 380,75"/>
+      <path d="M180,121 C260,121 280,75 380,75"/>
+      <path d="M180,121 C260,121 280,121 380,121"/>
+      <path d="M180,121 C260,121 280,167 380,167"/>
+      <path d="M180,121 C260,121 280,213 380,213"/>
+      <path d="M180,167 C260,167 280,259 380,259"/>
+      <path d="M180,213 C260,213 280,259 380,259"/>
+      <path d="M180,259 C260,259 280,213 380,213"/>
+    </g>
+  </svg>
+</div>
+
+<!-- ===================== PART 1 — XHS ===================== -->
+<section class="part" id="part1">
+  <div class="ptag">PART 01</div>
+  <h2>小红书 (XHS)</h2>
+  <p class="lead">The stuff you know from posting on XHS that nobody documents. Sharpest answers help most.</p>
+
+  <h3 class="sub">Caption craft</h3>
+  <div class="qg" data-section="part1">
+    <!-- questions injected by JS below -->
+  </div>
+</section>
+
+<!-- ===================== PART 2 ===================== -->
+<section class="part" id="part2">
+  <div class="ptag">PART 02</div>
+  <h2>微信 (WeChat)</h2>
+  <p class="lead">公众号, 朋友圈, 视频号 — what works, what gets flagged, what converts to a real conversation.</p>
+  <div class="qg" data-section="part2"></div>
+</section>
+
+<!-- ===================== PART 3 ===================== -->
+<section class="part" id="part3">
+  <div class="ptag">PART 03</div>
+  <h2>One school, in detail</h2>
+  <p class="lead">Pick your most active school and answer for that one. (If you have headspace later, do another.) Every field here lands in that school's profile.</p>
+
+  <div class="school-card">
+    <label>School name (zh / en)</label>
+    <input type="text" data-key="school.name">
+    <label>Short name</label>
+    <input type="text" data-key="school.short">
+    <label>Founded</label>
+    <input type="text" data-key="school.founded">
+    <label>Student count · age range</label>
+    <input type="text" data-key="school.students">
+  </div>
+
+  <div class="qg" data-section="part3"></div>
+</section>
+
+<!-- ===================== PART 4 ===================== -->
+<section class="part" id="part4">
+  <div class="ptag">PART 04</div>
+  <h2>Content mix &amp; cadence</h2>
+  <p class="lead">How much, how often, what type — for one active school.</p>
+  <div class="qg" data-section="part4"></div>
+</section>
+
+<!-- ===================== PART 5 ===================== -->
+<section class="part" id="part5">
+  <div class="ptag">PART 05</div>
+  <h2>How you want to work with me</h2>
+  <p class="lead">The chat, the review, the buttons, the timing.</p>
+  <div class="qg" data-section="part5"></div>
+</section>
+
+<!-- ===================== PART 6 ===================== -->
+<section class="part" id="part6">
+  <div class="ptag">PART 06</div>
+  <h2>Visuals &amp; editing</h2>
+  <p class="lead">For image and video — covers, overlays, subtitles, brand consistency.</p>
+  <div class="qg" data-section="part6"></div>
+</section>
+
+<!-- ===================== PART 7 ===================== -->
+<section class="part" id="part7">
+  <div class="ptag">PART 07</div>
+  <h2>Business &amp; compliance</h2>
+  <p class="lead">Money, data, who can see what.</p>
+  <div class="qg" data-section="part7"></div>
+</section>
+
+<!-- ===================== PART 8 ===================== -->
+<section class="part" id="part8">
+  <div class="ptag">PART 08</div>
+  <h2>About you, the operator</h2>
+  <p class="lead">Your day, your friction, your honest gut feel.</p>
+  <div class="qg" data-section="part8"></div>
+</section>
+
+<!-- ===================== SEND ===================== -->
+<section class="send" id="send">
+  <h2>Done? Send it back.</h2>
+  <p>Pick whatever's easiest — they all give William the same answers.</p>
+  <div class="buttons">
+    <button class="btn primary" id="btn-download">⬇ Download as file</button>
+    <button class="btn teal" id="btn-copy">📋 Copy for WeChat</button>
+    <a class="btn ghost" id="btn-email" href="#">✉ Email to William</a>
+    <button class="btn ghost" id="btn-clear">↻ Clear &amp; start over</button>
+  </div>
+  <div class="feedback" id="feedback"></div>
+  <p style="margin-top:24px;font-size:13px;color:var(--ink-mute);">
+    The file is a plain <code>.md</code> — readable in any text app, WeChat, email. Sending screenshots and example posts separately is even better than answering in writing.
+  </p>
+</section>
+
+</main>
+</div>
+
+<script>
+// ===== QUESTIONS DATA =====
+const Q = {
+  part1: [
+    { sub: "Caption craft", items: [
+      { n:1,  q:"Caption length sweet spot — info carousel · story-style · short video. What's the hard cap?", hint:"e.g. info 300–500字, story 150–250字, video 100字以内" },
+      { n:2,  q:"Three first-line hooks you trust most.", hint:"the openers you keep reusing because they just work" },
+      { n:3,  q:"5 adjectives the XHS voice for your schools <b>should</b> be. Then 5 it should never be." },
+      { n:4,  q:"Emoji rules — how many, where, any that scream 'ad' to you?" },
+      { n:5,  q:"Hashtag strategy — count, broad vs niche mix, end-block or woven, any always-on tags?" },
+      { n:6,  q:"Three soft CTAs that work + three hard CTAs that flop." },
+      { n:7,  q:"What makes a post <em>read</em> like an ad even when it isn't?" },
+      { n:8,  q:"Forbidden words you avoid — for both 营销 reasons and XHS review reasons." },
+      { n:9,  q:"CN ↔ EN mixing — when bilingual feels natural vs tacky." },
+    ]},
+    { sub: "Visuals — image & carousel", items: [
+      { n:10, q:"Your top 3 cover archetypes that consistently get the click.", hint:"face? scene? text-only? object close-up?" },
+      { n:11, q:"Cover text overlay rules — character count, font weight, position, color block." },
+      { n:12, q:"Carousel page count sweet spot. When do extra pages help vs hurt?" },
+      { n:13, q:"Page 1 vs last page — payoff on the last page, or sprinkled throughout?" },
+      { n:14, q:"In-image text style — serif vs sans, bold vs regular, English subtitle under Chinese?" },
+      { n:15, q:"Aspect ratio default — 3:4 or 1:1 for covers? For in-deck pages?" },
+      { n:16, q:"Brand integration in image — logo, watermark, school name. Always visible? Sometimes? Never?" },
+    ]},
+    { sub: "Short video on XHS", items: [
+      { n:17, q:"Video length sweet spot — by content type (campus tour vs testimonial vs class snippet)." },
+      { n:18, q:"First 3 seconds — what opens reliably?" },
+      { n:19, q:"Subtitles — burned-in or platform auto-caption? Font, position, color, stroke. Bilingual?" },
+      { n:20, q:"B-roll vs talking-head ratio." },
+      { n:21, q:"Music — trending sounds vs royalty-free brand-safe? Genres and tempos that just work." },
+      { n:22, q:"End-frame CTA card — do you use one? What's on it?" },
+      { n:23, q:"Vertical 9:16 vs 4:5 vs 1:1 — preference for school content on XHS?" },
+    ]},
+    { sub: "Algorithm feel", items: [
+      { n:24, q:"What XHS is throttling right now that's burned you — words, formats, link/QR practices, cadence." },
+      { n:25, q:"What's worked the last 4–8 weeks for education/parenting accounts — angles, formats, hooks." },
+      { n:26, q:"Best posting time and day-of-week, by content type." },
+      { n:27, q:"Natural comment-bait vs desperate comment-bait — examples of each." },
+      { n:28, q:"What kinds of posts get saved (not just liked)? Concrete examples." },
+      { n:29, q:"Repost / refresh cadence — do you ever republish an evergreen post? How long between?" },
+    ]},
+    { sub: "Edge cases", items: [
+      { n:30, q:"Sensitive topics (admissions stress · gaokao · 卷 · mental health) — how do you handle them tastefully?" },
+      { n:31, q:"Photos of minors — default rule. When faces shown, blurred, back-of-head only?" },
+      { n:32, q:"Foreign teachers — any sensitivities, framing rules?" },
+    ]},
+  ],
+
+  part2: [
+    { sub: "公众号 articles", items: [
+      { n:33, q:"Article length sweet spot — recruitment · campus storytelling · parent-education." },
+      { n:34, q:"Opening 3 lines (feed preview) — patterns that earn the open vs patterns that bury it." },
+      { n:35, q:"Header banner — ratio, style, text density. Rules to avoid the 'flyer' look." },
+      { n:36, q:"Section break rhythm — how often image, pull-quote, subheading, divider?" },
+      { n:37, q:"Pull-quote style — in-app blockquote, image-card, or both?" },
+      { n:38, q:"Image-to-text ratio — roughly how many images per 1000 characters?" },
+      { n:39, q:"Footer / CTA convention — QR · handle · '回复 1' — what actually converts?" },
+      { n:40, q:"Linked Mini-program or H5 landing — do you use these, for what?" },
+      { n:41, q:"Auto-reply keywords — do schools have them? Should generated content reference them?" },
+      { n:42, q:"What KPI do schools actually care about — open, forward, in-reading time?" },
+    ]},
+    { sub: "朋友圈 & 视频号", items: [
+      { n:43, q:"朋友圈 voice — how is it different from 公众号? Specifically." },
+      { n:44, q:"朋友圈 length sweet spot. When does the '全文' cut-off help vs hurt?" },
+      { n:45, q:"Image grid — 1, 3, 6, or 9? Composition tricks for 9-grid?" },
+      { n:46, q:"视频号 importance — active there? Separate platform from XHS or just a twin?" },
+      { n:47, q:"视频号 vs Douyin overlap — cross-post, or different audiences?" },
+    ]},
+    { sub: "Compliance & voice", items: [
+      { n:48, q:"公众号 review triggers you've actually tripped — words, claims, image content." },
+      { n:49, q:"What must be approved before publishing vs what you can ship same-day." },
+      { n:50, q:"WeChat-safe phrasing for 'best/top/guaranteed' — what equivalents do you reach for?" },
+    ]},
+  ],
+
+  part3: [
+    { sub: "Identity", items: [
+      { n:51, q:"Type — 国际 / 双语 / 公立 / 民办 / 培训 / etc. Plus any sub-positioning (e.g. 精英国际, 社区双语)." },
+      { n:52, q:"Location — city, district, neighborhood. Audience radius — how far do parents commute?" },
+      { n:53, q:"Website + all social handles (XHS · 公众号 · 视频号 · Douyin · others)." },
+      { n:54, q:"Existing follower counts per platform." },
+    ]},
+    { sub: "Voice & audience", items: [
+      { n:55, q:"30-second pitch — the exact words you'd use to a parent at a coffee shop." },
+      { n:56, q:"Parent persona — income, neighborhood, job archetype, primary fear, primary aspiration. Be uncomfortably specific." },
+      { n:57, q:"3 adjectives the school voice should be. Then 3 it should never be." },
+      { n:58, q:"'Sounds like…' — another brand or account whose voice this school sits near." },
+      { n:59, q:"Top 3 messages woven into every piece (present, not literally repeated)." },
+      { n:60, q:"Tone shifts by audience — current parents · prospective parents · alumni · students · teachers — same or different?" },
+    ]},
+    { sub: "Proof & evidence", items: [
+      { n:61, q:"Evidence bank — 10–20 facts the copywriter can lean on. Alumni colleges, wins, teacher credentials, retention rates, awards (with year + source)." },
+      { n:62, q:"3–5 'greatest hits' stories — alumni journeys, project showcases, signature events — that we can paraphrase." },
+      { n:63, q:"Things you can never claim publicly (legal or school-policy reasons)." },
+    ]},
+    { sub: "Guardrails", items: [
+      { n:64, q:"Forbidden words — about the school itself, and about the world (competitors, etc.)." },
+      { n:65, q:"Forbidden imagery — faces, places, partner brands you can't show." },
+      { n:66, q:"Comparison policy — direct competitor mentions allowed, implicit only, or never?" },
+      { n:67, q:"Religious / political / regional sensitivities specific to this school." },
+    ]},
+    { sub: "Visual brand", items: [
+      { n:68, q:"Logo files — describe what you have (primary · mono · small variant). Drop files in the WeChat reply." },
+      { n:69, q:"Brand colors — primary · secondary · accent, exact hex if possible. Any 'never use' colors?" },
+      { n:70, q:"Brand fonts — Chinese + English. License files? Or substitute with Noto / Source Han?" },
+      { n:71, q:"Mood reference style — calm, warm, rigorous, playful? Describe or send 5–10 reference images." },
+      { n:72, q:"Cover frame template — recurring cover format? Share an example to replicate." },
+      { n:73, q:"Photo style — natural · staged · studio? Wide / medium / close-up bias?" },
+    ]},
+    { sub: "Slogans, taglines, claims", items: [
+      { n:74, q:"Official slogans / taglines (zh + en)." },
+      { n:75, q:"Approved one-liners — short reusable phrases pre-approved by leadership." },
+    ]},
+    { sub: "Operating reality", items: [
+      { n:76, q:"Who approves content before publishing — single person, committee, none?" },
+      { n:77, q:"Approval turnaround — same day, 24h, 'whenever the principal sees it'?" },
+      { n:78, q:"Posting cadence target — per platform, per week." },
+      { n:79, q:"Best posting time for this school's audience." },
+      { n:80, q:"Quiet seasons / blackout dates — exam periods, holidays, internal events where you should NOT post." },
+      { n:81, q:"Crisis playbook contact — who do we ping if something breaks?" },
+    ]},
+  ],
+
+  part4: [
+    { sub: "", items: [
+      { n:82, q:"Mix by content type, per week, rough %.", hint:"recruitment · brand storytelling · parent-education · seasonal · behind-the-scenes" },
+      { n:83, q:"Format mix per week — single image · carousel · short video · long article · 朋友圈." },
+      { n:84, q:"Cross-platform reuse — does an XHS post become 朋友圈 same day? A 公众号 article a week later? Map the typical lifecycle." },
+      { n:85, q:"Honest volume need — how much content per school per week does this tool actually need to make?" },
+    ]},
+  ],
+
+  part5: [
+    { sub: "Generation modes", items: [
+      { n:86, q:"t2t (text only) — how often per week per school?" },
+      { n:87, q:"t2i (text → image) — covers, in-deck illustrations, no source photo." },
+      { n:88, q:"i2i (edit existing image) — refine stock, swap background, apply brand style." },
+      { n:89, q:"t2v (text → short video) — '15s teaser for the open house'." },
+      { n:90, q:"video_edit (cut + caption your raw footage) — the flagship mode. How often?" },
+      { n:91, q:"video_restyle / video_extend — when do you reach for these?" },
+    ]},
+    { sub: "Review & iteration", items: [
+      { n:92, q:"Audit-before-run — currently mandatory. Friction or value? Where would you compromise (per-folder audit instead of per-file)?" },
+      { n:93, q:"Per-result actions you want — accept · reject · regenerate-from-source · re-edit-result · '5 more variations' · 'more like this' · inline edit?" },
+      { n:94, q:"Inline edit — type changes into the result, or always re-run with a new prompt?" },
+      { n:95, q:"Batch vs one-at-a-time — 3 variations per run by default, or one and iterate?" },
+      { n:96, q:"History / versioning — ever revert to yesterday's version? Should we treat every regenerate as a new version with a back-button?" },
+    ]},
+    { sub: "The chat", items: [
+      { n:97, q:"Confirmation cards — 'I'll do X to files A, B, C — confirm?' Helpful or annoying?" },
+      { n:98, q:"Audit cards — after a run, 'here's what I made, what's missing, what to do next.' Useful or noise?" },
+      { n:99, q:"Would you message the tool from WeChat or Telegram, or strictly the dashboard?" },
+      { n:100,q:"Multi-tasking — queue 3 schools overnight? How do you want to be notified when it's done?" },
+    ]},
+    { sub: "Output & delivery", items: [
+      { n:101,q:"Where should the final asset go? Currently <code>output/YYMMDD/</code>. Auto-sync to Dropbox / Drive / WeChat Files?" },
+      { n:102,q:"Filename convention — <code>YYMMDD_school_platform_v1.md</code> or your own scheme?" },
+      { n:103,q:"Asset bundle — single zip per post, or loose files?" },
+      { n:104,q:"One-click publish (later) — what's the trust gate? Always preview before publish? Sometimes auto-publish if pre-approved?" },
+    ]},
+  ],
+
+  part6: [
+    { sub: "", items: [
+      { n:105,q:"Reference images per school — how many 'this is the look' images can you provide?", hint:"5? 20? 50? these anchor the image agent" },
+      { n:106,q:"Common edit ops you do by hand today — that we could automate.", hint:"remove background · swap bg · logo overlay · subtitle bar · color grade · resize · composite · etc." },
+      { n:107,q:"Cover-text style per school — share mock-ups or screenshots if you can." },
+      { n:108,q:"Subtitle / overlay style for video — font, color, stroke, position, animation. House style or per-school?" },
+      { n:109,q:"BGM library — curated approved tracks per school, or pick from royalty-free?" },
+      { n:110,q:"Brand dictionary — preferred translations and abbreviations.", hint:"e.g. '国际部 → International Division (ID)' not 'IB Section'" },
+    ]},
+  ],
+
+  part7: [
+    { sub: "", items: [
+      { n:111,q:"NDA / data sensitivity — anything that should never leave your machine, even for cloud-API generation?" },
+      { n:112,q:"Rough API cost budget per school per month — so we can flag overruns." },
+      { n:113,q:"Provider preferences — comfortable with Anthropic · OpenAI · Volcengine · Aliyun? Any 'must not use'?" },
+      { n:114,q:"Do any schools require 'made with AI' disclosure on posts?" },
+      { n:115,q:"Image rights — royalty-free is safe. What about Midjourney / Sora output where rights are murkier?" },
+    ]},
+  ],
+
+  part8: [
+    { sub: "", items: [
+      { n:116,q:"A normal operating day — walk through 7am → 7pm." },
+      { n:117,q:"The most annoying part of your current workflow — the thing that makes you sigh every week." },
+      { n:118,q:"Tools you already use — Notion · Feishu · Lark · Trello · WeChat · Capcut · Adobe · etc. We'd rather integrate than replace." },
+      { n:119,q:"How you measure your own performance for each client — engagement, leads, retention, vibes?" },
+      { n:120,q:"What would make you cancel the tool 6 months in? Honest answer wins." },
+      { n:121,q:"What would let you double the schools you serve — what bottleneck has to go?" },
+    ]},
+  ],
+};
+
+// ===== RENDER =====
+function render(){
+  Object.keys(Q).forEach(sec => {
+    const host = document.querySelector(`.qg[data-section="${sec}"]`);
+    if(!host) return;
+    Q[sec].forEach(group => {
+      if(group.sub){
+        const h = document.createElement('h3');
+        h.className = 'sub';
+        h.textContent = group.sub;
+        host.appendChild(h);
+      }
+      group.items.forEach(it => {
+        const div = document.createElement('div');
+        div.className = 'q';
+        div.dataset.qn = it.n;
+        div.innerHTML = `
+          <div class="row">
+            <div class="n">${it.n}</div>
+            <div class="qtext">${it.q}</div>
+          </div>
+          ${it.hint ? `<div class="hint">${it.hint}</div>` : ''}
+          <textarea data-key="q.${it.n}" rows="2" placeholder="your answer…"></textarea>
+        `;
+        host.appendChild(div);
+      });
+    });
+  });
+}
+render();
+
+// ===== STORAGE =====
+const LS_KEY = 'sas_qna_v3';
+function getAll(){
+  const map = {};
+  document.querySelectorAll('[data-key]').forEach(el => map[el.dataset.key] = el.value || '');
+  return map;
+}
+function setAll(map){
+  document.querySelectorAll('[data-key]').forEach(el => {
+    if(map[el.dataset.key]) el.value = map[el.dataset.key];
+  });
+}
+function load(){
+  try{
+    const raw = localStorage.getItem(LS_KEY);
+    if(raw){ setAll(JSON.parse(raw)); }
+  }catch(e){}
+  refresh();
+}
+let saveTimer = null;
+function save(){
+  try{
+    localStorage.setItem(LS_KEY, JSON.stringify(getAll()));
+    flashSaved();
+  }catch(e){}
+}
+function flashSaved(){
+  const el = document.getElementById('saveInd');
+  el.classList.add('show');
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(()=> el.classList.remove('show'), 1200);
+}
+
+// ===== PROGRESS + TOUCH =====
+function refresh(){
+  const all = document.querySelectorAll('textarea[data-key^="q."]');
+  let filled = 0;
+  all.forEach(t => {
+    const has = t.value.trim().length > 0;
+    if(has) filled++;
+    const q = t.closest('.q');
+    if(q) q.classList.toggle('touched', has);
+  });
+  document.getElementById('prog-text').textContent = `${filled} / ${all.length} answered`;
+  document.getElementById('prog-bar').style.width = (100*filled/all.length) + '%';
+}
+
+document.addEventListener('input', e => {
+  if(e.target.matches('[data-key]')){
+    save();
+    refresh();
+  }
+});
+
+// ===== NAV ACTIVE =====
+const navLinks = document.querySelectorAll('aside nav a');
+const sections = ['open','part1','part2','part3','part4','part5','part6','part7','part8','send']
+  .map(id => document.getElementById(id));
+function updateActive(){
+  let cur = sections[0];
+  for(const s of sections){
+    if(s && s.getBoundingClientRect().top < 200) cur = s;
+  }
+  navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#'+cur.id));
+}
+window.addEventListener('scroll', updateActive);
+
+// ===== SERIALIZE =====
+function serialize(){
+  const map = getAll();
+  const now = new Date().toISOString().slice(0,10);
+  let md = `# SAS Client QnA — answers\n\n_submitted ${now}_\n\n`;
+  const schoolFields = [['school.name','School name'],['school.short','Short name'],['school.founded','Founded'],['school.students','Students']];
+  const sd = schoolFields.filter(([k,_]) => (map[k]||'').trim()).map(([k,l]) => `- **${l}:** ${map[k]}`).join('\n');
+  if(sd) md += `## School\n\n${sd}\n\n`;
+  const partTitles = {
+    part1:'01 · XHS', part2:'02 · WeChat', part3:'03 · School', part4:'04 · Mix & cadence',
+    part5:'05 · How we work', part6:'06 · Visuals', part7:'07 · Business', part8:'08 · About you'
+  };
+  Object.keys(Q).forEach(sec => {
+    let body = '';
+    Q[sec].forEach(group => {
+      let sect = '';
+      group.items.forEach(it => {
+        const a = (map[`q.${it.n}`] || '').trim();
+        if(a){
+          const qtxt = it.q.replace(/<[^>]+>/g,'');
+          sect += `\n**Q${it.n}. ${qtxt}**\n\n${a}\n`;
+        }
+      });
+      if(sect){
+        if(group.sub) body += `\n### ${group.sub}\n${sect}`;
+        else body += sect;
+      }
+    });
+    if(body) md += `## ${partTitles[sec]}\n${body}\n\n`;
+  });
+  return md;
+}
+
+function feedback(msg){
+  document.getElementById('feedback').textContent = msg;
+}
+
+// ===== BUTTONS =====
+document.getElementById('btn-download').addEventListener('click', () => {
+  const md = serialize();
+  const blob = new Blob([md], {type:'text/markdown'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  const stamp = new Date().toISOString().slice(0,10);
+  a.download = `sas-qna-${stamp}.md`;
+  a.click();
+  feedback('✓ downloaded — send the file to William via WeChat or email.');
+});
+
+document.getElementById('btn-copy').addEventListener('click', async () => {
+  try{
+    await navigator.clipboard.writeText(serialize());
+    feedback('✓ copied — paste into WeChat to William.');
+  }catch(e){
+    feedback('couldn\'t copy automatically. use download instead.');
+  }
+});
+
+document.getElementById('btn-email').addEventListener('click', e => {
+  e.preventDefault();
+  const md = serialize();
+  const subject = 'SAS client QnA — my answers';
+  const body = md.length > 1500 ? md.slice(0,1500) + '\n\n[...truncated — see attached or pasted block below]\n\n' + md : md;
+  window.location.href = `mailto:williamxptang@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+});
+
+document.getElementById('btn-clear').addEventListener('click', () => {
+  if(confirm('Clear all your answers? This cannot be undone.')){
+    localStorage.removeItem(LS_KEY);
+    document.querySelectorAll('[data-key]').forEach(el => el.value = '');
+    refresh();
+    feedback('cleared.');
+  }
+});
+
+// ===== INIT =====
+load();
+updateActive();
+</script>
+</body>
+</html>
